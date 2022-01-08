@@ -17,12 +17,13 @@ import { PostRepository } from '../../../../../PostRepository';
 
 type Props = {
     html: string;
+    preface: string;
     title: string;
 };
 
-const Page: React.FC<Props> = ({ html, title }) => {
+const Page: React.FC<Props> = ({ html, preface, title }) => {
     return (
-        <Layout title={title}>
+        <Layout title={title} description={preface}>
             <article className="global-article" dangerouslySetInnerHTML={{ __html: html }} />
         </Layout>
     );
@@ -146,10 +147,12 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
     const html = unified().use(rehypeStringify).stringify(hast);
 
     const title = Post.Title.extract(mdast);
+    const preface = Post.Preface.extract(mdast);
 
     return {
         props: {
             html,
+            preface,
             title,
         },
     };
