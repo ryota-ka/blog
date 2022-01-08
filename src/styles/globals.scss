@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.global-article {
+  @apply text-xl leading-relaxed text-gray-900;
+
+  font-family: 'Hiragino Mincho Pro', 'YuMincho', 'Open Sans', 'Hiragino Kaku Gothic ProN', Meiryo, Helvetica, Arial,
+    sans-serif;
+  font-feature-settings: 'palt';
+  -webkit-font-smoothing: antialiased;
+
+  & > * + * {
+    @apply mt-4;
+  }
+
+  a {
+    @apply text-sky-800 hover:text-sky-700 hover:underline;
+  }
+
+  blockquote {
+    @apply space-y-4 border-l-2 bg-gray-50 pl-3 pr-3 py-2 border-gray-400;
+  }
+
+  h1 {
+    @apply text-2xl font-bold before:content-['#'] before:mr-1 before:text-gray-500;
+  }
+
+  h2 {
+    @apply text-xl font-semibold before:content-['##'] before:mr-1 before:text-gray-500 mb-3 mt-8;
+  }
+
+  ol {
+    @apply list-decimal list-inside space-y-2;
+  }
+
+  p {
+    @apply text-justify;
+  }
+
+  ul {
+    @apply list-disc list-inside space-y-2;
+  }
+}
