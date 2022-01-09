@@ -1,3 +1,5 @@
+import nix from 'highlight.js/lib/languages/nix';
+import vim from 'highlight.js/lib/languages/vim';
 import type { H, MdastNode } from 'mdast-util-to-hast/lib';
 import { toString } from 'mdast-util-to-string';
 import { GetStaticPaths, GetStaticProps } from 'next';
@@ -105,7 +107,12 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
             },
         })
         .use(rehypeKatex, { strict: true })
-        .use(rehypeHighlight)
+        .use(rehypeHighlight, {
+            languages: {
+                nix,
+                vim,
+            },
+        })
         .use(rehypeStringify)
         .process(body);
 
