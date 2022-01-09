@@ -41,4 +41,8 @@
   ul {
     @apply list-disc list-inside space-y-2;
   }
+
+  .math-display {
+    overflow-x: scroll;
+  }
 }
