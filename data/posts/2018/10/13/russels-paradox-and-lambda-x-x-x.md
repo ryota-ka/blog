@@ -95,11 +95,11 @@ Church のオリジナルの体系の矛盾を導くために，Curry のパラ�
 任意の命題 $y$ について $r = \lambda x. (x x \supset y)$ とおく．このとき，
 
 $$
-\begin{align}
+\begin{align*}
 rr &= (\lambda x. (x x \supset y))(\lambda x. (x x \supset y) & \because \text{definition of } r \\
  &= (\lambda x. (x x \supset y))(\lambda x. (x x \supset y)) \supset y & \because \beta \text{-reduction} \\
  &= rr \supset y & \because \text{definition of } r
-\end{align}
+\end{align*}
 $$
 
 ここで $rr$ が偽であると仮定すると，ex falso quodlibet より $rr \supset y$ は真となるが，これと等価であるはずの $rr$ は仮定より偽なので矛盾を導く．よって，$rr$ は真となり，これと等価である $rr \supset y$ もまた真となるので，modus ponens より $y$ も真である．このようにして，任意の命題 $y$ の証明が可能となってしまう．
@@ -109,13 +109,13 @@ $$
 命題 $X$ を $X := X \supset Y$ と定義する．これは「この文が真ならば Y は真である」と読める．このとき，
 
 $$
-\begin{align}
+\begin{align*}
 & \vdash X \supset X & \because \text{tautology} \\
 (X = X \supset Y) \land (X \supset X) & \vdash X \supset (X \supset Y) & \\
 & \vdash X \supset Y & \\
 & = X & \because \text{definition of } X \\
 X \land (X \supset Y) & \vdash Y & \because \text{modus ponens}
-\end{align}
+\end{align*}
 $$
 
 となり，任意の命題 $Y$ が帰結される．また，異なるバリエーションとして，$Y = \bot$ とおくと，$(X \supset (X \supset Y)) \vdash (X \supset (X \supset \bot)) \vdash (X \supset \neg X)$ となり，これは「この文は偽である」と主張する Epimenides のパラドクスに他ならない．
