@@ -4,6 +4,7 @@ import '../styles/globals.scss';
 
 import type { AppProps } from 'next/app';
 import Script from 'next/script';
+import { useEffect } from 'react';
 
 declare global {
     // eslint-disable-next-line no-var
@@ -13,6 +14,10 @@ declare global {
 const gaTrackingID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID!;
 
 const App = ({ Component, pageProps }: AppProps): React.ReactNode => {
+    useEffect(() => {
+        import('../custom-elements');
+    }, []);
+
     return (
         <>
             <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${gaTrackingID}`} />
