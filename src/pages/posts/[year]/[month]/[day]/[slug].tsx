@@ -109,6 +109,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
         })
         .use(rehypeKatex, { strict: true })
         .use(rehypeHighlight, {
+            ignoreMissing: true,
             languages: {
                 haskell,
                 nix,
