@@ -2,6 +2,7 @@ import type { Element, H, MdastNode } from 'mdast-util-to-hast/lib';
 import { toString } from 'mdast-util-to-string';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import path from 'path';
+import rehypeHighlight from 'rehype-highlight';
 import rehypeKatex from 'rehype-katex';
 import rehypeStringify from 'rehype-stringify';
 import remarkGfm from 'remark-gfm';
@@ -114,6 +115,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
             },
         })
         .use(rehypeKatex, { strict: true })
+        .use(rehypeHighlight)
         .run(mdast);
 
     const index = hast.children.findIndex((node) => {

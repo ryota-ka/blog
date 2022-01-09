@@ -22,6 +22,17 @@
     @apply space-y-4 border-l-2 bg-gray-50 pl-3 pr-3 py-2 border-gray-400;
   }
 
+  code {
+    &.hljs {
+      @apply rounded-lg text-lg;
+    }
+
+    &:not(.hljs) {
+      @apply bg-gray-700 text-amber-500 rounded px-2 text-lg;
+      display: inline-block;
+    }
+  }
+
   h1 {
     @apply text-2xl font-bold before:content-['#'] before:mr-1 before:text-gray-500;
   }
