@@ -126,6 +126,11 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
+"@lit/reactive-element@^1.1.0":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@lit/reactive-element/-/reactive-element-1.1.1.tgz#523b29e529e881fce47bab764ea1b8058fd45796"
+  integrity sha512-B2JdRMwCGv+VpIRj3CYVQBx3muPDeE8y+HPgWqzrAHsO5/40BpwDFZeplIV790BaTqDVUDvZOKMSbuFM9zWC0w==
+
 "@napi-rs/triples@1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@napi-rs/triples/-/triples-1.0.3.tgz#76d6d0c3f4d16013c61e45dfca5ff1e6c31ae53c"
@@ -354,6 +359,11 @@
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@types/tough-cookie/-/tough-cookie-4.0.1.tgz#8f80dd965ad81f3e1bc26d6f5c727e132721ff40"
   integrity sha512-Y0K95ThC3esLEYD6ZuqNek29lNX2EM1qxV8y2FTLUB0ff5wWrk7az+mLrnNFUnaXcgKye22+sFBRXOgpPILZNg==
+
+"@types/trusted-types@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@types/trusted-types/-/trusted-types-2.0.2.tgz#fc25ad9943bcac11cceb8168db4f275e0e72e756"
+  integrity sha512-F5DIZ36YVLE+PN+Zwws4kJogq47hNgX3Nx6WyDJ3kcplxyke3XIzB8uK5n/Lpm1HBsbGzd6nmGehL8cPekP+Tg==
 
 "@types/unist@*", "@types/unist@^2.0.0":
   version "2.0.6"
@@ -2428,6 +2438,30 @@ lines-and-columns@^1.1.6:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.2.4.tgz#eca284f75d2965079309dc0ad9255abb2ebc1632"
   integrity sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==
+
+lit-element@^3.1.0:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/lit-element/-/lit-element-3.1.1.tgz#562d5ccbc8ba0c01d8ba4a0ac3576263167d2ccb"
+  integrity sha512-14ClnMAU8EXnzC+M2/KDd3SFmNUn1QUw1+GxWkEMwGV3iaH8ObunMlO5svzvaWlkSV0WlxJCi40NGnDVJ2XZKQ==
+  dependencies:
+    "@lit/reactive-element" "^1.1.0"
+    lit-html "^2.1.0"
+
+lit-html@^2.1.0:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/lit-html/-/lit-html-2.1.1.tgz#f4da485798a0d967514d31730d387350fafb79f7"
+  integrity sha512-E4BImK6lopAYanJpvcGaAG8kQFF1ccIulPu2BRNZI7acFB6i4ujjjsnaPVFT1j/4lD9r8GKih0Y8d7/LH8SeyQ==
+  dependencies:
+    "@types/trusted-types" "^2.0.2"
+
+lit@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/lit/-/lit-2.1.1.tgz#65f43abca945988f696391f762c645ba51966b0b"
+  integrity sha512-yqDqf36IhXwOxIQSFqCMgpfvDCRdxLCLZl7m/+tO5C9W/OBHUj17qZpiMBT35v97QMVKcKEi1KZ3hZRyTwBNsQ==
+  dependencies:
+    "@lit/reactive-element" "^1.1.0"
+    lit-element "^3.1.0"
+    lit-html "^2.1.0"
 
 loader-utils@1.2.3:
   version "1.2.3"
