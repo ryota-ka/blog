@@ -1,4 +1,4 @@
-import type { Element, H, MdastNode } from 'mdast-util-to-hast/lib';
+import type { H, MdastNode } from 'mdast-util-to-hast/lib';
 import { toString } from 'mdast-util-to-string';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import path from 'path';
@@ -8,13 +8,14 @@ import rehypeStringify from 'rehype-stringify';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import remarkParse from 'remark-parse';
-import remarkRehype, { all } from 'remark-rehype';
+import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
 import { u } from 'unist-builder';
 
 import { Layout } from '../../../../../components';
 import * as Post from '../../../../../Post';
 import { PostRepository } from '../../../../../PostRepository';
+import { organizeFootnotes } from '../../../../../unified-plugins';
 
 type Props = {
     date: string;
@@ -72,25 +73,13 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
 
     const { body } = await PostRepository.getByPath([year, month, day, slug]);
 
-    const mdast = unified().use(remarkParse).use(remarkGfm).use(remarkMath).parse(body);
-
-    const hast = await unified()
+    const vfile = await unified()
+        .use(remarkParse)
+        .use(remarkGfm)
+        .use(remarkMath)
+        .use(organizeFootnotes, { label: '脚注' })
         .use(remarkRehype, {
             handlers: {
-                footnoteDefinition(h: H, node: MdastNode) {
-                    if (node.type !== 'footnoteDefinition') {
-                        return;
-                    }
-
-                    const id = node.identifier;
-
-                    return h(
-                        node,
-                        'li',
-                        { dataFootnoteDefinition: true, name: `fn-${id}`, id: `fn-${id}` },
-                        all(h, node),
-                    );
-                },
                 footnoteReference: (h: H, node: MdastNode) => {
                     if (node.type !== 'footnoteReference') {
                         return;
@@ -116,38 +105,12 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
         })
         .use(rehypeKatex, { strict: true })
         .use(rehypeHighlight)
-        .run(mdast);
+        .use(rehypeStringify)
+        .process(body);
 
-    const index = hast.children.findIndex((node) => {
-        return node.type === 'element' && node.properties?.dataFootnoteDefinition === true;
-    });
+    const html = String(vfile);
 
-    hast.children = [
-        ...hast.children.slice(0, index),
-        {
-            type: 'element',
-            tagName: 'section',
-            properties: {
-                id: 'footnotes',
-            },
-            children: [
-                {
-                    type: 'element',
-                    tagName: 'h2',
-                    children: [u('text', '脚注')],
-                },
-                {
-                    type: 'element',
-                    tagName: 'ol',
-                    children: hast.children
-                        .slice(index)
-                        .filter<Element>((node): node is Element => node.type === 'element'),
-                },
-            ],
-        },
-    ];
-
-    const html = unified().use(rehypeStringify).stringify(hast);
+    const mdast = unified().use(remarkParse).parse(body);
 
     const title = Post.Title.extract(mdast);
     const preface = Post.Preface.extract(mdast);
