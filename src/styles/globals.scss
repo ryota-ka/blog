@@ -60,6 +60,21 @@
     @apply text-justify;
   }
 
+  table {
+    @apply border-collapse rounded-lg;
+  }
+
+  td,
+  th {
+    @apply border border-gray-300 px-3 py-1;
+  }
+
+  tr {
+    &:nth-child(even) {
+      @apply bg-gray-100;
+    }
+  }
+
   ul {
     @apply list-disc list-inside space-y-2;
   }
