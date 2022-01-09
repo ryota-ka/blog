@@ -11,6 +11,7 @@ export const Layout: React.FC<Props> = ({ children, description, title }) => {
         <>
             <Head>
                 <title>{title === undefined ? 'blog.ryota-ka.me' : `${title} - blog.ryota-ka.me`}</title>
+                <meta name="viewport" content="initial-scale=1,width=device-width" />
                 {description !== undefined && <meta property="og:description" content={description} />}
             </Head>
             <header className="px-16 py-4 bg-white drop-shadow">
