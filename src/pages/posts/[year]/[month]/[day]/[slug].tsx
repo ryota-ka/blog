@@ -16,14 +16,15 @@ import * as Post from '../../../../../Post';
 import { PostRepository } from '../../../../../PostRepository';
 
 type Props = {
+    date: string;
     html: string;
     preface: string;
     title: string;
 };
 
-const Page: React.FC<Props> = ({ html, preface, title }) => {
+const Page: React.FC<Props> = ({ date, html, preface, title }) => {
     return (
-        <Layout title={title} description={preface}>
+        <Layout article={{ date }} title={title} description={preface}>
             <article className="global-article" dangerouslySetInnerHTML={{ __html: html }} />
         </Layout>
     );
@@ -151,6 +152,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
 
     return {
         props: {
+            date: `${year}-${month}-${day}`,
             html,
             preface,
             title,
