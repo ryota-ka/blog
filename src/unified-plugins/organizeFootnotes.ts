@@ -7,6 +7,10 @@ const organizeFootnotes: Plugin<[{ label: string }], Root, Root> =
     (tree: Root) => {
         const index = tree.children.findIndex((node) => node.type === 'footnoteDefinition');
 
+        if (index === -1) {
+            return;
+        }
+
         tree.children = [
             ...tree.children.slice(0, index),
             {
