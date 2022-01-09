@@ -1,3 +1,4 @@
+import haskell from 'highlight.js/lib/languages/haskell';
 import nix from 'highlight.js/lib/languages/nix';
 import vim from 'highlight.js/lib/languages/vim';
 import type { H, MdastNode } from 'mdast-util-to-hast/lib';
@@ -109,6 +110,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
         .use(rehypeKatex, { strict: true })
         .use(rehypeHighlight, {
             languages: {
+                haskell,
                 nix,
                 vim,
             },
