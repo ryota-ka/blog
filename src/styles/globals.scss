@@ -45,12 +45,34 @@
     @apply text-lg font-semibold before:content-['###'] before:mr-1 before:text-gray-500 mb-3 mt-6;
   }
 
+  li {
+    & > ul,
+    & > ol {
+      @apply ml-8 mt-2;
+    }
+  }
+
   ol {
     @apply list-decimal list-inside space-y-2;
   }
 
   p {
     @apply text-justify;
+  }
+
+  table {
+    @apply border-collapse rounded-lg;
+  }
+
+  td,
+  th {
+    @apply border border-gray-300 px-3 py-1;
+  }
+
+  tr {
+    &:nth-child(even) {
+      @apply bg-gray-100;
+    }
   }
 
   ul {
