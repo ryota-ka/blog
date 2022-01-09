@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@tailwindcss/line-clamp": "0.3.0",
+    "feed": "4.2.2",
     "highlight.js": "11.4.0",
     "isomorphic-unfetch": "3.1.0",
     "jsdom": "19.0.0",
