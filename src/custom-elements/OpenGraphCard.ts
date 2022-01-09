@@ -32,19 +32,23 @@ export class OpenGraphCard extends NonShadowedElement {
                 title=${this.title}
                 rel="noopener noreferrer"
             >
-                ${this.image === null ? '' : html`<img class="rounded-t-xl" alt="" src=${this.image} />`}
+                ${this.#renderImage()}
                 <div class="py-2 px-3">
                     <div class="line-clamp-1 text-gray-500">${new URL(this.href).host}</div>
                     <div class="line-clamp-1 text-gray-900">${this.title}</div>
-                    ${this.description === null
-                        ? ''
-                        : html`
-                              <div class="text-ellipsis overflow-hidden text-gray-500 line-clamp-2">
-                                  ${this.description}
-                              </div>
-                          `}
+                    ${this.#renderDescription()}
                 </div>
             </a>
         `;
+    }
+
+    #renderDescription(): TemplateResult | null {
+        return this.description === null
+            ? null
+            : html`<div class="text-ellipsis overflow-hidden text-gray-500 line-clamp-2">${this.description}</div> `;
+    }
+
+    #renderImage(): TemplateResult | null {
+        return this.image === null ? null : html`<img class="rounded-t-xl" alt="" src=${this.image} />`;
     }
 }

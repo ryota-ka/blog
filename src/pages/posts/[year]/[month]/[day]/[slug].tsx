@@ -15,7 +15,7 @@ import { u } from 'unist-builder';
 import { Layout } from '../../../../../components';
 import * as Post from '../../../../../Post';
 import { PostRepository } from '../../../../../PostRepository';
-import { organizeFootnotes } from '../../../../../unified-plugins';
+import { fancyLinks, organizeFootnotes } from '../../../../../unified-plugins';
 
 type Props = {
     date: string;
@@ -78,6 +78,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
         .use(remarkGfm)
         .use(remarkMath)
         .use(organizeFootnotes, { label: '脚注' })
+        .use(fancyLinks)
         .use(remarkRehype, {
             handlers: {
                 footnoteReference: (h: H, node: MdastNode) => {
