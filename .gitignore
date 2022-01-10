@@ -1,3 +1,4 @@
 /.next/
 /node_modules/
+/public/feed.xml
 /tsconfig.tsbuildinfo
