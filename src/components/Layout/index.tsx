@@ -19,6 +19,12 @@ export const Layout: React.FC<Props> = ({ article, children, description, title 
         <>
             <Head>
                 <title>{title === undefined ? 'blog.ryota-ka.me' : `${title} - blog.ryota-ka.me`}</title>
+                <link
+                    rel="alternate"
+                    type="application/rss+xml"
+                    title="RSS feed"
+                    href="https://blog.ryota-ka.me/feed.xml"
+                />
                 <meta name="viewport" content="initial-scale=1,width=device-width" />
                 {article !== undefined && <meta property="article:published_time" content={article.date} />}
                 {description !== undefined && <meta property="og:description" content={description} />}
