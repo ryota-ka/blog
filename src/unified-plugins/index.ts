@@ -1,2 +1,3 @@
 export { fancyLinks } from './fancyLinks';
 export { organizeFootnotes } from './organizeFootnotes';
+export { stripStandaloneLinks } from './stripStandaloneLinks';
