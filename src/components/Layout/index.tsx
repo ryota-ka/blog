@@ -33,12 +33,12 @@ export const Layout: React.FC<Props> = ({ article, children, description, title 
                 <meta property="og:type" content={article === undefined ? 'website' : 'article'} />
                 <meta property="og:url" content={`https://blog.ryota-ka.me${router.asPath}`} />
             </Head>
-            <header className="px-4 sm:px-6 md:px-12 lg:px-16 py-4 bg-white drop-shadow">
+            <header className="px-2 sm:px-4 md:px-6 lg:px-8 py-4 bg-white drop-shadow">
                 <h1 className="text-base">
                     <Link href="/">blog.ryota-ka.me</Link>
                 </h1>
             </header>
-            <main className="px-4 sm:px-6 md:px-12 lg:px-16 pt-4">{children}</main>
+            <main className="px-2 sm:px-4 md:px-6 lg:px-8 pt-4">{children}</main>
         </>
     );
 };
