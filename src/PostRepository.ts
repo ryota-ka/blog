@@ -6,6 +6,7 @@ type Path = [year: string, month: string, day: string, slug: string];
 type Post = {
     body: string;
     date: [year: string, month: string, day: string];
+    url: string;
 };
 
 const root = path.join(process.cwd(), 'data', 'posts');
@@ -17,6 +18,7 @@ const PostRepository = {
         return {
             body,
             date: [year, month, day],
+            url: `https://blog.ryota-ka.me/posts/${year}/${month}/${day}/${slug}`,
         };
     },
 
