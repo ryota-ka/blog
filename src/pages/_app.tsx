@@ -9,6 +9,12 @@ import { useEffect } from 'react';
 declare global {
     // eslint-disable-next-line no-var
     var gtag: any;
+    // eslint-disable-next-line no-var
+    var twttr: {
+        widgets: {
+            createTweet: (id: string, container: HTMLElement) => void;
+        };
+    };
 }
 
 const gaTrackingID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID!;
@@ -35,6 +41,7 @@ const App = ({ Component, pageProps }: AppProps): React.ReactNode => {
                     `,
                 }}
             />
+            <Script strategy="afterInteractive" src="https://platform.twitter.com/widgets.js" charSet="utf-8" />
             <Component {...pageProps} />
         </>
     );
