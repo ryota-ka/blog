@@ -14,39 +14,36 @@ const fancyLinks: Plugin<[], Root, void> = () => async (tree: Root) => {
             const node = child.children[0];
             node.data ??= {};
             const { url } = node;
-            const { host } = new URL(url);
+            const { host, pathname } = new URL(url);
+            const pieces = pathname.split('/');
 
-            switch (host) {
-                case 'twitter.com': {
-                    Object.assign(node.data, {
-                        hName: 'embedded-tweet',
-                        hProperties: {
-                            src: url,
-                        },
-                    });
-                    break;
-                }
-                default: {
-                    const res = await fetch(url, {
-                        headers: {
-                            Accept: 'text/html',
-                        },
-                    });
-                    const html = await res.text();
-
-                    const openGraph = OpenGraph.parse(html);
-
-                    Object.assign(node.data, {
-                        hName: 'open-graph-card',
-                        hProperties: {
-                            href: url,
-                            ...openGraph,
-                        },
-                        hChildren: [],
-                    });
-                    break;
-                }
+            if (host === 'twitter.com' && pieces[1] === 'status') {
+                Object.assign(node.data, {
+                    hName: 'embedded-tweet',
+                    hProperties: {
+                        src: url,
+                    },
+                });
+                return node;
             }
+
+            const res = await fetch(url, {
+                headers: {
+                    Accept: 'text/html',
+                },
+            });
+            const html = await res.text();
+
+            const openGraph = OpenGraph.parse(html);
+
+            Object.assign(node.data, {
+                hName: 'open-graph-card',
+                hProperties: {
+                    href: url,
+                    ...openGraph,
+                },
+                hChildren: [],
+            });
 
             return node;
         }),
