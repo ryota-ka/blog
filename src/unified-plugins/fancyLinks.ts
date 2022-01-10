@@ -12,26 +12,41 @@ const fancyLinks: Plugin<[], Root, void> = () => async (tree: Root) => {
             }
 
             const node = child.children[0];
-            const { url } = node;
-
-            const res = await fetch(url, {
-                headers: {
-                    Accept: 'text/html',
-                },
-            });
-            const html = await res.text();
-
-            const openGraph = OpenGraph.parse(html);
-
             node.data ??= {};
-            Object.assign(node.data, {
-                hName: 'open-graph-card',
-                hProperties: {
-                    href: url,
-                    ...openGraph,
-                },
-                hChildren: [],
-            });
+            const { url } = node;
+            const { host } = new URL(url);
+
+            switch (host) {
+                case 'twitter.com': {
+                    Object.assign(node.data, {
+                        hName: 'embedded-tweet',
+                        hProperties: {
+                            src: url,
+                        },
+                    });
+                    break;
+                }
+                default: {
+                    const res = await fetch(url, {
+                        headers: {
+                            Accept: 'text/html',
+                        },
+                    });
+                    const html = await res.text();
+
+                    const openGraph = OpenGraph.parse(html);
+
+                    Object.assign(node.data, {
+                        hName: 'open-graph-card',
+                        hProperties: {
+                            href: url,
+                            ...openGraph,
+                        },
+                        hChildren: [],
+                    });
+                    break;
+                }
+            }
 
             return node;
         }),
