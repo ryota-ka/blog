@@ -54,7 +54,7 @@ Natural
 
 ## Dhall expression 入門
 
-あまり詳細に解説すると，それだけで一つの記事になってしまうので，この記事中で用いるものの説明のみで済ませる．より詳しく知りたい方は [GitHub Wiki](https://github.com/dhall-lang/dhall-lang/wiki) を参照のこと．基礎的な文法について詳しく解説することはしないが，このブログの読者であれば，Haskell ないし OCaml の基本的な文法を心得ていると思うので，特に問題ないだろう((問題がある方はやはり公式の GitHub Wiki を読むとよい．))．
+あまり詳細に解説すると，それだけで一つの記事になってしまうので，この記事中で用いるものの説明のみで済ませる．より詳しく知りたい方は [GitHub Wiki](https://github.com/dhall-lang/dhall-lang/wiki) を参照のこと．基礎的な文法について詳しく解説することはしないが，このブログの読者であれば，Haskell ないし OCaml の基本的な文法を心得ていると思うので，特に問題ないだろう[^4]．
 
 ### `Bool` 型
 
@@ -213,7 +213,7 @@ Type → Type
 False
 ```
 
-型を値として扱えるので，もちろん型を引数として取るような関数も定義できる．以下は `Some` とでも名付けられそうな関数の例である((実際に[同名の関数が Prelude で定義されている](https://github.com/dhall-lang/Prelude/blob/master/Optional/Some)．))．
+型を値として扱えるので，もちろん型を引数として取るような関数も定義できる．以下は `Some` とでも名付けられそうな関数の例である[^5]．
 
 ```dhall
 ⊢ :t λ(t : Type) → λ(x : t) → [x] : Optional t
@@ -611,7 +611,7 @@ Commercial support is available at
 
 ## おわりに
 
-今回は煩雑な YAML 管理や，それを解決しようとする本流の解法に対するある種のアンチ・テーゼとして Dhall を紹介した．Dhall 自体は比較的新しいツールセットであり，現状広く普及しているわけでもない．実際に Kubernetes の YAML の管理をこれだけでまかないきれるのかと問われると，「試していないのでわからない」というのが正直なところである((恵比寿の方のとある会社では実戦に投入しているという噂を耳にした))．しかしながら，安全性や分散性に気を遣いつつ，設定記述言語に必要なだけの表現力を持ちながらもチューリング完全とではないという**分を弁えた**言語というコンセプトは目新しく興味深いものであるし，その有用性が十分伺えるものである．しかも，新しいツールセットといえども，今回紹介した `dhall-to-yaml` の他に，JSON を出力する [dhall-to-json](https://github.com/dhall-lang/dhall-json)，テンプレートエンジンたる [dhall-to-text](https://github.com/dhall-lang/dhall-text)，Bash に変換する [dhall-to-bash](https://github.com/dhall-lang/dhall-bash)，Cabal ファイルを出力する [dhall-to-cabal](https://github.com/dhall-lang/dhall-to-cabal)，[Haskell バインディング](https://github.com/dhall-lang/dhall-haskell) などを備え，既に幅広いツールが提供されている．
+今回は煩雑な YAML 管理や，それを解決しようとする本流の解法に対するある種のアンチ・テーゼとして Dhall を紹介した．Dhall 自体は比較的新しいツールセットであり，現状広く普及しているわけでもない．実際に Kubernetes の YAML の管理をこれだけでまかないきれるのかと問われると，「試していないのでわからない」というのが正直なところである[^6]．しかしながら，安全性や分散性に気を遣いつつ，設定記述言語に必要なだけの表現力を持ちながらもチューリング完全とではないという**分を弁えた**言語というコンセプトは目新しく興味深いものであるし，その有用性が十分伺えるものである．しかも，新しいツールセットといえども，今回紹介した `dhall-to-yaml` の他に，JSON を出力する [dhall-to-json](https://github.com/dhall-lang/dhall-json)，テンプレートエンジンたる [dhall-to-text](https://github.com/dhall-lang/dhall-text)，Bash に変換する [dhall-to-bash](https://github.com/dhall-lang/dhall-bash)，Cabal ファイルを出力する [dhall-to-cabal](https://github.com/dhall-lang/dhall-to-cabal)，[Haskell バインディング](https://github.com/dhall-lang/dhall-haskell) などを備え，既に幅広いツールが提供されている．
 
 今回は Kubernetes を例に取ったが，設定記述のために JSON や YAML を書かされるシチュエーションは世の中に溢れ返っている．とりわけ CI のタスクの記述などは，スキーマが存在し，かつプログラマティックに記述できればどれだけありがたいだろうかと常々思うものだが，Dhall はこのような状況を解決する可能性を秘めている．このような有用なツールセットが広く普及することが期待される．
 
@@ -622,3 +622,6 @@ Commercial support is available at
 [^1]: この冒頭挨拶は[「kubernetesに自分のコードがマージされるまでのフロー」](https://blog.whywrite.it/2018/06/15/how-to-submit-pr-to-kubernetes/)のオマージュです．
 [^2]: 一体どれだけの実装が YAML の仕様を満たしているというのか！
 [^3]: "yes" を真だとみなしたりだとか．
+[^4]: 問題がある方はやはり公式の GitHub Wiki を読むとよい．
+[^5]: 実際に[同名の関数が Prelude で定義されている](https://github.com/dhall-lang/Prelude/blob/master/Optional/Some)．
+[^6]: 恵比寿の方のとある会社では実戦に投入しているという噂を耳にした
