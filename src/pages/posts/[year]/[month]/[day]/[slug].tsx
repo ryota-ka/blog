@@ -109,6 +109,9 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
         })
         .use(rehypeKatex, { strict: true })
         .use(rehypeHighlight, {
+            aliases: {
+                perl: ['perl6'],
+            },
             ignoreMissing: true,
             languages: {
                 haskell,
