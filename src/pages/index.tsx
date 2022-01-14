@@ -26,7 +26,9 @@ const Page: NextPage<Props> = ({ posts }) => (
             {posts.map(({ date: [year, month, day], slug, title }) => (
                 <li key={slug}>
                     <Link href={`/posts/${year}/${month}/${day}/${slug}`}>
-                        <a className="text-sky-800">{title}</a>
+                        <a className="text-sky-800 hover:text-sky-700 dark:text-amber-500 dark:hover:text-amber-400">
+                            {title}
+                        </a>
                     </Link>{' '}
                     ({year}-{month}-{day})
                 </li>
