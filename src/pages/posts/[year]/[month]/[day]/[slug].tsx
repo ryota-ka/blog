@@ -18,7 +18,7 @@ import { u } from 'unist-builder';
 import { Layout } from '../../../../../components';
 import * as Post from '../../../../../Post';
 import { PostRepository } from '../../../../../PostRepository';
-import { fancyLinks, organizeFootnotes } from '../../../../../unified-plugins';
+import { fancyLinks, organizeFootnotes, slugger } from '../../../../../unified-plugins';
 
 type Props = {
     date: string;
@@ -119,6 +119,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
                 vim,
             },
         })
+        .use(slugger)
         .use(rehypeStringify)
         .process(body);
 
