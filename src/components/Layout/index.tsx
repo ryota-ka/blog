@@ -34,6 +34,11 @@ export const Layout: React.FC<Props> = ({ article, children, description, previe
                 <meta property="og:type" content={article === undefined ? 'website' : 'article'} />
                 <meta property="og:url" content={`https://blog.ryota-ka.me${router.asPath}`} />
                 {preview !== undefined && <meta property="og:image" content={preview} />}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:site" content="@ryotakameoka" />
+                <meta name="twitter:title" content={title} />
+                {description !== undefined && <meta name="twitter:description" content={description} />}
+                {preview !== undefined && <meta name="twitter:image" content={preview} />}
             </Head>
             <header className="px-2 sm:px-4 md:px-6 lg:px-8 py-4 bg-white dark:bg-slate-800 drop-shadow">
                 <h1 className="text-base">
