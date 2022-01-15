@@ -24,12 +24,13 @@ type Props = {
     date: string;
     html: string;
     preface: string;
+    preview: string | null;
     title: string;
 };
 
-const Page: React.FC<Props> = ({ date, html, preface, title }) => {
+const Page: React.FC<Props> = ({ date, html, preface, preview, title }) => {
     return (
-        <Layout article={{ date }} title={title} description={preface}>
+        <Layout article={{ date }} title={title} description={preface} preview={preview ?? undefined}>
             <article className="global-article" dangerouslySetInnerHTML={{ __html: html }} />
         </Layout>
     );
@@ -74,7 +75,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
         };
     }
 
-    const { body } = await PostRepository.getByPath([year, month, day, slug]);
+    const { body, preview } = await PostRepository.getByPath([year, month, day, slug]);
 
     const vfile = await unified()
         .use(remarkParse)
@@ -135,6 +136,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
             date: `${year}-${month}-${day}`,
             html,
             preface,
+            preview,
             title,
         },
     };
