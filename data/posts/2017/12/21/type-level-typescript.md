@@ -350,7 +350,7 @@ let ys: Drop<_5, FibHList<_7>>;
 
 去年の記事もなかなかエモいのでご一緒にどうぞ．
 
-[](http://ryota-ka.hatenablog.com/entry/2016/12/08/000000)
+[](https://blog.ryota-ka.me/posts/2016/12/08/generators-and-lazy-evaluation-in-vim-script)
 
 ## 脚注
 

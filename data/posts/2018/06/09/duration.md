@@ -43,7 +43,7 @@ undefined
 
 準クォートについては，前回の記事を参照のこと．
 
-[](https://ryota-ka.hatenablog.com/entry/2018/02/14/103000)
+[](https://blog.ryota-ka.me/posts/2018/02/14/type-safe-embedded-and-external-json-with-template-haskell)
 
 ## ユースケースその1
 
