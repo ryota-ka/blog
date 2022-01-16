@@ -11,14 +11,14 @@ import rehypeStringify from 'rehype-stringify';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import remarkParse from 'remark-parse';
-import remarkRehype from 'remark-rehype';
+import remarkRehype, { all } from 'remark-rehype';
 import { unified } from 'unified';
 import { u } from 'unist-builder';
 
 import { Layout } from '../../../../../components';
 import * as Post from '../../../../../Post';
 import { PostRepository } from '../../../../../PostRepository';
-import { fancyLinks, organizeFootnotes, slugger } from '../../../../../unified-plugins';
+import { fancyLinks, slugger } from '../../../../../unified-plugins';
 
 type Props = {
     date: string;
@@ -81,10 +81,29 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
         .use(remarkParse)
         .use(remarkGfm)
         .use(remarkMath)
-        .use(organizeFootnotes, { label: '脚注' })
         .use(fancyLinks)
         .use(remarkRehype, {
             handlers: {
+                footnoteDefinition: (h: H, node: MdastNode) => {
+                    if (node.type !== 'footnoteDefinition') {
+                        return;
+                    }
+
+                    const child = node.children[0];
+                    if (node.children.length !== 1 || child?.type !== 'paragraph') {
+                        throw new Error(`A footnote definition can contain the single paragraph.`);
+                    }
+
+                    h.footnoteById[node.identifier] = node;
+
+                    const id = node.identifier;
+
+                    return h(node, 'p', { id: `fn-${id}` }, [
+                        h(node, 'a', { href: `#fnref-${id}` }, [u('text', `*${id}`)]),
+                        u('text', ': '),
+                        ...all(h, child),
+                    ]);
+                },
                 footnoteReference: (h: H, node: MdastNode) => {
                     if (node.type !== 'footnoteReference') {
                         return;
