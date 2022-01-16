@@ -758,6 +758,8 @@ endfunction
 
 [CAMPHOR- Advent Calendar 2016](http://advent.camph.net/) 9日目の担当は [@shotarok](https://github.com/shotarok) です．お楽しみに！
 
+## 脚注
+
 [^1]: よくある話だが，ラムダ抽象相当のものが単に "lambda expression" と呼ばれている．Vim がオフィシャルにそう呼んでいるという事情を汲み，本稿もこれに従う．
 [^2]: あくまで似ているだけで，互換ではない．特に，`next` メソッドが引数を受け取ることを想定しない．
 [^3]: 正確には Vim 7.4.2044

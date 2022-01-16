@@ -155,6 +155,8 @@ print(Array(xs)) // [1, 1, 9, 25, 169, 441, 3025, 7921, 54289, 142129]
 - [The Swift Programming Language (Swift 4): Generics](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Generics.html)
 - [GitHub - apple/swift-evolution: This maintains proposals for changes and user-visible enhancements to the Swift Programming Language.](https://github.com/apple/swift-evolution)
 
+## 脚注
+
 [^1]: ただしコメント部は除く．
 [^2]: 返すことができる値がない場合には `nil` を返す
 [^3]: かつては associated type declaration のために `typealias` キーワードが用いられていたが，[Swift 2.2 からは `associatedtype` キーワードに変更されている．](https://github.com/apple/swift-evolution/blob/master/proposals/0011-replace-typealias-associated.md)

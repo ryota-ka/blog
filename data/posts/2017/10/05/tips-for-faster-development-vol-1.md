@@ -222,4 +222,6 @@ $ brew install zsh-syntax-highlighting
 
 [](https://twitter.com/ryotakameoka/status/912758876688101376)
 
+## 脚注
+
 [^1]: バッククォートで囲んでも同じ挙動をするのだが，この記事を Markdown で書いている関係上，表記が大変なのでこちらを使う．
