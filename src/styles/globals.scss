@@ -38,11 +38,11 @@
   }
 
   h2 {
-    @apply text-lg md:text-xl font-semibold before:content-['##'] before:mr-1 before:text-zinc-500 mb-2 md:mb-3 mt-4 md:mt-8 dark:before:text-zinc-400;
+    @apply text-lg md:text-xl font-semibold before:content-['##'] before:mr-1 before:text-zinc-500 mb-2 md:mb-3 mt-12 lg:mt-16 dark:before:text-zinc-400 flex;
   }
 
   h3 {
-    @apply text-base md:text-lg font-semibold before:content-['###'] before:mr-1 before:text-zinc-500 mb-1 md:mb-3 mt-3 md:mt-6 dark:before:text-zinc-400;
+    @apply text-base md:text-lg font-semibold before:content-['###'] before:mr-1 before:text-zinc-500 mb-1 md:mb-3 mt-3 md:mt-6 lg:mt-8 dark:before:text-zinc-400 flex;
   }
 
   li {
@@ -77,6 +77,18 @@
 
   ul {
     @apply list-disc list-inside space-y-2;
+  }
+
+  .heading-anchor {
+    @apply block opacity-0 ml-auto text-sm text-lg p-1 rounded text-zinc-500 dark:text-zinc-400 font-bold hover:text-sky-700 dark:hover:text-amber-500 transition ease-out duration-100;
+  }
+
+  :hover .heading-anchor {
+    @apply opacity-100;
+  }
+
+  :target .heading-anchor {
+    @apply opacity-100 text-sky-700 dark:text-amber-500;
   }
 
   .math-display {
