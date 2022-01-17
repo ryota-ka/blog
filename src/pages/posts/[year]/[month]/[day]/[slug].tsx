@@ -16,7 +16,7 @@ import remarkRehype, { all } from 'remark-rehype';
 import { unified } from 'unified';
 import { u } from 'unist-builder';
 
-import { Layout } from '../../../../../components';
+import { Layout, TableOfContents } from '../../../../../components';
 import * as Post from '../../../../../Post';
 import { PostRepository } from '../../../../../PostRepository';
 import { fancyLinks, slugger } from '../../../../../unified-plugins';
@@ -26,13 +26,19 @@ type Props = {
     html: string;
     preface: string;
     preview: string | null;
+    sections: Post.TableOfContents.T;
     title: string;
 };
 
-const Page: React.FC<Props> = ({ date, html, preface, preview, title }) => {
+const Page: React.FC<Props> = ({ date, html, preface, preview, sections, title }) => {
     return (
         <Layout article={{ date }} title={title} description={preface} preview={preview ?? undefined}>
-            <article className="global-article" dangerouslySetInnerHTML={{ __html: html }} />
+            <div className="flex max-w-full">
+                <article className="global-article grow max-w-full" dangerouslySetInnerHTML={{ __html: html }} />
+                <aside className="hidden shrink-0 xl:block w-1/4 pl-4">
+                    <TableOfContents className="sticky top-4" sections={sections} />
+                </aside>
+            </div>
         </Layout>
     );
 };
@@ -161,12 +167,15 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
     const title = Post.Title.extract(mdast);
     const preface = Post.Preface.extract(mdast);
 
+    const tableOfContents = Post.TableOfContents.extract(mdast);
+
     return {
         props: {
             date: `${year}-${month}-${day}`,
             html,
             preface,
             preview,
+            sections: tableOfContents,
             title,
         },
     };

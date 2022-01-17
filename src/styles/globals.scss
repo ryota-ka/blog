@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .global-article {
-  @apply sm:text-lg md:text-xl md:leading-relaxed lg:leading-8 rounded-xl px-4 py-8;
+  @apply sm:text-lg md:text-xl lg:leading-relaxed lg:leading-8 rounded-xl p-3 md:p-4 shadow bg-zinc-50 dark:bg-zinc-900;
 
   font-family: 'Hiragino Mincho Pro', 'YuMincho', 'Open Sans', 'Hiragino Kaku Gothic ProN', Meiryo, Helvetica, Arial,
     sans-serif;
