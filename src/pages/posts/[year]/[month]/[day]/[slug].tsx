@@ -33,9 +33,12 @@ type Props = {
 const Page: React.FC<Props> = ({ date, html, preface, preview, sections, title }) => {
     return (
         <Layout article={{ date }} title={title} description={preface} preview={preview ?? undefined}>
-            <div className="flex max-w-full">
-                <article className="global-article grow max-w-full" dangerouslySetInnerHTML={{ __html: html }} />
-                <aside className="hidden shrink-0 xl:block w-1/4 pl-4">
+            <div className="flex justify-center">
+                <article
+                    className="global-article w-full lg:w-3/4 max-w-screen-lg"
+                    dangerouslySetInnerHTML={{ __html: html }}
+                />
+                <aside className="hidden shrink-0 lg:block w-1/4 pl-4 max-w-sm">
                     <TableOfContents className="sticky top-4" sections={sections} />
                 </aside>
             </div>
