@@ -266,5 +266,7 @@ nix-repl> let
 
 CAMPHOR- Advent Calendar 2018，明日は [@tomokortn](https://tomokortn.myportfolio.com/) の記事です．お楽しみに！
 
+## 脚注
+
 [^1]: https://github.com/NixOS/nixpkgs/blob/703827f36cc65b137eed4d759b31827d29733072/pkgs/applications/misc/hello/default.nix より引用．
 [^2]: https://nixos.wiki/wiki/Nix_Expression_Language による．

@@ -619,6 +619,8 @@ Commercial support is available at
 
 [](https://github.com/ryota-ka/dhall-k8s-example)
 
+## 脚注
+
 [^1]: この冒頭挨拶は[「kubernetesに自分のコードがマージされるまでのフロー」](https://blog.whywrite.it/2018/06/15/how-to-submit-pr-to-kubernetes/)のオマージュです．
 [^2]: 一体どれだけの実装が YAML の仕様を満たしているというのか！
 [^3]: "yes" を真だとみなしたりだとか．

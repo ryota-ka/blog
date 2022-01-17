@@ -78,4 +78,6 @@ run(main, drivers);
 
 実装にあたって，[`sliptype/cycle-react-pragma`](https://github.com/sliptype/cycle-react-pragma) を参考にした．Cycle React 本体に merge されることを願っている．
 
+## 脚注
+
 [^1]: このあたりの気持ちについては別途エントリを書きたいと考えている．

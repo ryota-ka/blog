@@ -163,6 +163,8 @@ Russell のパラドクスに始まり，$x \in x$ や $\lambda x.xx$ といっ�
 
 Russell の型理論も Church のラムダ計算も，論理学，ひいては数学の基礎付けを与えるという願いを成就することはできなかった．しかし，これらが組み合わさった際に，プログラムと証明との間に対応関係が浮かび上がり，再び論理学の世界へと通じる道が開くことは Curry-Howard 同型対応としてよく知られている．結局のところ，両者の思想ともに，人間の思考の根源的な営みである理や推論と言った概念にどこか根ざしているように思われて仕方ないのである．
 
+## 脚注
+
 [^1]: [Bertrand Russell, Letter to Frege, 1902](http://www.thatmarcusfamily.org/philosophy/Course_Websites/Readings/Russell%20-%20Letter%20to%20Frege.pdf)
 [^2]: [古森雄一, 汎用システムとしての 「ラムダ計算 + 論理」, 2007](http://www.kurims.kyoto-u.ac.jp/~kyodo/kokyuroku/contents/pdf/1533-5.pdf)
 [^3]: [Gottlob Frege, Grundgesetze der Arithmetik, Band II, S.253](<https://glossar.hs-augsburg.de/Frege,_G._(1903):_Grundgesetze_der_Arithmetik,_Band_II>)

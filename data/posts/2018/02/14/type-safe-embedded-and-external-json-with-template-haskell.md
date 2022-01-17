@@ -267,6 +267,8 @@ Person {name = "ryota-ka", age = 24, spouse = Nothing}
 
 [](https://github.com/ryota-ka/json-th)
 
+## 脚注
+
 [^1]: 疑り深い読者の方は実際にお試しあれ！
 [^2]: `parseExp` 関数を使い回しているが，かつては Oxford brackets の中の expression を parse する関数だったのが，今ではファイルから得られた文字列のパーズに使っているので，名前として不適な感はある．
 [^3]: こちらも疑り深い読者の方は実際にお試しあれ！

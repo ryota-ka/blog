@@ -94,6 +94,8 @@ data FreeApplicative f b where
 
 free applicative が何の役に立つのかは知らないが，arXiv で論文を見かけた気がする．そもそも Day convolution とはなんですか．
 
+## 脚注
+
 [^1]: 少なくとも2年ぐらい前に lotz 先生に聞いたときはそうだった．
 [^2]: 実際 [kan-extensions](https://hackage.haskell.org/package/kan-extensions/) では [GADT で定義されている](https://hackage.haskell.org/package/kan-extensions-5.1/docs/src/Data-Functor-Coyoneda.html#Coyoneda)
 [^3]: 実際に free functor と呼ばれるものについては [nLab](https://ncatlab.org/nlab/show/free+functor) などを参照．

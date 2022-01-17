@@ -223,4 +223,6 @@ Web を書くときに Snabbdom の代わりに React を強く使いたい場�
 
 [](https://github.com/ryota-ka/cycle-react-example)
 
+## 脚注
+
 [^1]: 既に React コミュニティに広く受け入れられているプラクティスも多々あるように見受けられる．

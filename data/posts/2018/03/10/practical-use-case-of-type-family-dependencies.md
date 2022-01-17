@@ -388,5 +388,7 @@ instance HasCodableKey Team where
     salt = "another salt"
 ```
 
+## 脚注
+
 [^1]: FAQ にも書いているとおり，デコードができるので決してハッシュアルゴリズムを用いているわけではないが，googlability のために "hash" という語を選んでいるそうだ．
 [^2]: ここの記法は少し調べるのに苦労した部分だった．Microsoft の論文などに当たってみると，associated type は open type families の場合の特殊な例であるから，同じ記法を使うし議論を省略する，といった内容が書かれていた．

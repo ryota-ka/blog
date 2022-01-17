@@ -382,6 +382,8 @@ main = do
 
 `Maybe` と `IO` を一緒に使いたくなったら，それはあなたがモナド変換子を訪ねるきっかけかもしれない．
 
+## 脚注
+
 [^1]: http://hackage.haskell.org/package/base-4.11.1.0/docs/src/GHC.Base.html#Monad
 [^2]: この記法は `TypeApplications` という GHC 拡張のもとで有効．
 [^3]: 厳密に言えば，これらの関数が返す IO アクションの実行結果が `Nothing` であるとき

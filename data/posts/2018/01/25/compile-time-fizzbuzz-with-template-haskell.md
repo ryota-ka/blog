@@ -209,5 +209,7 @@ Ok, one module loaded.
 
 コンパイル時計算の仕組みとして Template Haskell がよくできすぎており，あまりに簡単に実現できてしまったので拍子抜けした．構文**木**とはいえど分岐すらしていない．次回はもう少し骨のあるトピックを用意したい．
 
+## 脚注
+
 [^1]: GHC stage restriction: ‘answerExpr’ is used in a top-level splice, quasi-quote, or annotation, and must be imported, not defined locally
 [^2]: 欲しかったのは `Exp` ではなく `Q Exp` だが，`Q` は `Applicative` のインスタンスなので `pure` すればOK．

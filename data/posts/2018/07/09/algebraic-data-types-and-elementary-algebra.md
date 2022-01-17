@@ -306,6 +306,8 @@ to (f, g) x = (f x, g x)
 - [余積 - Wikipedia](https://ja.wikipedia.org/wiki/%E4%BD%99%E7%A9%8D)
 - [冪対象 - Wikipedia](https://ja.wikipedia.org/wiki/%E5%86%AA%E5%AF%BE%E8%B1%A1)
 
+## 脚注
+
 [^1]: 効果には個人差があります．
 [^2]: 中高生は不動点を知らないので．
 [^3]: この選出は別に恣意的なものではなく，組み込みの型を用いれば必要な準備が少なくて済むからである．

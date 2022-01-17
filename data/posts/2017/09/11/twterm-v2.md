@@ -50,5 +50,7 @@ ncurses と readline が有効化された Ruby ランタイムが必要．
 
 [](https://github.com/ryota-ka/twterm/stargazers)
 
+## 脚注
+
 [^1]: 私しかいない
 [^2]: 設計にあたっては Haskell の ncurses ラッパライブラリである [vty](https://hackage.haskell.org/package/vty) のインタフェースを参考にした．
