@@ -5,6 +5,7 @@ import type { H, MdastNode } from 'mdast-util-to-hast/lib';
 import { toString } from 'mdast-util-to-string';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import path from 'path';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeKatex from 'rehype-katex';
 import rehypeStringify from 'rehype-stringify';
@@ -140,6 +141,16 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
             },
         })
         .use(slugger)
+        .use(rehypeAutolinkHeadings, {
+            behavior: 'append',
+            properties: {
+                className: 'heading-anchor',
+            },
+            content: {
+                type: 'text',
+                value: '#',
+            },
+        })
         .use(rehypeStringify)
         .process(body);
 
