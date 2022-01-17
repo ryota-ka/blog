@@ -8,15 +8,15 @@ Nix Expression Language を用いて遅延リストを作る．普段は「ジ�
 
 ## これまでの流れ
 
-- [Ruby の Enumerator でジェネレータを作ったり、遅延評価してみる - ryota-ka's blog](https://ryota-ka.hatenablog.com/entry/2015/04/23/010520)
+- [Ruby の Enumerator でジェネレータを作ったり、遅延評価してみる - blog.ryota-ka.me](https://blog.ryota-ka.me/posts/2015/04/23/generators-and-lazy-evaluation-in-ruby)
 - [Python でジェネレータを作ったり、遅延評価してみる – ymyzk’s blog](https://blog.ymyzk.com/2015/04/python-generator-lazy/)
 - [ECMAScript 6 でジェネレータを作ったり、遅延評価してみる – ymyzk’s blog](https://blog.ymyzk.com/2015/04/ecmascript-6-generator-lazy/)
-- [Rust でジェネレータを作ったり、遅延評価してみる - ryota-ka's blog](https://ryota-ka.hatenablog.com/entry/2015/05/18/145113)
+- [Rust でジェネレータを作ったり、遅延評価してみる - blog.ryota-ka.me](https://blog.ryota-ka.me/posts/2015/05/18/generators-and-lazy-evaluation-in-rust)
 - [Swift でジェネレータを作ったり、遅延評価してみる – ymyzk’s blog](https://blog.ymyzk.com/2015/05/swift-generator-lazy/)
 - [PHP でジェネレータを作ったり遅延評価してみる - たにしきんぐダム](https://tanishiking24.hatenablog.com/entry/2015/07/30/164111)
 - [Scala でジェネレータを作ったり、遅延評価してみる - たにしきんぐダム](https://tanishiking24.hatenablog.com/entry/scala-generator)
-- [Perl 6 でジェネレータを作ったり、遅延評価してみる - ryota-ka's blog](https://ryota-ka.hatenablog.com/entry/2015/12/30/000000)
-- [Vim script でジェネレータを作ったり、遅延評価してみる - ryota-ka's blog](https://ryota-ka.hatenablog.com/entry/2016/12/08/000000)
+- [Perl 6 でジェネレータを作ったり、遅延評価してみる - blog.ryota-ka.me](https://blog.ryota-ka.me/posts/2015/12/30/generators-and-lazy-evaluation-in-perl-6)
+- [Vim script でジェネレータを作ったり、遅延評価してみる - blog.ryota-ka.me](https://blog.ryota-ka.me/posts/2016/12/08/generators-and-lazy-evaluation-in-vim-script)
 
 ## Nix とは
 

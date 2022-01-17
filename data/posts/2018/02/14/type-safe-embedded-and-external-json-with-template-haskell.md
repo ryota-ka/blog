@@ -1,6 +1,6 @@
 # Template Haskell でコード中に JSON を埋め込んだりコンパイル時にファイルから型安全に読み込んだりする
 
-[前回](http://ryota-ka.hatenablog.com/entry/2018/01/25/031605)よりはもう少し実用的な例を．
+[前回](https://blog.ryota-ka.me/posts/2018/01/25/compile-time-fizzbuzz-with-template-haskell)よりはもう少し実用的な例を．
 
 Template Haskell を使って，Haskell のコード中に JSON をそのまま埋め込むことができるようにする．また，あらかじめ用意しておいた JSON ファイルをコンパイル時に読み込み，指定したデータ型の値にする．
 

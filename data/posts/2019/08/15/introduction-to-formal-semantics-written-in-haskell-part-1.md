@@ -507,7 +507,7 @@ Snoopy が cute であるかどうかについては議論が分かれるとこ�
 
 続く第3・第4の意味計算規則である "Traces and Pronouns Rule (T&P)" および "Predicate Abstraction (PA)" を取り扱うためには，変項割当 (variable assignment) という概念を導入せねばならず，`Model` 言語を大きく拡張しなければならない．変項割当は，$\textit{She}_4$ のような，指標 (index) の付いた代名詞などを扱うための仕組みである．$4$ という指標に対応する個体が何であるかは文脈によって規定されるのだが，私にはこれは計算的効果 (computational effect) に見える．後編では，変項割当を扱うための仕組みを用意したのち，残りの意味計算規則を見ていくこととしよう．
 
-[](https://ryota-ka.hatenablog.com/entry/2020/07/26/110000)
+[](https://blog.ryota-ka.me/posts/2020/07/26/introduction-to-formal-semantics-written-in-haskell-part-2)
 
 ## コード全文
 

@@ -7,7 +7,7 @@
 
 ## これまでの流れ
 
-- [Ruby の Enumerator でジェネレータを作ったり，遅延評価してみる](http://ryota-ka.hatenablog.com/entry/2015/04/23/010520)
+- [Ruby の Enumerator でジェネレータを作ったり，遅延評価してみる](https://blog.ryota-ka.me/posts/2015/04/23/generators-and-lazy-evaluation-in-ruby)
 - [Python でジェネレータを作ったり，遅延評価してみる](https://blog.ymyzk.com/2015/04/python-generator-lazy/)
 - [ECMAScript 6 でジェネレータを作ったり，遅延評価してみる](https://blog.ymyzk.com/2015/04/ecmascript-6-generator-lazy/)
 
