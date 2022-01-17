@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .global-article {
-  @apply sm:text-lg md:text-xl leading-relaxed;
+  @apply sm:text-lg md:text-xl md:leading-relaxed lg:leading-8 rounded-xl px-4 py-8;
 
   font-family: 'Hiragino Mincho Pro', 'YuMincho', 'Open Sans', 'Hiragino Kaku Gothic ProN', Meiryo, Helvetica, Arial,
     sans-serif;
@@ -11,7 +11,7 @@
   -webkit-font-smoothing: antialiased;
 
   & > * + * {
-    @apply mt-2 md:mt-4;
+    @apply mt-4 lg:mt-6;
   }
 
   a {
@@ -38,22 +38,22 @@
   }
 
   h2 {
-    @apply text-lg md:text-xl font-semibold before:content-['##'] before:mr-1 before:text-zinc-500 mb-2 md:mb-3 mt-12 lg:mt-16 dark:before:text-zinc-400 flex;
+    @apply text-lg md:text-xl font-semibold before:content-['##'] before:mr-1 before:text-zinc-500 mb-2 mt-12 lg:mt-16 dark:before:text-zinc-400 flex items-center;
   }
 
   h3 {
-    @apply text-base md:text-lg font-semibold before:content-['###'] before:mr-1 before:text-zinc-500 mb-1 md:mb-3 mt-3 md:mt-6 lg:mt-8 dark:before:text-zinc-400 flex;
+    @apply text-base md:text-lg font-semibold before:content-['###'] before:mr-1 before:text-zinc-500 mb-1 md:mb-3 mt-3 md:mt-6 lg:mt-8 dark:before:text-zinc-400 flex items-center;
   }
 
   li {
     & > ul,
     & > ol {
-      @apply ml-8 mt-2;
+      @apply ml-8 mt-1;
     }
   }
 
   ol {
-    @apply list-decimal list-inside space-y-2;
+    @apply list-decimal list-inside space-y-1;
   }
 
   p {
@@ -76,7 +76,7 @@
   }
 
   ul {
-    @apply list-disc list-inside space-y-2;
+    @apply list-disc list-inside space-y-1;
   }
 
   .heading-anchor {
