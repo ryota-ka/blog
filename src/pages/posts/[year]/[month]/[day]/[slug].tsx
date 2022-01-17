@@ -135,6 +135,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
                         ),
                     ]);
                 },
+                thematicBreak: () => undefined,
             },
         })
         .use(rehypeKatex, { strict: true })
