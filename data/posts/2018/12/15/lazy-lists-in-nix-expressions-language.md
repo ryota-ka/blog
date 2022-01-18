@@ -258,7 +258,7 @@ nix-repl> let
 
 ## 過去のもの
 
-[](https://ryota-ka.hatenablog.com/entry/2015/12/30/000000)
+https://ryota-ka.hatenablog.com/entry/2015/12/30/000000
 
 [](https://ryota-ka.hatenablog.com/entry/2016/12/08/000000)
 

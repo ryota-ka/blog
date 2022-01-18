@@ -342,7 +342,7 @@ let ys: Drop<_5, FibHList<_7>>;
 
 株式会社HERPでは，いざという時[^3]に型レベルプログラミングでプロダクトの堅牢性を高める[^4]ことのできるエンジニアを募集しています．
 
-[](https://www.wantedly.com/projects/175599)
+https://www.wantedly.com/projects/175599
 
 [CAMPHOR- Advent Calendar 2017](https://advent.camph.net/)，明日の担当は [@tanishiking](https://twitter.com/tanishiking) です．お楽しみに！
 
@@ -350,7 +350,7 @@ let ys: Drop<_5, FibHList<_7>>;
 
 去年の記事もなかなかエモいのでご一緒にどうぞ．
 
-[](https://blog.ryota-ka.me/posts/2016/12/08/generators-and-lazy-evaluation-in-vim-script)
+https://blog.ryota-ka.me/posts/2016/12/08/generators-and-lazy-evaluation-in-vim-script
 
 ## 脚注
 

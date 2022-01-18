@@ -2,7 +2,7 @@
 
 ターミナルで動く最高の Twitter クライアントを作った．
 
-[](https://twterm.ryota-ka.me/)
+https://twterm.ryota-ka.me/
 
 ---
 

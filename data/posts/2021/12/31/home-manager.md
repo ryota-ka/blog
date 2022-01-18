@@ -4,7 +4,7 @@
 
 筆者は Nix ユーザであるため，この年末年始の休暇を用いて Home Manager を導入したいと考えており，実際に移行を行った．
 
-[](https://github.com/ryota-ka/dotfiles/commit/f5dfe8e72f46ee50620f518be4ca6ed1c262982a)
+https://github.com/ryota-ka/dotfiles/commit/f5dfe8e72f46ee50620f518be4ca6ed1c262982a
 
 この記事では，Home Manager の利点や導入手順，実際の導入にあたって取った選択や tips を紹介する．
 
@@ -40,7 +40,7 @@ $ brew doctor
 
 ## Home Manager について
 
-[](https://github.com/nix-community/home-manager)
+https://github.com/nix-community/home-manager
 
 Home Manager は，俗に "dotfiles" と呼ばれる各種ソフトウェアの設定ファイルや，ユーザ環境にインストールされるべきパケッジを宣言的に記述するためのツールである．設定の記述は Nix expression language を用いて行う．例えば，以下のような設定ファイルを記述した上で `$ home-manager switch` を実行すると，Nix でインストールされた Git が利用可能になり，生成された Git の設定ファイルへのシンボリックリンクが `~/.config/git/config` に作成される．
 
@@ -125,7 +125,7 @@ Home Manager はデフォルトでは `~/.config/nixpkgs/home.nix` という設�
 
 筆者は `git-diff(1)` の表示に `diff-highlight` を用いている．
 
-[](https://github.com/git/git/tree/master/contrib/diff-highlight)
+https://github.com/git/git/tree/master/contrib/diff-highlight
 
 この executable がインストールされるパスが，Homebrew で Git をインストールする場合と Nix で Git をインストールする場合とで異なるのだが，いちいちアドホックに `$PATH` を通すのも馬鹿馬鹿しい．しかし，Nix expression language で設定を記述すれば，Git がインストールされるディレクトリ名が事前に計算できるため，信頼性の高い絶対パスを埋め込むことができる．
 
@@ -268,15 +268,15 @@ Zsh のときと同じく，参照したいファイルないしディレクト�
 
 以下のページに，設定可能なオプションが網羅的に列挙されている．
 
-[](https://rycee.gitlab.io/home-manager/options.html)
+https://rycee.gitlab.io/home-manager/options.html
 
 しかし，網羅的であるがゆえに自分の興味の範疇を出たものも多いであろう．そこで，GitHub 上で Home Manager の実装を参照し，興味のあるソフトウェアの module を個別に眺めていくことをおすすめする．例えば以下は `programs.neovim` に対応する module である．
 
-[](https://github.com/nix-community/home-manager/blob/master/modules/programs/zsh.nix)
+https://github.com/nix-community/home-manager/blob/master/modules/programs/zsh.nix
 
 また，筆者が実際に行った設定を眺めるのも参考になるだろう．
 
-[](https://github.com/ryota-ka/dotfiles)
+https://github.com/ryota-ka/dotfiles
 
 ## 脚注
 

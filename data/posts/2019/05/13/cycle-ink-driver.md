@@ -2,7 +2,7 @@
 
 `cycle-ink-driver` というライブラリをリリースした．このライブラリを用いると，[Cycle.js](https://cycle.js.org) と [Ink](https://github.com/vadimdemedes/ink) を用いてインタラクティヴなコマンドライン・アプリケーションを作ることができる．
 
-[](https://www.npmjs.com/package/cycle-ink-driver)
+https://www.npmjs.com/package/cycle-ink-driver
 
 [](https://github.com/ryota-ka/cycle-ink-driver)
 
@@ -14,7 +14,7 @@ Cycle.js は Web フロントエンドフレームワークではない．Cycle.
 
 実際，Cycle.js を使いながらも，view 部分に Snabbdom ではなく React を用いることができる．component が Snabbdom に関する effect ではなく React に関する effect を要求し，これを解決できればそれで済む話なのだ．これを実現する `@cycle/react` に関しては昨年にエントリを書いているので参照されたい．
 
-[](https://blog.ryota-ka.me/posts/2018/07/22/cycle-react)
+https://blog.ryota-ka.me/posts/2018/07/22/cycle-react
 
 さて，Ink は，React の仕組みを用いて，インタラクティヴなコマンドライン・アプリケーションを作るためのライブラリである．前述の通り，Cycle.js と React との統合は既になされているので，Web フロントエンド・アプリケーションを書きたい場合には，ReactDOM と [Cycle ReactDOM](https://www.npmjs.com/package/@cycle/react-dom) を使えばよいのと同じく，CLI アプリケーションを書きたい場合には，Ink と `cycle-ink-driver` を使えばよい．
 
@@ -72,7 +72,7 @@ run(main, drivers);
 
 コード全文はこちらから．
 
-[](https://github.com/ryota-ka/cycle-ink-example)
+https://github.com/ryota-ka/cycle-ink-example
 
 ## 謝辞
 

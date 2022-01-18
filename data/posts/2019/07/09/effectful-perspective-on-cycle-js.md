@@ -2,15 +2,15 @@
 
 もう1ヶ月ちょっと前の話になるが，[effect system 勉強会](https://connpass.com/event/124786/) で [Cycle.js](https://cycle.js.org/) の話をしてきた．
 
-[](https://connpass.com/event/124786/)
+https://connpass.com/event/124786/
 
 発表資料はこちら．
 
-[](https://qiita.com/ryota-ka/items/b46f43dc18a9229feb03)
+https://qiita.com/ryota-ka/items/b46f43dc18a9229feb03
 
 当日の Twitter の様子をまとめた moment はこちら．
 
-[](https://twitter.com/i/events/1132869165562310656)
+https://twitter.com/i/events/1132869165562310656
 
 ---
 
@@ -29,7 +29,7 @@ Cycle.js は observable / stream の概念を以って同期処理・非同期�
 
 一方で「observable は確かに versatile だが，実際ほとんどのケースは async / await で済むでしょ」という思想のもとに作られている Redux middleware もある．それはそれで，それもそうかも．
 
-[](https://github.com/folio-sec/redux-spork)
+https://github.com/folio-sec/redux-spork
 
 とはいえ，「そもそもどの Redux middleware と一生を添い遂げるのか？」という意思決定を迫られること自体，少しつらい気がしている．
 
@@ -59,11 +59,11 @@ Cycle.js の話ではなくなってしまった．まぁまぁ，どんな言�
 
 株式会社HERPでは Cycle.js やっていきエンジニアを募集しています！
 
-[](https://www.wantedly.com/projects/315637)
+https://www.wantedly.com/projects/315637
 
 先日会社から開発チームに donation させていただきました．
 
-[](https://opencollective.com/cyclejs/?referral=49425)
+https://opencollective.com/cyclejs/?referral=49425
 
 最後になりましたが，当日会場をご提供くださったサイボウズ株式会社様，誠にありがとうございました！
 
@@ -73,7 +73,7 @@ HERP広告
 
 HERPは本物の Cycle.js プログラマーを募集しています。
 
-[](https://herp.careers/v1/herpinc)
+https://herp.careers/v1/herpinc
 
 ## 脚注
 

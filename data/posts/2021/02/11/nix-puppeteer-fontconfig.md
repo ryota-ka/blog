@@ -12,7 +12,7 @@ FONTCONFIG_FILE = "${pkgs.fontconfig.out}/etc/fonts/fonts.conf";
 
 前回の記事で，静的にビルドした Storybook に対し，Puppeteer を通じてヘッドレスモードの Chromium を立ち上げ，`stories.json` というファイルを生成する手順を紹介した．
 
-[](https://blog.ryota-ka.me/posts/2021/01/31/storybook-composition)
+https://blog.ryota-ka.me/posts/2021/01/31/storybook-composition
 
 ## Chromium を動かすのは面倒な場合がある
 
@@ -99,7 +99,7 @@ pkgs.stdenv.mkDerivation {
 ```
 
 また，この件に関しては GitHub に issue を立てておいた．
-[](https://github.com/storybookjs/storybook/issues/13724)
+https://github.com/storybookjs/storybook/issues/13724
 
 ## 立ち上がらない Chromium
 

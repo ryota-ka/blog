@@ -15,7 +15,7 @@ class Monad m => MonadReader r m | m -> r where
 
 さて，GHC 8 から `TypeFamilyDependencies` という GHC 言語拡張が追加された．これについては既に lotz 先生が『型族が単射だと嬉しい理由』という記事を書いていらっしゃるのだが，(氏には失礼ながら) 少しばかりわざとらしい例だと感じたので，もう少し実務的な例を引き合いに出して，有用性を示したいと思う．
 
-[](https://qiita.com/lotz/items/6c038698c8f04f57113a)
+https://qiita.com/lotz/items/6c038698c8f04f57113a
 
 ---
 
@@ -42,7 +42,7 @@ newtype UserKey = UserKey { unUserKey :: Int } deriving (Eq, Show)
 
 さてここで，DBの中では primary key として `INT` 型を用いたいが，エンドユーザからはその整数の表現を隠蔽したいものとしよう．そのためには，整数をいい感じにエンコード・デコードしたものを，primary key の表現として用いればよさそうだ．このようなモチベーションはよくあるので，"Hashids"[^1] というライブラリが公開されている．これは様々な言語向けに実装が提供されていて，[Haskell 版も Hackage から入手可能である](https://github.com/laserpants/hashids-haskell)．
 
-[](http://hashids.org/)
+http://hashids.org/
 
 このライブラリが (DB 上での内部表現である) `Int` と (エンドユーザが目にする表現である) `ByteString` の間の相互変換を提供してくれる．エンコードされた `UserKey` を表現する，次のような型を定義しよう．
 

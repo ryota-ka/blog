@@ -2,7 +2,7 @@
 
 Storybook 6.0 から，ある Storybook の中から別の Storybook を参照することができる "Storybook composition" という機能が導入された．
 
-[](https://storybook.js.org/docs/html/workflows/storybook-composition)
+https://storybook.js.org/docs/html/workflows/storybook-composition
 
 これは目玉機能として挙げられているものの，2021年1月現在この機能についてのドキュメンテーションが十分になされていない．そのため，不足している情報を補完することを目的としてこの記事を書くことにした．
 
@@ -60,7 +60,7 @@ Storybook 6.0 から，ある Storybook の中から別の Storybook を参照�
 
 composition についてのドキュメントとしては，以下の2ページが存在する．
 
-[](https://storybook.js.org/docs/html/workflows/storybook-composition)
+https://storybook.js.org/docs/html/workflows/storybook-composition
 
 [](https://storybook.js.org/docs/html/workflows/package-composition)
 

@@ -220,7 +220,7 @@ $ brew install zsh-syntax-highlighting
 
 こういった環境の整備は，往々にして一度手を付けるとやめられなくなってしまうことが多い．個人的にも，何度 `.zshrc` や `.vimrc` を編集して朝を迎えたかわからない．読者諸兄においては十分に注意されたい．
 
-[](https://twitter.com/ryotakameoka/status/912758876688101376)
+https://twitter.com/ryotakameoka/status/912758876688101376
 
 ## 脚注
 

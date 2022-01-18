@@ -237,7 +237,7 @@ HERP 広告
 
 HERP は本物の Haskell プログラマーを募集しています。
 
-[](https://github.com/herp-inc/engineering-careers)
+https://github.com/herp-inc/engineering-careers
 
 ## コード
 

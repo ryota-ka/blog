@@ -617,7 +617,7 @@ Commercial support is available at
 
 記事中のコードは GitHub からどうぞ．
 
-[](https://github.com/ryota-ka/dhall-k8s-example)
+https://github.com/ryota-ka/dhall-k8s-example
 
 ## 脚注
 

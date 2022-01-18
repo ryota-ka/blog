@@ -4,7 +4,7 @@
 
 ![screencast](https://twterm.ryota-ka.me/screencast.gif)
 
-[](https://twterm.ryota-ka.me/)
+https://twterm.ryota-ka.me/
 
 ## これはなに
 
@@ -48,7 +48,7 @@ ncurses と readline が有効化された Ruby ランタイムが必要．
 
 気に入ったら star してね．
 
-[](https://github.com/ryota-ka/twterm/stargazers)
+https://github.com/ryota-ka/twterm/stargazers
 
 ## 脚注
 
