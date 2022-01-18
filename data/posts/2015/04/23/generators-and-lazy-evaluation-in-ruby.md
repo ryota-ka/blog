@@ -46,7 +46,7 @@ lazy_fib.map(&sq).select(&:odd?).take(10)
 # take は lazy
 ```
 
-[](https://twitter.com/cotton_ori/status/590809351822053377)
+https://twitter.com/cotton_ori/status/590809351822053377
 
 遅延評価！遅延評価！🎉
 

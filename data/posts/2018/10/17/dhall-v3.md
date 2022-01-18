@@ -2,7 +2,7 @@
 
 Dhall v3.0.0 がリリースされた．メイジャーバージョンの更新ということで，いくつかの破壊的変更を含む．
 
-[](https://twitter.com/dhall_lang/status/1052242769916428288)
+https://twitter.com/dhall_lang/status/1052242769916428288
 
 ---
 
@@ -10,7 +10,7 @@ Dhall v3.0.0 がリリースされた．メイジャーバージョンの更新�
 
 `Optional` 型のコンストラクタである `Some` / `None` が予約語として追加された．
 
-[](https://github.com/dhall-lang/dhall-lang/pull/227)
+https://github.com/dhall-lang/dhall-lang/pull/227
 
 Dhall における `Optional` 型のリテラルは，`List` 型と同じく角括弧なので，リテラルで書く場合には `List` 型と区別するために型注釈が必須となっている．
 
@@ -43,11 +43,11 @@ Some : ∀(a : Type) → ∀(v : a) → Optional a
 
 種多相 (kind-polymorphism) がサポートされた．型の型であるところの種 (`Kind`) の型を表すキーワードとして `Sort` が導入された．`Type : Kind : Sort` という関係である．
 
-[](https://github.com/dhall-lang/dhall-lang/pull/238)
+https://github.com/dhall-lang/dhall-lang/pull/238
 
 モチベーションとしては，レコードの中に `Type` 以外の種を持つ型を入れられるようにしたかったようである．
 
-[](https://github.com/dhall-lang/dhall-lang/pull/241)
+https://github.com/dhall-lang/dhall-lang/pull/241
 
 上記の pull request の変更によって，以下のような記述が許されることが期待される．
 

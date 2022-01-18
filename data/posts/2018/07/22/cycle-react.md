@@ -2,7 +2,7 @@
 
 数日前，[@staltz](https://twitter.com/staltz) 氏から Cycle React のリリースがアナウンスされた．
 
-[](https://twitter.com/andrestaltz/status/1019546640582152192)
+https://twitter.com/andrestaltz/status/1019546640582152192
 
 [`@cycle/react`](https://www.npmjs.com/package/@cycle/react) を含む一連のライブラリ群は，React component を Cycle.js の中で用いることを可能にし，Cycle.js の component を React の中で用いることを可能にする．
 
@@ -221,7 +221,7 @@ Web を書くときに Snabbdom の代わりに React を強く使いたい場�
 
 コード全文はこちらから．
 
-[](https://github.com/ryota-ka/cycle-react-example)
+https://github.com/ryota-ka/cycle-react-example
 
 ## 脚注
 

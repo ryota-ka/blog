@@ -8,7 +8,7 @@
 
 Nix を入れていない人はいないと思うけど，念の為インストール手順です．
 
-[](https://twitter.com/hiroqn/status/1144580004275052544)
+https://twitter.com/hiroqn/status/1144580004275052544
 
 ```sh
 $ curl https://nixos.org/nix/install | sh

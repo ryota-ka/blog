@@ -2,7 +2,7 @@
 
 前編はこちら
 
-[](https://blog.ryota-ka.me/posts/2019/08/15/introduction-to-formal-semantics-written-in-haskell-part-1)
+https://blog.ryota-ka.me/posts/2019/08/15/introduction-to-formal-semantics-written-in-haskell-part-1
 
 ---
 

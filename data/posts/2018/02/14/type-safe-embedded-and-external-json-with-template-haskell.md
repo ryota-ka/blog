@@ -265,7 +265,7 @@ Person {name = "ryota-ka", age = 24, spouse = Nothing}
 
 ## ソースコード
 
-[](https://github.com/ryota-ka/json-th)
+https://github.com/ryota-ka/json-th
 
 ## 脚注
 

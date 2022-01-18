@@ -2,7 +2,7 @@
 
 Template Haskell を使って，時間の長さをいい感じに (人間が読みやすい形で) 記述できるライブラリを作った．
 
-[](https://hackage.haskell.org/package/duration)
+https://hackage.haskell.org/package/duration
 
 [](https://github.com/ryota-ka/duration)
 
@@ -14,7 +14,7 @@ Template Haskell を使って，時間の長さをいい感じに (人間が読�
 
 JavaScript のライブラリに，ms というものがある．
 
-[](https://www.npmjs.com/package/ms)
+https://www.npmjs.com/package/ms
 
 README を読めば一瞬で使い方が把握できるが，以下の様なことができる．
 
@@ -43,7 +43,7 @@ undefined
 
 準クォートについては，前回の記事を参照のこと．
 
-[](https://blog.ryota-ka.me/posts/2018/02/14/type-safe-embedded-and-external-json-with-template-haskell)
+https://blog.ryota-ka.me/posts/2018/02/14/type-safe-embedded-and-external-json-with-template-haskell
 
 ## ユースケースその1
 

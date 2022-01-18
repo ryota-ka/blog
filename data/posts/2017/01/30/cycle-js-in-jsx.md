@@ -6,7 +6,7 @@ Cycle.js と DOM Driver で Web アプリケーションを書く際に，sink �
 
 なお，今回のプロジェクトは GItHub 上で公開しているので参考にされたい．
 
-[](https://github.com/ryota-ka/cycle-jsx-example)
+https://github.com/ryota-ka/cycle-jsx-example
 
 ---
 
