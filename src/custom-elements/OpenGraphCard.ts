@@ -26,7 +26,7 @@ export class OpenGraphCard extends NonShadowedElement {
     public render(): TemplateResult {
         return html`
             <a
-                class="rounded-xl border border-zinc-300 dark:border-zinc-600 leading-snug block text-left font-sans w-full sm:w-3/4 md:w-4/5 lg:w-1/2 xl:w-2/5 2xl:w-2/5 text-sm bg-zinc-50 dark:bg-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition ease-out duration-100"
+                class="rounded-xl border border-zinc-300 dark:border-zinc-600 leading-snug block text-left font-sans w-full md:w-3/4 lg:w-2/3 text-sm bg-zinc-50 dark:bg-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition ease-out duration-100"
                 href=${this.href}
                 target="_blank"
                 title=${this.title}
