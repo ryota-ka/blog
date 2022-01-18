@@ -13,7 +13,7 @@ lint: install
 	yarn eslint ./src
 
 serve: install
-	yarn next dev
+	yarn next-remote-watch data/posts/
 
 typecheck: install
 	yarn tsc --noEmit --watch
