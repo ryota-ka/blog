@@ -19,7 +19,7 @@ import { u } from 'unist-builder';
 import { Layout, TableOfContents } from '../../../../../components';
 import * as Post from '../../../../../Post';
 import { PostRepository } from '../../../../../PostRepository';
-import { fancyLinks, slugger } from '../../../../../unified-plugins';
+import { fancyLinks, slugger, targetBlank } from '../../../../../unified-plugins';
 
 type Props = {
     date: string;
@@ -92,6 +92,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
         .use(remarkGfm)
         .use(remarkMath)
         .use(fancyLinks)
+        .use(targetBlank)
         .use(remarkRehype, {
             handlers: {
                 footnoteDefinition: (h: H, node: MdastNode) => {
