@@ -21,7 +21,7 @@ import { u } from 'unist-builder';
 import { Layout, TableOfContents } from '../../../../../components';
 import * as Post from '../../../../../Post';
 import { PostRepository } from '../../../../../PostRepository';
-import { fancyLinks, slugger, targetBlank } from '../../../../../unified-plugins';
+import { fancyLinks, removeTitle, slugger, targetBlank } from '../../../../../unified-plugins';
 
 type Props = {
     date: string;
@@ -111,6 +111,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
     const vfile = await unified()
         .use(remarkParse)
         .use(remarkGfm)
+        .use(removeTitle)
         .use(remarkMath)
         .use(fancyLinks)
         .use(targetBlank)
