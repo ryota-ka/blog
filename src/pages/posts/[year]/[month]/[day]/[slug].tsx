@@ -4,6 +4,8 @@ import vim from 'highlight.js/lib/languages/vim';
 import type { H, MdastNode } from 'mdast-util-to-hast/lib';
 import { toString } from 'mdast-util-to-string';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
 import path from 'path';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeHighlight from 'rehype-highlight';
@@ -19,7 +21,7 @@ import { u } from 'unist-builder';
 import { Layout, TableOfContents } from '../../../../../components';
 import * as Post from '../../../../../Post';
 import { PostRepository } from '../../../../../PostRepository';
-import { fancyLinks, slugger, targetBlank } from '../../../../../unified-plugins';
+import { fancyLinks, removeTitle, slugger, targetBlank } from '../../../../../unified-plugins';
 
 type Props = {
     date: string;
@@ -31,9 +33,28 @@ type Props = {
 };
 
 const Page: React.FC<Props> = ({ date, html, preface, preview, sections, title }) => {
+    const router = useRouter();
+
     return (
         <Layout article={{ date }} title={title} description={preface} preview={preview ?? undefined}>
-            <div className="flex justify-center">
+            <header
+                className={
+                    `w-full h-48 mb-2 lg:mb-4 lg:mb-12 relative flex flex-col items-center justify-center ` +
+                    (preview === null ? 'bg-zinc-900' : 'lg:h-80')
+                }
+            >
+                {preview !== null && (
+                    <Image
+                        className="brightness-25"
+                        src={new URL(router.asPath, 'https://example.com').pathname + '/preview.png'}
+                        layout="fill"
+                        objectFit="cover"
+                    />
+                )}
+                <h1 className="text-xl lg:text-3xl font-semibold w-5/6 lg:w-2/3 text-center z-10">{title}</h1>
+                <time className="z-10 mt-2 lg:mt-4 text-base lg:text-xl">{date}</time>
+            </header>
+            <div className="flex justify-center flex-wrap px-2 sm:px-4 pt-4">
                 <article
                     className="global-article w-full lg:w-3/4 max-w-screen-lg"
                     dangerouslySetInnerHTML={{ __html: html }}
@@ -90,6 +111,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
     const vfile = await unified()
         .use(remarkParse)
         .use(remarkGfm)
+        .use(removeTitle)
         .use(remarkMath)
         .use(fancyLinks)
         .use(targetBlank)
