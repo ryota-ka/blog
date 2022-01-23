@@ -45,7 +45,7 @@ export const Layout: React.FC<Props> = ({ article, children, description, previe
                     <Link href="/">blog.ryota-ka.me</Link>
                 </h1>
             </header>
-            <main className="px-2 sm:px-4 pt-4 relative">{children}</main>
+            <main className="relative">{children}</main>
         </>
     );
 };

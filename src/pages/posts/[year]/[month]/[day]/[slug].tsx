@@ -33,7 +33,7 @@ type Props = {
 const Page: React.FC<Props> = ({ date, html, preface, preview, sections, title }) => {
     return (
         <Layout article={{ date }} title={title} description={preface} preview={preview ?? undefined}>
-            <div className="flex justify-center">
+            <div className="flex justify-center flex-wrap px-2 sm:px-4 pt-4">
                 <article
                     className="global-article w-full lg:w-3/4 max-w-screen-lg"
                     dangerouslySetInnerHTML={{ __html: html }}
