@@ -39,8 +39,8 @@ const Page: React.FC<Props> = ({ date, html, preface, preview, sections, title }
         <Layout article={{ date }} title={title} description={preface} preview={preview ?? undefined}>
             <header
                 className={
-                    `w-full h-48 mb-2 lg:mb-4 lg:mb-12 relative flex flex-col items-center justify-center ` +
-                    (preview === null ? 'bg-zinc-900' : 'lg:h-80')
+                    `w-full h-48 mb-2 lg:mb-4 lg:mb-12 relative flex flex-col items-center justify-center text-white bg-zinc-900 ` +
+                    (preview === null ? '' : 'lg:h-80')
                 }
             >
                 {preview !== null && (
