@@ -31,7 +31,6 @@
 
     &:not(.hljs) {
       @apply text-sm md:text-lg bg-zinc-100 dark:bg-slate-800 border border-zinc-300 dark:border-zinc-700 rounded px-1 md:px-2;
-      display: inline-block;
     }
   }
 
