@@ -255,9 +255,9 @@ https://herp.careers/v1/herpinc/CrMCGkcKbpNA
 
 [^1]: かつての Cycle.js は専ら [RxJS](https://rxjs.dev/) に依拠したフレームワークだった．しかし，2016年の [Cycle Diversity](https://cycle.js.org/releases.html#cycle-diversity) (`@cycle/core` v7.0.0) リリース移行，RxJS 以外にも異なる複数の stream library をサポートしており，そのうち [xstream](https://github.com/staltz/xstream) がデファクトスタンダードの選択肢となっている．xstream は RxJS と比較すると，hot/cold の区別が存在しない，Web アプリケーション開発によく使われる限られたオペレータのみが提供されている，などの簡易化が図られている．
 [^2]: History API や Storage API とのやり取り，Web Worker との非同期通信といった，Web の標準的技術に沿ったものはもちろん，モーダルウィンドウやポップアップウィンドウの表示といった，アプリケーションに固有のものも含め，自由に抽象化することができる．
-[^3]: 最も，すべての状態を state tree に含めることの取り回しの悪さも，現代では広く認知されるようになったところであると感じている．我々のアプリケーションでも，component ごとに持たせたい状態は当然あるし，そのような管理をしている場面も多くある．そのような利用にも問題なく耐えるのが `@cycle/state` の懐の深さかもしれない．
+[^3]: もっとも，すべての状態を state tree に含めることの取り回しの悪さも，現代では広く認知されるようになったところであると感じている．我々のアプリケーションでも，component ごとに持たせたい状態は当然あるし，そのような管理をしている場面も多くある．そのような利用にも問題なく耐えるのが `@cycle/state` の懐の深さかもしれない．
 [^4]: これは Cycle.js の "isolation" という仕組みを通じて実現されている．
-[^5]: 例えば [`@cycle/react`](https://www.npmjs.com/package/@cycle/react) を利用すれば，React を利用することもできる．
+[^5]: 例えば [`@cycle/react`](https://www.npmjs.com/package/@cycle/react) を使えば，React と共に利用することもできる．
 [^6]: ただし実 DOM のライフサイクルに関するロジックは Snabbdom のレイヤで記述する．
 [^7]: [`@herp-inc/snabbdom-jsx`](https://www.npmjs.com/package/@herp-inc/snabbdom-jsx) という npm パッケージが利用できるようにしている．
 [^8]: かつては Swagger 2.0 として知られていた．

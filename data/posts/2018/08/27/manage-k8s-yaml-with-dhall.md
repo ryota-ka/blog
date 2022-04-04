@@ -179,7 +179,7 @@ List Natural
 
 ### `Type` 型
 
-`Bool` や `Natural`，`List` などの型も型をもつ．「型の型」は Haskell などでは「族」と呼ばれているものだが，Dhall ではこれらも立派に値の型として作用する．後で見るが，型を値をコンテクストで利用できるからである．
+`Bool` や `Natural`，`List` などの型も型をもつ．「型の型」は Haskell などでは「族」と呼ばれ区別されているものだが，Dhall ではこれらも立派に値の型として作用する．後で見るが，型を値のコンテクストで利用できるからである．
 
 例えば，`Bool` は `Type` 型をもつ．
 
@@ -205,7 +205,7 @@ Type
 Type → Type
 ```
 
-「型を値をコンテクストで利用できる」ことを確かめる．以下の例では，値である変数 `x` が型注釈の後ろ，すなわち型として出現していることから，値を型として利用できることがわかる．
+「型を値のコンテクストで利用できる」ことを確かめる．以下の例では，値である変数 `x` が型注釈の後ろ，すなわち型として出現していることから，値を型として利用できることがわかる．
 
 ```dhall
 ⊢ let x = Bool in False : x
@@ -353,7 +353,7 @@ in  let service
 in  service
 ```
 
-`OurService` から deployment を生成する式は以下のようになる．`Deployment` 型は[ここ](https://github.com/dhall-lang/dhall-kubernetes/blob/master/types/io.k8s.api.apps.v1.Deployment.dhall) で定義されている．
+`OurService` から deployment を生成する式は以下のようになる．`Deployment` 型は[ここ](https://github.com/dhall-lang/dhall-kubernetes/blob/master/types/io.k8s.api.apps.v1.Deployment.dhall)で定義されている．
 
 ```dhall
 -- deployment.yaml.dhall
@@ -449,7 +449,7 @@ in    λ(svc : OurService)
           )
 ```
 
-一方 service はこんな感じ．`Service` 型の定義は[ここ](https://github.com/dhall-lang/dhall-kubernetes/blob/master/types/io.k8s.api.core.v1.Service.dhall)．
+一方 service はこんな感じ．`Service` 型の定義は[ここ](https://github.com/dhall-lang/dhall-kubernetes/blob/master/types/io.k8s.api.core.v1.Service.dhall)にある．
 
 ```dhall
 -- deployment.yaml.dhall
@@ -522,7 +522,9 @@ in    λ(svc : OurService)
           )
 ```
 
-`deployment.yaml.dhall` は `∀(svc : OurService) → Deployment`，`service.yaml.dhall` は `∀(svc : OurService) → Service` なる関数である．`nginx.dhall` に定義されている `OurService` 型の値に適用することで，`Deployment` 型及び `Service` 型の値を得ることができる．`dhall-to-yaml` を用いて，これらの値を YAML に出力してみよう．`./deployment.yaml.dhall ./nginx.dhall` という式は関数適用であることに注意されたい．
+`./deployment.yaml.dhall` は `∀(svc : OurService) → Deployment`，`./service.yaml.dhall` は `∀(svc : OurService) → Service` なる関数である．`nginx.dhall` に定義されている `OurService` 型の値に適用することで，`Deployment` 型及び `Service` 型の値を得ることができる．
+
+`dhall-to-yaml` を用いて，これらの値を YAML に出力してみよう．`./deployment.yaml.dhall ./nginx.dhall` という式は関数適用であることに注意されたい．
 
 ```sh
 dhall-to-yaml --omitNull <<< './deployment.yaml.dhall ./nginx.dhall' > ./dist/nginx.deployment.yaml
