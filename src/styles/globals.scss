@@ -75,7 +75,7 @@
   }
 
   ol {
-    @apply list-decimal list-inside space-y-1;
+    @apply list-decimal list-inside space-y-1 ml-2 pl-0;
   }
 
   p {
@@ -98,7 +98,7 @@
   }
 
   ul {
-    @apply list-disc list-inside space-y-1;
+    @apply list-disc list-inside space-y-1 ml-2 pl-0;
   }
 
   :hover .heading-anchor {
