@@ -25,7 +25,7 @@
   }
 
   .codeblock-with-metadata {
-    @apply bg-slate-700 rounded-md pt-2;
+    @apply bg-slate-700 dark:bg-slate-800 rounded-md pt-2;
 
     &__header {
       @apply flex;
