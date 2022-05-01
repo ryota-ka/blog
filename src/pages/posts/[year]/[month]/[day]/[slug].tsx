@@ -1,3 +1,4 @@
+import groovy from 'highlight.js/lib/languages/groovy';
 import haskell from 'highlight.js/lib/languages/haskell';
 import nix from 'highlight.js/lib/languages/nix';
 import vim from 'highlight.js/lib/languages/vim';
@@ -168,6 +169,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
             },
             ignoreMissing: true,
             languages: {
+                groovy,
                 haskell,
                 nix,
                 vim,
