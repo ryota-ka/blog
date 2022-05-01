@@ -319,9 +319,7 @@ True
 
 まず，記述したいサービスを表現するデータ型を用意する．管理したいサービスは，基本的にすべてこのデータ型で記述することを目標としたい．今回は簡単なデータ型だが，必要に応じて拡張すればよい．
 
-```dhall
--- OurService.dhall
-
+```dhall filename=OurService.dhall
 { containerPort : Natural
 , environment   : List { name : Text, value : Text }
 , image         : Text
@@ -334,9 +332,7 @@ True
 
 また，この型をもつ値を別のファイルに定義する．今回は Nginx を動かすことを想定してみよう．
 
-```dhall
--- nginx.dhall
-
+```dhall filename=nginx.dhall
     let OurService = ./OurService.dhall
 
 in  let service
@@ -355,9 +351,7 @@ in  service
 
 `OurService` から deployment を生成する式は以下のようになる．`Deployment` 型は[ここ](https://github.com/dhall-lang/dhall-kubernetes/blob/master/types/io.k8s.api.apps.v1.Deployment.dhall)で定義されている．
 
-```dhall
--- deployment.yaml.dhall
-
+```dhall filename=deployment.yaml.dhall
     let Some =
           https://raw.githubusercontent.com/dhall-lang/Prelude/c79c2bc3c46f129cc5b6d594ce298a381bcae92c/Optional/Some
 
@@ -451,9 +445,7 @@ in    λ(svc : OurService)
 
 一方 service はこんな感じ．`Service` 型の定義は[ここ](https://github.com/dhall-lang/dhall-kubernetes/blob/master/types/io.k8s.api.core.v1.Service.dhall)にある．
 
-```dhall
--- deployment.yaml.dhall
-
+```dhall filename=deployment.yaml.dhall
     let Some =
           https://raw.githubusercontent.com/dhall-lang/Prelude/c79c2bc3c46f129cc5b6d594ce298a381bcae92c/Optional/Some
 
@@ -533,8 +525,7 @@ dhall-to-yaml --omitNull <<< './service.yaml.dhall ./nginx.dhall' > ./dist/nginx
 
 以下のような YAML が得られる．
 
-```yaml
-# dist/nginx.deployment.yaml
+```yaml filename=dist/nginx.deployment.yaml
 apiVersion: apps/v1beta2
 kind: Deployment
 spec:
@@ -559,8 +550,7 @@ metadata:
   name: nginx
 ```
 
-```yaml
-# dist/nginx.service.yaml
+```yaml filename=dist/nginx.service.yaml
 apiVersion: v1
 kind: Service
 spec:

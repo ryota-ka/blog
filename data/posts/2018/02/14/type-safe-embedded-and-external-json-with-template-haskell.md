@@ -71,9 +71,7 @@ data QuasiQuoter
 
 コードはこんな感じで．
 
-```haskell
--- src/Lib.hs
-
+```haskell filename=src/Lib.hs
 {-# LANGUAGE TemplateHaskell #-}
 
 module Lib
@@ -100,9 +98,7 @@ buildJSONExp :: Value -> Q Exp
 buildJSONExp value = [e| value |]
 ```
 
-```haskell
--- app/Main.hs
-
+```haskell filename=app/Main.hs
 {-# LANGUAGE QuasiQuotes #-}
 
 module Main where
@@ -139,9 +135,7 @@ Object (fromList [("spouse",Null),("age",Number 24.0),("name",String "ryota-ka")
 
 まずは JSON から読み込みたいデータ型を定義する．
 
-```haskell
--- src/Person.hs
-
+```haskell filename=src/Person.hs
 {-# LANGUAGE DeriveLift #-}
 {-# LANGUAGE OverloadedStrings #-}
 
@@ -170,7 +164,7 @@ instance FromJSON Person where
 
 次に，`src/Lib.hs` に以下のように書き加える[^2]．
 
-```diff
+```diff filename=src/Lib.hs
 diff --git a/src/Lib.hs b/src/Lib.hs
 index 473663e..1e6caba 100644
 --- a/src/Lib.hs
@@ -237,7 +231,7 @@ loadJSONFile filename = do
 
 最後に `app/Main.hs` を以下のように変更する．
 
-```haskell
+```haskell filename=app/Main.hs
 {-# LANGUAGE QuasiQuotes #-}
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE TypeApplications #-}

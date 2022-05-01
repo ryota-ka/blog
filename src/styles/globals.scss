@@ -24,6 +24,22 @@
     @apply space-y-4 border-l-2 bg-zinc-100 dark:bg-zinc-800 pl-3 pr-3 py-2 border-zinc-400 dark:border-zinc-600;
   }
 
+  .codeblock-with-metadata {
+    @apply bg-slate-700 rounded-md pt-2;
+
+    &__header {
+      @apply flex;
+    }
+
+    &__filename {
+      @apply ml-4 text-gray-50 rounded-t text-base bg-[#0d1117] mr-auto px-3 pt-2 pb-1;
+    }
+
+    .hljs {
+      @apply rounded-t-none;
+    }
+  }
+
   code {
     &.hljs {
       @apply text-sm rounded-lg md:text-lg;

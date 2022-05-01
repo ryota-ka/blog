@@ -35,7 +35,7 @@ $ curl -X POST -d '{}' https://api.netlify.com/build_hooks/XXXXXXXXXXXXXXX
 
 次に，default branch で以下の YAML が `.github/workflows/` ディレクトリ内にある状態にする．今回は毎日0時 (日本時間) にビルドがトリガされるような設定にしている．
 
-```yaml
+```yaml filename=.github/workflows/daily.yml
 name: Daily build
 on:
   schedule:

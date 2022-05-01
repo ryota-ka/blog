@@ -8,9 +8,7 @@
 
 GHC の制約[^1]により，モジュールを分割している．
 
-```haskell
--- FizzBuzz.hs
-
+```haskell filename=FizzBuzz.hs
 {-# LANGUAGE TemplateHaskell #-}
 
 module FizzBuzz (answerExpr) where
@@ -31,9 +29,7 @@ answerExpr :: Q Exp
 answerExpr = pure . LitE . StringL $ answer
 ```
 
-```haskell
--- Main.hs
-
+```haskell filename=Main.hs
 {-# LANGUAGE TemplateHaskell #-}
 
 module Main where

@@ -79,7 +79,7 @@ package composition を実現するためには，以下の手順を踏む必要
 
 コンポーネントライブラリの `package.json` に，Storybook がホスティングされている URL を以下のように記載する．
 
-```diff
+```diff filename=package.json
 @@ -1,4 +1,7 @@
  {
    "name": "herpism",
@@ -104,7 +104,7 @@ $ npx sb extract ./dist
 
 うまくいけば以下のような内容をもつ `./dist/stories.json` が生成される．公式ドキュメントには以下のような JSON が記載されている．
 
-```json
+```json filename=dist/stories.json
 {
   "v": 2,
   "globalParameters": {},
@@ -147,7 +147,7 @@ $ npx sb extract ./dist
 
 公式ドキュメントには，composition のためには `metadata.json` なるファイルが必要だと記載されているが，このファイルがどのようなものであるかについては言及されていない．加えて，このファイルの存在は必須ではなく任意である．[GitHub の issue comment](https://github.com/storybookjs/storybook/issues/12202#issuecomment-678864851) を参考にすると，以下のような内容であるべきだということがわかる．
 
-```json
+```json filename=dist/metadata.json
 {
   "versions": {
     "v4.6.0": "https://storybook.example.com"

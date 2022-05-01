@@ -2,6 +2,7 @@ import groovy from 'highlight.js/lib/languages/groovy';
 import haskell from 'highlight.js/lib/languages/haskell';
 import nix from 'highlight.js/lib/languages/nix';
 import vim from 'highlight.js/lib/languages/vim';
+import { defaultHandlers } from 'mdast-util-to-hast/lib';
 import type { H, MdastNode } from 'mdast-util-to-hast/lib';
 import { toString } from 'mdast-util-to-string';
 import { GetStaticPaths, GetStaticProps } from 'next';
@@ -118,6 +119,29 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
         .use(targetBlank)
         .use(remarkRehype, {
             handlers: {
+                code: (h: H, node: MdastNode) => {
+                    if (node.type !== 'code') {
+                        return;
+                    }
+
+                    const meta = new Map(
+                        (node.meta?.split(' ') ?? []).map((x) => x.split('=').slice(0, 2) as [string, string]),
+                    );
+                    const filename = meta.get('filename');
+
+                    const hastNode = defaultHandlers.code(h, node);
+
+                    if (filename === null || filename === undefined || hastNode === null || hastNode === undefined) {
+                        return hastNode;
+                    }
+
+                    return h(node, 'div', { class: 'codeblock-with-metadata' }, [
+                        h(node, 'div', { class: 'codeblock-with-metadata__header' }, [
+                            h(node, 'pre', { class: 'codeblock-with-metadata__filename' }, [u('text', filename)]),
+                        ]),
+                        ...[hastNode].flat(),
+                    ]);
+                },
                 footnoteDefinition: (h: H, node: MdastNode) => {
                     if (node.type !== 'footnoteDefinition') {
                         return;

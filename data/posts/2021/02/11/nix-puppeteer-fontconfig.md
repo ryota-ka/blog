@@ -43,7 +43,7 @@ Docker イメージをビルドする際にも `metadata.json` を生成する�
 
 まず以下のような Nix ファイルを用意した．
 
-```nix
+```nix filename=default.nix
 { pkgs ? import <nixpkgs> {} }:
 
 let
@@ -87,7 +87,7 @@ pkgs.stdenv.mkDerivation {
 
 この問題に対処するため，以下のコマンドを build phase に追加した．
 
-```diff
+```diff filename=default.nix
 @@ -22,6 +22,8 @@ pkgs.stdenv.mkDerivation {
    buildPhase = ''
      HOME=$TMP yarn install --frozen-lockfile
@@ -111,7 +111,7 @@ https://github.com/storybookjs/storybook/issues/13724
 
 Nix で `fontconfig` をインストールした際には，`/etc/` 以下にファイルを作成するなどといった行儀の悪いことは行われない．`fonts.conf` へのパスは環境変数 `$FONTCONFIG_FILE` によって設定でき，Chromium もこれを考慮してくれるようだったので，Nix ファイルに以下のような変更を加えた．
 
-```diff
+```diff filename=default.nix
 @@ -13,10 +13,12 @@ pkgs.stdenv.mkDerivation {
 
    buildInputs = [
@@ -131,7 +131,7 @@ Nix で `fontconfig` をインストールした際には，`/etc/` 以下にフ
 
 ## コード全文
 
-```nix
+```nix filename=default.nix
 { pkgs ? import <nixpkgs> {} }:
 
 let

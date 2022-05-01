@@ -26,7 +26,7 @@ Swift でのジェネレータの取扱いや遅延評価については，ymyzk
 
 と説明されるプロトコルで，かつては `GeneratorType` と呼ばれていたものである．`stdlib/public/core/Sequence.swift` で以下のように[^1]定義されている．
 
-```swift
+```swift filename=stdlib/public/core/Sequence.swift
 public protocol IteratorProtocol {
     associatedtype Element
 
