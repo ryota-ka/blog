@@ -32,7 +32,7 @@ extensible effects のライブラリとして [`extensible-skeleton`](https://h
 
 ユースケース層はエラーを投げることができるものとする．下準備として，エラーを投げるための `Error` effect を定義しておく．
 
-```haskell
+```haskell filename=src/Effects/Error.hs
 module Effects.Error
     ( HasEff
     , throw
@@ -56,7 +56,7 @@ throw e = throwEff (Proxy @"Error") e
 
 引数で受け取った ID に対応する `Talent` エンティティを返すユースケースである `findTalent` というユースケースがあるとしよう．ただし，対応する `Talent` が見付からなかった場合には `TalentNotFound` エラーを送出する．
 
-```haskell
+```haskell filename=src/UseCases/FindTalent.hs
 module UseCases.FindTalent where
 
 import "extensible-skeleton" Data.Extensible.Effect (Eff)
@@ -85,7 +85,7 @@ findTalent id = do
 
 `findTalent` とよく似た `findTag` ユースケースも準備しておく．
 
-```haskell
+```haskell filename=src/UseCases/FindTag.hs
 module UseCases.FindTag where
 
 import "extensible-skeleton" Data.Extensible.Effect (Eff)
@@ -112,7 +112,7 @@ findTag id = _ -- 実装は割愛
 
 ここで `Handler` は，API のリクエストハンドラを書くための言語であり，`runUseCase` は，ユースケース記述言語から `Handler` 言語への解釈を与える関数とする．ただし，`Error` effect は `Either` として解釈する．
 
-```haskell
+```haskell filename=src/Server/Handlers/API/Taggings/Create.hs
 module Server.Handlers.API.Taggings.Create where
 
 import UseCases.FindTag (findTag)
@@ -144,7 +144,7 @@ handleErrors = _
 
 そもそも一般に，あるユースケースが投げたいエラーが1種類で事足りるとは限らない．ユースケースによっては，あらかじめ宣言した複数の種類のエラーのうち，状況に応じてどれかひとつを投げたい，という場合もあるだろう．このような欲求を満たすため，まずは投げるエラーを open union に埋め込むことにしよう．今回は既に `extensible` package を使っているので，`extensible` が提供する extensible sum を使うことにする．
 
-```diff
+```diff filename=src/UseCases/FindTalent.hs
 @@ -1,5 +1,6 @@
  module UseCases.FindTalent where
 
@@ -176,7 +176,7 @@ handleErrors = _
 
 エラーを open union で扱うだけでは，エラーの型が一致しないという当初の問題が解消されるわけではない． `OneOf '[TalentNotFound]` と `OneOf '[TagNotFound]` は異なるので当然である．そこで，`OneOf` の引数を「少なくとも `TalentNotFound` を含む任意のリスト」という風に量化する．
 
-```diff
+```diff filename=src/UseCases/FindTalent.hs
 @@ -1,5 +1,6 @@
  module UseCases.FindTalent where
 
@@ -243,7 +243,7 @@ https://github.com/herp-inc/engineering-careers
 
 主要な部分のみを抜粋した不完全なコードである．GHC 言語拡張や，細かい関数・データ型の定義などは適宜補ってほしい．また，本文中で最初に定義した `Error` effect は，量化された open union をエラーとして投げることを前提した `UseCaseError` effect で置き換えている．
 
-```haskell
+```haskell filename=src/Effects/UseCaseError.hs
 module Effects.UseCaseError
     ( HasEff
     , throw
@@ -265,7 +265,7 @@ throw
 throw e = throwEff (Proxy @"UseCaseError") (bury e)
 ```
 
-```haskell
+```haskell filename=src/UseCases/FindTalent.hs
 module UseCases.FindTalent where
 
 import "extensible" Data.Extensible (Include)
@@ -291,7 +291,7 @@ findTalent id = do
         Just talent -> pure talent
 ```
 
-```haskell
+```haskell filename=src/UseCases/FindTag.hs
 module UseCases.FindTag where
 
 import "extensible" Data.Extensible (Include)
@@ -317,7 +317,7 @@ findTag id = do
         Just tag -> pure tag
 ```
 
-```haskell
+```haskell filename=src/Server/Handlers/API/Taggings/Create.hs
 module Server.Handlers.API.Taggings.Create where
 
 import "base" Data.Functor.Identity (Identity (..))

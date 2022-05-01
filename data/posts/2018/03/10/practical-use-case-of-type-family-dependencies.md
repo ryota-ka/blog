@@ -241,18 +241,16 @@ class HasKey a => HasCodableKey a where
 
 では実際に `TypeFamilyDependencies` を有効にして，先程のコードの型検査が通るように書き換えてみよう．
 
-```haskell
--- before
-
+```haskell filename=before.hs
 class HasKey a where
     type Key a
 
 class HasKey a => HasCodableKey a where
     type EncodedKey a
 
+```
 
--- after
-
+```haskell filename=after.hs
 class HasKey a where
     type Key a = r | r -> a
 

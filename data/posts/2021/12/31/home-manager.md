@@ -186,7 +186,7 @@ programs.zsh = {
 
 作成された`~/.config/zsh/.zshrc` は概ね以下のようになっている．ただしコメントや空行は適宜省略した．
 
-```sh name=~/.config/zsh/.zshrc
+```sh filename=~/.config/zsh/.zshrc
 typeset -U path cdpath fpath manpath
 
 for profile in ${(z)NIX_PROFILES}; do
@@ -206,7 +206,7 @@ source /nix/store/vl4h8nj3w0b1km44bkz24dad5gs8sjrf-zsh-syntax-highlighting-0.7.1
 
 また `~/.config/zsh/.zlogin` は以下のような内容になっている．
 
-```sh name=~/.config/zsh/.zlogin
+```sh filename=~/.config/zsh/.zlogin
 FPATH=/nix/store/js2lfqqnb72bqsz38w6dc2qgg7zz0spi-functions:$FPATH
 
 . /nix/store/8bj838sz917w3g58pm9bbfnp68hsdl21-foo.zsh
@@ -244,7 +244,7 @@ programs.neovim = {
 
 さて，上記の設定を元に `$ home-manager switch` を実行すると，以下のような `~/.config/nvim/init.vim` が生成される．
 
-```vim
+```vim filename=~/.config/nvim/init.vim
 set packpath^=/nix/store/617lyrfdxhg5dy69yvmb6h9rv6xmar3f-vim-pack-dir
 set runtimepath^=/nix/store/617lyrfdxhg5dy69yvmb6h9rv6xmar3f-vim-pack-dir
 

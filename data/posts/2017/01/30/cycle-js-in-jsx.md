@@ -54,7 +54,7 @@ Module not found: Error: Cannot resolve module '@cycle/run/lib/adapt' in /Users/
 
 次に，`webpack.config.js` を記述する．
 
-```javascript
+```javascript filename=webpack.config.js
 module.exports = {
   entry: {
     app: './src/app.js',
@@ -95,7 +95,7 @@ $(npm bin)/webpack --watch
 
 とはいえ，まだ `src/app.js` がないので，実際にアプリケーションのコードを書く．
 
-```javascript
+```javascript filename=src/app.js
 import xs from 'xstream';
 import { run } from '@cycle/xstream-run';
 import { makeDOMDriver } from '@cycle/dom';
