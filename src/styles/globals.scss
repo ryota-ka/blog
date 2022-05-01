@@ -10,7 +10,7 @@
 }
 
 .global-article {
-  @apply sm:text-lg md:text-xl lg:leading-relaxed lg:leading-8 rounded-xl p-3 md:p-4 shadow bg-zinc-50 dark:bg-zinc-900;
+  @apply sm:text-lg md:text-xl lg:leading-relaxed lg:leading-8 sm:rounded-md md:rounded-lg p-2 sm:p-3 md:p-4 shadow bg-zinc-50 dark:bg-zinc-900;
 
   & > * + * {
     @apply mt-4 lg:mt-6;
@@ -32,7 +32,7 @@
     }
 
     &__filename {
-      @apply ml-4 text-gray-50 rounded-t text-base bg-[#0d1117] mr-auto px-3 pt-2 pb-1;
+      @apply ml-4 text-gray-50 rounded-t text-base bg-[#0d1117] mr-auto px-2 md:px-3 pt-1 md:pt-2 pb-1 text-sm lg:text-base;
     }
 
     .hljs {
