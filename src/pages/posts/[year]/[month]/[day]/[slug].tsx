@@ -1,30 +1,13 @@
-import groovy from 'highlight.js/lib/languages/groovy';
-import haskell from 'highlight.js/lib/languages/haskell';
-import nix from 'highlight.js/lib/languages/nix';
-import vim from 'highlight.js/lib/languages/vim';
-import { defaultHandlers } from 'mdast-util-to-hast/lib';
-import type { H, MdastNode } from 'mdast-util-to-hast/lib';
-import { toString } from 'mdast-util-to-string';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import path from 'path';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypeHighlight from 'rehype-highlight';
-import rehypeKatex from 'rehype-katex';
-import rehypeStringify from 'rehype-stringify';
-import remarkFrontmatter from 'remark-frontmatter';
-import remarkGfm from 'remark-gfm';
-import remarkMath from 'remark-math';
 import remarkParse from 'remark-parse';
-import remarkRehype, { all } from 'remark-rehype';
 import { unified } from 'unified';
-import { u } from 'unist-builder';
 
 import { Layout, TableOfContents } from '../../../../../components';
 import * as Post from '../../../../../Post';
 import { PostRepository } from '../../../../../PostRepository';
-import { fancyLinks, removeTitle, slugger, targetBlank } from '../../../../../unified-plugins';
 
 type Props = {
     date: string;
@@ -111,111 +94,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
 
     const { body, preview } = await PostRepository.getByPath([year, month, day, slug]);
 
-    const vfile = await unified()
-        .use(remarkParse)
-        .use(remarkGfm)
-        .use(removeTitle)
-        .use(remarkMath)
-        .use(fancyLinks)
-        .use(targetBlank)
-        .use(remarkFrontmatter, ['yaml'])
-        .use(remarkRehype, {
-            handlers: {
-                code: (h: H, node: MdastNode) => {
-                    if (node.type !== 'code') {
-                        return;
-                    }
-
-                    const meta = new Map(
-                        (node.meta?.split(' ') ?? []).map((x) => x.split('=').slice(0, 2) as [string, string]),
-                    );
-                    const filename = meta.get('filename');
-
-                    const hastNode = defaultHandlers.code(h, node);
-
-                    if (filename === null || filename === undefined || hastNode === null || hastNode === undefined) {
-                        return hastNode;
-                    }
-
-                    return h(node, 'div', { class: 'codeblock-with-metadata' }, [
-                        h(node, 'div', { class: 'codeblock-with-metadata__header' }, [
-                            h(node, 'pre', { class: 'codeblock-with-metadata__filename' }, [u('text', filename)]),
-                        ]),
-                        ...[hastNode].flat(),
-                    ]);
-                },
-                footnoteDefinition: (h: H, node: MdastNode) => {
-                    if (node.type !== 'footnoteDefinition') {
-                        return;
-                    }
-
-                    const child = node.children[0];
-                    if (node.children.length !== 1 || child?.type !== 'paragraph') {
-                        throw new Error(`A footnote definition can contain the single paragraph.`);
-                    }
-
-                    h.footnoteById[node.identifier] = node;
-
-                    const id = node.identifier;
-
-                    return h(node, 'p', { id: `fn-${id}` }, [
-                        h(node, 'a', { href: `#fnref-${id}` }, [u('text', `*${id}`)]),
-                        u('text', ': '),
-                        ...all(h, child),
-                    ]);
-                },
-                footnoteReference: (h: H, node: MdastNode) => {
-                    if (node.type !== 'footnoteReference') {
-                        return;
-                    }
-
-                    const id = node.identifier;
-
-                    return h(node, 'sup', [
-                        h(
-                            node.position,
-                            'a',
-                            {
-                                ariaDescribedby: `#fn-${id}`,
-                                href: `#fn-${id}`,
-                                id: `fnref-${id}`,
-                                title: toString(h.footnoteById[id]),
-                            },
-                            [u('text', `*${node.identifier}`)],
-                        ),
-                    ]);
-                },
-                thematicBreak: () => undefined,
-            },
-        })
-        .use(rehypeKatex, { strict: true })
-        .use(rehypeHighlight, {
-            aliases: {
-                perl: ['perl6'],
-            },
-            ignoreMissing: true,
-            languages: {
-                groovy,
-                haskell,
-                nix,
-                vim,
-            },
-        })
-        .use(slugger)
-        .use(rehypeAutolinkHeadings, {
-            behavior: 'append',
-            properties: {
-                className: 'heading-anchor',
-            },
-            content: {
-                type: 'text',
-                value: '#',
-            },
-        })
-        .use(rehypeStringify)
-        .process(body);
-
-    const html = String(vfile);
+    const html = await Post.Body.process(body);
 
     const mdast = unified().use(remarkParse).parse(body);
 
