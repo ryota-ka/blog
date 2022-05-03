@@ -1,7 +1,9 @@
+import { toString } from 'mdast-util-to-string';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import path from 'path';
+import rehypeStringify from 'rehype-stringify';
 import remarkParse from 'remark-parse';
 import { unified } from 'unified';
 
@@ -94,12 +96,13 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
 
     const { body, preview } = await PostRepository.getByPath([year, month, day, slug]);
 
-    const html = await Post.Body.process(body);
+    const mdast = Post.Body.parse(body);
+    const html = unified()
+        .use(rehypeStringify)
+        .stringify(await Post.Body.transform(mdast));
 
-    const mdast = unified().use(remarkParse).parse(body);
-
-    const title = Post.Title.extract(mdast);
-    const preface = Post.Preface.extract(mdast);
+    const title = Post.Title.extract(unified().use(remarkParse).parse(body));
+    const preface = toString({ type: 'root', children: Post.Preface.extract(mdast) });
 
     const tableOfContents = Post.TableOfContents.extract(mdast);
 
