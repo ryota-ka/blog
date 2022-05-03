@@ -1,3 +1,8 @@
+---
+keywords:
+  - Nix
+---
+
 # Nix でのビルド時に private なリソースにアクセスする
 
 [HERP](https://herp.co.jp/) では多くの成果物が [Nix](https://nixos.org/) を用いてビルドされている．例として，アプリケーションの Docker image，npm ライブラリの tarball，Helm chart を元にした Kubernetes の manifest ファイルなどが挙げられる．
