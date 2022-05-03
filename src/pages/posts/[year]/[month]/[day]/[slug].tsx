@@ -42,7 +42,7 @@ const Page: React.FC<Props> = ({ date, html, preface, preview, sections, title }
             </header>
             <div className="flex justify-center flex-wrap sm:px-2 md:px-4 pt-4">
                 <article
-                    className="global-article w-full lg:w-3/4 max-w-screen-lg"
+                    className="global-article w-full lg:w-3/4 max-w-screen-lg sm:rounded-md md:rounded-lg p-2 sm:p-3 md:p-4 shadow bg-zinc-50 dark:bg-zinc-900"
                     dangerouslySetInnerHTML={{ __html: html }}
                 />
                 <aside className="hidden shrink-0 lg:block w-1/4 pl-4 max-w-sm">
