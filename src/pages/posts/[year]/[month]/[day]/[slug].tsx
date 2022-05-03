@@ -1,7 +1,9 @@
+import { toString } from 'mdast-util-to-string';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import path from 'path';
+import rehypeStringify from 'rehype-stringify';
 import remarkParse from 'remark-parse';
 import { unified } from 'unified';
 
@@ -42,7 +44,7 @@ const Page: React.FC<Props> = ({ date, html, preface, preview, sections, title }
             </header>
             <div className="flex justify-center flex-wrap sm:px-2 md:px-4 pt-4">
                 <article
-                    className="global-article w-full lg:w-3/4 max-w-screen-lg"
+                    className="global-article w-full lg:w-3/4 max-w-screen-lg sm:rounded-md md:rounded-lg p-2 sm:p-3 md:p-4 shadow bg-zinc-50 dark:bg-zinc-900"
                     dangerouslySetInnerHTML={{ __html: html }}
                 />
                 <aside className="hidden shrink-0 lg:block w-1/4 pl-4 max-w-sm">
@@ -94,12 +96,13 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
 
     const { body, preview } = await PostRepository.getByPath([year, month, day, slug]);
 
-    const html = await Post.Body.process(body);
+    const mdast = Post.Body.parse(body);
+    const html = unified()
+        .use(rehypeStringify)
+        .stringify(await Post.Body.transform(mdast));
 
-    const mdast = unified().use(remarkParse).parse(body);
-
-    const title = Post.Title.extract(mdast);
-    const preface = Post.Preface.extract(mdast);
+    const title = Post.Title.extract(unified().use(remarkParse).parse(body));
+    const preface = toString({ type: 'root', children: Post.Preface.extract(mdast) });
 
     const tableOfContents = Post.TableOfContents.extract(mdast);
 

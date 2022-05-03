@@ -10,7 +10,7 @@
 }
 
 .global-article {
-  @apply sm:text-lg md:text-xl lg:leading-relaxed lg:leading-8 sm:rounded-md md:rounded-lg p-2 sm:p-3 md:p-4 shadow bg-zinc-50 dark:bg-zinc-900;
+  @apply sm:text-lg md:text-xl lg:leading-relaxed lg:leading-8;
 
   & > * + * {
     @apply mt-4 lg:mt-6;
