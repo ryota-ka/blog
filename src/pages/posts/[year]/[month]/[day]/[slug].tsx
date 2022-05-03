@@ -13,6 +13,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeKatex from 'rehype-katex';
 import rehypeStringify from 'rehype-stringify';
+import remarkFrontmatter from 'remark-frontmatter';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import remarkParse from 'remark-parse';
@@ -117,6 +118,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
         .use(remarkMath)
         .use(fancyLinks)
         .use(targetBlank)
+        .use(remarkFrontmatter, ['yaml'])
         .use(remarkRehype, {
             handlers: {
                 code: (h: H, node: MdastNode) => {

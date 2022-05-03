@@ -1,3 +1,11 @@
+---
+keywords:
+  - Cycle.js
+  - fp-ts
+  - fp-ts-routing
+  - OpenAPI Generator
+---
+
 # HERP における Web フロントエンド開発概観 (2022年春編)
 
 ## はじめに
