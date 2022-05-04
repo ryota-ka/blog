@@ -6,7 +6,7 @@ import * as path from 'path';
 import rehypeStringify from 'rehype-stringify';
 import { unified } from 'unified';
 
-import { Layout } from '../../components';
+import { Layout, SideBySide } from '../../components';
 import * as Post from '../../Post';
 import { PostRepository } from '../../PostRepository';
 import { RSSFeed } from '../../RSSFeed';
@@ -26,8 +26,8 @@ type Post = {
 const Page: NextPage<Props> = ({ page, posts }) => (
     <Layout>
         <div className="sm:px-2 md:px-4 pt-4">
-            <div className="flex justify-center flex-wrap sm:px-2 md:px-4 pt-4">
-                <div className="w-full lg:w-3/4 max-w-screen-lg space-y-6 md:space-y-8">
+            <SideBySide>
+                <section className="space-y-6 md:space-y-8">
                     {posts.map(({ date: [year, month, day], slug, preface, title }) => (
                         <article
                             key={slug}
@@ -52,27 +52,27 @@ const Page: NextPage<Props> = ({ page, posts }) => (
                         </article>
                     ))}
                     <Link href={`/page/${page + 1}`}>
-                        <a className="block w-72 text-center mx-auto border dark:border-zinc-400 py-2">次のページ</a>
+                        <a className="block w-72 text-center mx-auto border dark:border-zinc-400 py-2">
+                            次のページ
+                        </a>
                     </Link>
+                </section>
+                <div className="bg-zinc-50 dark:bg-zinc-900 rounded-xl px-2 py-4 shadow">
+                    <div className="text-lg mb-2 font-bold px-2">Links</div>
+                    <ul className="list-inside list-disc ml-2 space-y-1">
+                        <li>
+                            <a href="https://ryota-ka.me/" target="_blank" rel="noopener noreferrer">
+                                ryota-ka.me
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/ryotakameoka" target="_blank" rel="noopener noreferrer">
+                                Twitter
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-                <aside className="hidden shrink-0 lg:block w-1/4 pl-4 max-w-sm">
-                    <div className="bg-zinc-50 dark:bg-zinc-900 rounded-xl px-2 py-4 shadow">
-                        <div className="text-lg mb-2 font-bold px-2">Links</div>
-                        <ul className="list-inside list-disc ml-2 space-y-1">
-                            <li>
-                                <a href="https://ryota-ka.me/" target="_blank" rel="noopener noreferrer">
-                                    ryota-ka.me
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://twitter.com/ryotakameoka" target="_blank" rel="noopener noreferrer">
-                                    Twitter
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </aside>
-            </div>
+            </SideBySide>
         </div>
     </Layout>
 );
