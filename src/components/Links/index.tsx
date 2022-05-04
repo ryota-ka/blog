@@ -14,6 +14,11 @@ const Links: React.FC<Links.Props> = () => {
                     </a>
                 </li>
                 <li>
+                    <a href="https://github.com/ryota-ka" target="_blank" rel="noopener noreferrer">
+                        GitHub
+                    </a>
+                </li>
+                <li>
                     <a href="https://twitter.com/ryotakameoka" target="_blank" rel="noopener noreferrer">
                         Twitter
                     </a>
