@@ -6,7 +6,7 @@ import * as path from 'path';
 import rehypeStringify from 'rehype-stringify';
 import { unified } from 'unified';
 
-import { Layout, SideBySide } from '../../components';
+import { Layout, Links, SideBySide } from '../../components';
 import * as Post from '../../Post';
 import { PostRepository } from '../../PostRepository';
 import { RSSFeed } from '../../RSSFeed';
@@ -52,26 +52,10 @@ const Page: NextPage<Props> = ({ page, posts }) => (
                         </article>
                     ))}
                     <Link href={`/page/${page + 1}`}>
-                        <a className="block w-72 text-center mx-auto border dark:border-zinc-400 py-2">
-                            次のページ
-                        </a>
+                        <a className="block w-72 text-center mx-auto border dark:border-zinc-400 py-2">次のページ</a>
                     </Link>
                 </section>
-                <div className="bg-zinc-50 dark:bg-zinc-900 rounded-xl px-2 py-4 shadow">
-                    <div className="text-lg mb-2 font-bold px-2">Links</div>
-                    <ul className="list-inside list-disc ml-2 space-y-1">
-                        <li>
-                            <a href="https://ryota-ka.me/" target="_blank" rel="noopener noreferrer">
-                                ryota-ka.me
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://twitter.com/ryotakameoka" target="_blank" rel="noopener noreferrer">
-                                Twitter
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                <Links />
             </SideBySide>
         </div>
     </Layout>

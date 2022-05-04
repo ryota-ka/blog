@@ -47,7 +47,7 @@ const Page: React.FC<Props> = ({ date, html, preface, preview, sections, title }
                     className="global-article sm:rounded-md md:rounded-lg p-2 sm:p-3 md:p-4 shadow bg-zinc-50 dark:bg-zinc-900"
                     dangerouslySetInnerHTML={{ __html: html }}
                 />
-                <TableOfContents className="sticky top-4" current={currentSectionID} sections={sections} />
+                <TableOfContents className="sticky top-4" sections={sections} />
             </SideBySide>
         </Layout>
     );
