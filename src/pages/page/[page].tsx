@@ -1,6 +1,7 @@
 import fs from 'fs/promises';
 import { toString } from 'mdast-util-to-string';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import * as path from 'path';
 import rehypeStringify from 'rehype-stringify';
@@ -19,6 +20,7 @@ type Props = {
 type Post = {
     date: [day: string, month: string, day: string];
     slug: string;
+    preview: string | null;
     preface: string;
     title: string;
 };
@@ -28,27 +30,42 @@ const Page: NextPage<Props> = ({ page, posts }) => (
         <div className="sm:px-2 md:px-4 pt-4">
             <SideBySide>
                 <section className="space-y-6 md:space-y-8">
-                    {posts.map(({ date: [year, month, day], slug, preface, title }) => (
+                    {posts.map(({ date: [year, month, day], slug, preface, preview, title }) => (
                         <article
                             key={slug}
-                            className="sm:rounded-md md:rounded-lg px-2 py-4 sm:p-3 md:p-4 shadow bg-zinc-50 dark:bg-zinc-900"
+                            className="sm:rounded-md md:rounded-lg shadow bg-zinc-50 dark:bg-zinc-900 dark:border border-zinc-700"
                         >
-                            <time className="block sm:mb-1 text-sm sm:text-base">
-                                {year}-{month}-{day}
-                            </time>
-                            <Link href={`/posts/${year}/${month}/${day}/${slug}`}>
-                                <a>
-                                    <h1 className="border-b border-zinc-400 mb-3 md:mb-6 pb-2 text-lg sm:text-xl md:text-2xl">
-                                        {title}
-                                    </h1>
-                                </a>
-                            </Link>
-                            <div className="global-article" dangerouslySetInnerHTML={{ __html: preface }} />
-                            <Link href={`/posts/${year}/${month}/${day}/${slug}#more`}>
-                                <a className="block w-48 mt-4 md:mt-6 mx-auto border px-4 py-2 text-center dark:text-white">
-                                    続きを読む
-                                </a>
-                            </Link>
+                            <header
+                                className={
+                                    `w-full h-48 mb-2 lg:mb-4 relative flex flex-col items-center justify-center text-white text-center bg-zinc-900 dark:bg-zinc-800 sm:rounded-t-md md:rounded-t-lg ` +
+                                    (preview === null ? '' : 'lg:h-80')
+                                }
+                            >
+                                {preview !== null && (
+                                    <Image
+                                        className="brightness-25 sm:rounded-t-md md:rounded-t-lg"
+                                        src={`/posts/${year}/${month}/${day}/${slug}/preview.png`}
+                                        layout="fill"
+                                        objectFit="cover"
+                                    />
+                                )}
+                                <h1 className="text-xl lg:text-3xl font-semibold leading-relaxed w-11/12 text-center z-10">
+                                    <Link href={`/posts/${year}/${month}/${day}/${slug}`}>
+                                        <a>{title}</a>
+                                    </Link>
+                                </h1>
+                                <time className="z-10 mt-2 lg:mt-4 text-base lg:text-xl">
+                                    {year}-{month}-{day}
+                                </time>
+                            </header>
+                            <div className="px-2 py-4 sm:p-3 md:p-4">
+                                <div className="global-article" dangerouslySetInnerHTML={{ __html: preface }} />
+                                <Link href={`/posts/${year}/${month}/${day}/${slug}#more`}>
+                                    <a className="block w-48 mt-4 md:mt-6 mx-auto border px-4 py-2 text-center dark:text-white">
+                                        続きを読む
+                                    </a>
+                                </Link>
+                            </div>
                         </article>
                     ))}
                     <Link href={`/page/${page + 1}`}>
@@ -91,7 +108,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
     const offset = (page - 1) * PER_PAGE;
 
     for (const path of paths.reverse().slice(offset, offset + PER_PAGE)) {
-        const { body, date, url } = await PostRepository.getByPath(path);
+        const { body, date, preview, url } = await PostRepository.getByPath(path);
         const mdast = Post.Body.parse(body);
 
         const title = Post.Title.extract(mdast);
@@ -105,6 +122,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
             slug: path[3],
             title: Post.Title.extract(mdast),
             date,
+            preview,
             preface: prefaceHTML,
         });
 

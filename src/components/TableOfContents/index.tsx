@@ -12,7 +12,9 @@ const TableOfContents: React.FC<Props> = ({ className = '', sections }) => {
     ]);
 
     return (
-        <div className={`${className} bg-zinc-50 dark:bg-zinc-900 rounded-xl p-4 shadow`}>
+        <div
+            className={`${className} bg-zinc-50 dark:bg-zinc-900 rounded-xl px-2 py-4 shadow dark:border border-zinc-700`}
+        >
             <div className="text-lg mb-3 font-bold">Table of Contents</div>
             <ul className="space-y-1">
                 {items.map(({ title, href, sub }) => (
