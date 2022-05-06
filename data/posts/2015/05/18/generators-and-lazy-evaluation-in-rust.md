@@ -1,3 +1,9 @@
+---
+keywords:
+  - Lazy evaluation
+  - Rust
+---
+
 # Rust でジェネレータを作ったり，遅延評価してみる
 
 ## はじめに
