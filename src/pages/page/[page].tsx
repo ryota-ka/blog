@@ -61,7 +61,7 @@ const Page: NextPage<Props> = ({ page, posts }) => (
                             <div className="px-2 py-4 sm:p-3 md:p-4">
                                 <div className="global-article" dangerouslySetInnerHTML={{ __html: preface }} />
                                 <Link href={`/posts/${year}/${month}/${day}/${slug}#more`}>
-                                    <a className="block w-48 mt-4 md:mt-6 mx-auto border px-4 py-2 text-center dark:text-white">
+                                    <a className="block w-48 mt-4 md:mt-6 mx-auto border border-zinc-500 dark:border-zinc-600 px-4 py-2 text-center dark:text-white">
                                         続きを読む
                                     </a>
                                 </Link>
@@ -69,7 +69,9 @@ const Page: NextPage<Props> = ({ page, posts }) => (
                         </article>
                     ))}
                     <Link href={`/page/${page + 1}`}>
-                        <a className="block w-72 text-center mx-auto border dark:border-zinc-400 py-2">次のページ</a>
+                        <a className="block w-72 text-center mx-auto border border-zinc-500 dark:border-zinc-400 py-2">
+                            次のページ
+                        </a>
                     </Link>
                 </section>
                 <Links />
