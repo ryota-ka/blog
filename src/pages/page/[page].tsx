@@ -33,17 +33,17 @@ const Page: NextPage<Props> = ({ page, posts }) => (
                     {posts.map(({ date: [year, month, day], slug, preface, preview, title }) => (
                         <article
                             key={slug}
-                            className="sm:rounded-md md:rounded-lg shadow bg-zinc-50 dark:bg-zinc-900 dark:border border-zinc-700"
+                            className="sm:rounded-xl shadow bg-zinc-50 dark:bg-zinc-900 dark:border-y sm:dark:border dark:border-zinc-700"
                         >
                             <header
                                 className={
-                                    `w-full h-48 mb-2 lg:mb-4 relative flex flex-col items-center justify-center text-white text-center bg-zinc-900 dark:bg-zinc-800 sm:rounded-t-md md:rounded-t-lg ` +
+                                    `w-full h-48 mb-2 lg:mb-4 relative flex flex-col items-center justify-center text-white text-center bg-zinc-900 dark:bg-zinc-800 sm:rounded-xl ` +
                                     (preview === null ? '' : 'lg:h-80')
                                 }
                             >
                                 {preview !== null && (
                                     <Image
-                                        className="brightness-25 sm:rounded-t-md md:rounded-t-lg"
+                                        className="brightness-25 sm:rounded-t-xl"
                                         src={`/posts/${year}/${month}/${day}/${slug}/preview.png`}
                                         layout="fill"
                                         objectFit="cover"
@@ -61,7 +61,7 @@ const Page: NextPage<Props> = ({ page, posts }) => (
                             <div className="px-2 py-4 sm:p-3 md:p-4">
                                 <div className="global-article" dangerouslySetInnerHTML={{ __html: preface }} />
                                 <Link href={`/posts/${year}/${month}/${day}/${slug}#more`}>
-                                    <a className="block w-48 mt-4 md:mt-6 mx-auto border px-4 py-2 text-center dark:text-white">
+                                    <a className="block w-48 mt-4 md:mt-6 mx-auto border border-zinc-500 dark:border-zinc-600 px-4 py-2 text-center dark:text-white">
                                         続きを読む
                                     </a>
                                 </Link>
@@ -69,7 +69,9 @@ const Page: NextPage<Props> = ({ page, posts }) => (
                         </article>
                     ))}
                     <Link href={`/page/${page + 1}`}>
-                        <a className="block w-72 text-center mx-auto border dark:border-zinc-400 py-2">次のページ</a>
+                        <a className="block w-72 text-center mx-auto border border-zinc-500 dark:border-zinc-400 py-2">
+                            次のページ
+                        </a>
                     </Link>
                 </section>
                 <Links />
