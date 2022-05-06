@@ -1,3 +1,9 @@
+---
+keywords:
+  - Lazy evaluation
+  - Vim script
+---
+
 # Vim script でジェネレータを作ったり、遅延評価してみる
 
 この記事は [CAMPHOR- Advent Calendar 2016](http://advent.camph.net/) 8日目の記事です．
