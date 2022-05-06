@@ -1,3 +1,10 @@
+---
+keywords:
+  - Effect system
+  - Formal semantics
+  - Haskell
+---
+
 # 『形式意味論入門』を Haskell に書き下す (後編)
 
 前編はこちら

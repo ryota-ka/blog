@@ -1,3 +1,8 @@
+---
+keywords:
+  - Netlify
+---
+
 # Netlify でホスティングしている Gatsby 製静的サイトを定期的にビルドして情報を更新する
 
 ## TL; DR

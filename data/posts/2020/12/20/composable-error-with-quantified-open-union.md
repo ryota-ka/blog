@@ -1,3 +1,10 @@
+---
+keywords:
+  - Haskell
+  - Open union
+  - Software architecture
+---
+
 # ユースケース層が投げうるエラーの型を「量化した open union」にしておけば複数のユースケースを合成したときに上の層でエラーハンドリングが楽にできて最高です！
 
 この記事は [Haskell Advent Calendar 2020](https://qiita.com/advent-calendar/2020/haskell) 20日目の記事です．
