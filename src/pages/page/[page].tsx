@@ -33,7 +33,7 @@ const Page: NextPage<Props> = ({ page, posts }) => (
                     {posts.map(({ date: [year, month, day], slug, preface, preview, title }) => (
                         <article
                             key={slug}
-                            className="sm:rounded-md md:rounded-lg shadow bg-zinc-50 dark:bg-zinc-900 dark:border border-zinc-700"
+                            className="sm:rounded-md md:rounded-lg shadow bg-zinc-50 dark:bg-zinc-900 dark:border-y sm:dark:border dark:border-zinc-700"
                         >
                             <header
                                 className={
