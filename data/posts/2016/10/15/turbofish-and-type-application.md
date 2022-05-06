@@ -1,3 +1,10 @@
+---
+keywords:
+  - Haskell
+  - Rust
+  - Type application
+---
+
 # Rust の turbofish と GHC 8 の Type Application ― または我々は如何にして多相な関数を単相化するか
 
 Rust には [`std::str::FromStr`](https://doc.rust-lang.org/std/str/trait.FromStr.html) という trait があり，データ型がこれを実装すると，`from_str` という名前の [associated function](https://doc.rust-lang.org/book/method-syntax.html#associated-functions)[^1] を通じて，[`str`](https://doc.rust-lang.org/std/primitive.str.html) からそのデータ型に変換できるようになる．
