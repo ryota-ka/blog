@@ -41,7 +41,7 @@ const transformer = unified()
 
                 const hastNode = defaultHandlers.code(h, node);
 
-                if (filename === null || filename === undefined || hastNode === null || hastNode === undefined) {
+                if (filename === undefined || hastNode === null || hastNode === undefined) {
                     return hastNode;
                 }
 
