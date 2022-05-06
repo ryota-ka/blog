@@ -1,3 +1,9 @@
+---
+keywords:
+  - Type-level programming
+  - TypeScript
+---
+
 # Type-level TypeScript
 
 この記事は [CAMPHOR- Advent Calendar 2017](https://advent.camph.net/) の21日目の記事です．

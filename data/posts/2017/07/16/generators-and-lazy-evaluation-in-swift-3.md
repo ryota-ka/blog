@@ -1,3 +1,9 @@
+---
+keywords:
+  - Lazy evaluation
+  - Swift
+---
+
 # Swift 3 でジェネレータを作ったり、遅延評価してみる
 
 Swift でのジェネレータの取扱いや遅延評価については，ymyzk 先生の[『Swift でジェネレータを作ったり、遅延評価してみる』](https://blog.ymyzk.com/2015/05/swift-generator-lazy/)において解説されているが，2015年5月の情報といささか古く，Swift のヴァージョンも1.2だった頃の記事なので，改めて書くことにした．
