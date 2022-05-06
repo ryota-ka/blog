@@ -1,3 +1,9 @@
+---
+keywords:
+  - Dhall
+  - Kubernetes
+---
+
 # Dhall で Kubernetes の YAML 管理をスマートにやっていく
 
 こんにちは．Kubernetes 班の ryota-ka です。皆さん Kubernetes やっていますか？[^1]

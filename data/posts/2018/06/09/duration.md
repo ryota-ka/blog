@@ -1,3 +1,9 @@
+---
+keywords:
+  - Haskell
+  - Template Haskell
+---
+
 # Template Haskell でいい感じに時間の長さを書けるライブラリ duration を作った
 
 Template Haskell を使って，時間の長さをいい感じに (人間が読みやすい形で) 記述できるライブラリを作った．

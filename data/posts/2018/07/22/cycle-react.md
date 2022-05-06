@@ -1,3 +1,9 @@
+---
+keywords:
+  - Cycle.js
+  - React
+---
+
 # @cycle/react を触ってみる
 
 数日前，[@staltz](https://twitter.com/staltz) 氏から Cycle React のリリースがアナウンスされた．
