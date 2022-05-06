@@ -33,17 +33,17 @@ const Page: NextPage<Props> = ({ page, posts }) => (
                     {posts.map(({ date: [year, month, day], slug, preface, preview, title }) => (
                         <article
                             key={slug}
-                            className="sm:rounded-md md:rounded-lg shadow bg-zinc-50 dark:bg-zinc-900 dark:border-y sm:dark:border dark:border-zinc-700"
+                            className="sm:rounded-xl shadow bg-zinc-50 dark:bg-zinc-900 dark:border-y sm:dark:border dark:border-zinc-700"
                         >
                             <header
                                 className={
-                                    `w-full h-48 mb-2 lg:mb-4 relative flex flex-col items-center justify-center text-white text-center bg-zinc-900 dark:bg-zinc-800 sm:rounded-t-md md:rounded-t-lg ` +
+                                    `w-full h-48 mb-2 lg:mb-4 relative flex flex-col items-center justify-center text-white text-center bg-zinc-900 dark:bg-zinc-800 sm:rounded-xl ` +
                                     (preview === null ? '' : 'lg:h-80')
                                 }
                             >
                                 {preview !== null && (
                                     <Image
-                                        className="brightness-25 sm:rounded-t-md md:rounded-t-lg"
+                                        className="brightness-25 sm:rounded-t-xl"
                                         src={`/posts/${year}/${month}/${day}/${slug}/preview.png`}
                                         layout="fill"
                                         objectFit="cover"
