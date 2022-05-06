@@ -1,3 +1,9 @@
+---
+keywords:
+  - Cycle.js
+  - Effect system
+---
+
 # effect system 勉強会で Cycle.js の話をしてきた
 
 もう1ヶ月ちょっと前の話になるが，[effect system 勉強会](https://connpass.com/event/124786/) で [Cycle.js](https://cycle.js.org/) の話をしてきた．

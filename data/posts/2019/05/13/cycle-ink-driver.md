@@ -1,3 +1,9 @@
+---
+keywords:
+  - Cycle.js
+  - Ink
+---
+
 # cycle-ink-driver をリリースした
 
 `cycle-ink-driver` というライブラリをリリースした．このライブラリを用いると，[Cycle.js](https://cycle.js.org) と [Ink](https://github.com/vadimdemedes/ink) を用いてインタラクティヴなコマンドライン・アプリケーションを作ることができる．
