@@ -1,3 +1,9 @@
+---
+keywords:
+  - Haskell
+  - Template Haskell
+---
+
 # Template Haskell でコンパイル時 FizzBuzz
 
 数ヶ月前に Twitter で，コンパイル時に FizzBuzz を計算して，実行時には計算された文字列を出力をするだけ，というコンパイル時 FizzBuzz を何かの言語でやっているのを見かけた．元ネタは江添さんがC++で書いたものらしい．インスピレーションを受けて，Haskell で書いてはみたが，簡単すぎて全然おもしろくなくなってしまった．

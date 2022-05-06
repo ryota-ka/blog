@@ -1,3 +1,9 @@
+---
+keywords:
+  - Coyoneda
+  - Haskell
+---
+
 # Coyoneda って…… お前 functor がデータ構造になっただけやんけ！！
 
 [operational](https://wiki.haskell.org/Operational) (あるいは freer) と呼ばれているものの説明として，

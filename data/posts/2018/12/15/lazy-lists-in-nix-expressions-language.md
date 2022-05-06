@@ -1,3 +1,9 @@
+---
+keywords:
+  - Nix
+  - Lazy evaluation
+---
+
 # Nix Expression Language で遅延リストを作ってみる
 
 この記事は [CAMPHOR- Advent Calendar 2018](https://advent.camph.net/) 15日目の記事です．14日目の記事は [@Rtm6Lgo](https://twitter.com/Rtm6Lgo) の [とある研究室の運営のエモいお話](https://rtm6.hatenablog.jp/entry/2018/12/14/113010) でした．

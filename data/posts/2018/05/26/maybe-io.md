@@ -1,3 +1,10 @@
+---
+keywords:
+  - Haskell
+  - Monad
+  - Monad transformer
+---
+
 # Maybe と IO を一緒に使いたくなったら
 
 たまには初学者向けにライトな話題を．

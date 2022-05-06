@@ -1,3 +1,10 @@
+---
+keywords:
+  - Haskell
+  - Quasi-quote
+  - Template Haskell
+---
+
 # Template Haskell でコード中に JSON を埋め込んだりコンパイル時にファイルから型安全に読み込んだりする
 
 [前回](https://blog.ryota-ka.me/posts/2018/01/25/compile-time-fizzbuzz-with-template-haskell)よりはもう少し実用的な例を．

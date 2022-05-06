@@ -1,3 +1,9 @@
+---
+keywords:
+  - Haskell
+  - TypeFamilyDependencies
+---
+
 # TypeFamilyDependencies の実用的な例を考える
 
 `FunctionalDependencies` という GHC 言語拡張がある．[Haskell Wiki によると](https://wiki.haskell.org/Functional_dependencies)，

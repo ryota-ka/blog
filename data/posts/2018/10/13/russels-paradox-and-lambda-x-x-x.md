@@ -1,3 +1,12 @@
+---
+keywords:
+  - Bertrand Russell
+  - Gottlob Frege
+  - Lambda calculus
+  - Ludwig Wittgenstein
+  - Russell's paradox
+---
+
 # Russell のパラドクスと λx.xx (または自己言及がもたらす豊かさと危うさについて)
 
 お盆に数日の休みがあったので，Ludwig Wittgenstein の『論理哲学論考 (Tractatus Logico-Philosophicus)』を読み始めた．Wittgenstein の著作を読んでいると，彼が理論を継承し，また批判する対象となった Gottlob Frege や Bertrand Russell の思想にも同時に触れることになる．
