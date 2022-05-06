@@ -1,3 +1,9 @@
+---
+keywords:
+  - Lazy evaluation
+  - Perl 6
+---
+
 # Perl 6 でジェネレータを作ったり、遅延評価してみる
 
 この記事は [CAMPHOR- Advent Calendar 2015](http://advent.camph.net/) 30日目の記事です．

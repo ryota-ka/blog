@@ -1,3 +1,9 @@
+---
+keywords:
+  - Lazy evaluation
+  - Ruby
+---
+
 # Ruby の Enumerator でジェネレータを作ったり，遅延評価してみる
 
 Ruby には [Enumerable](http://docs.ruby-lang.org/ja/2.2.0/class/Enumerable.html) モジュールってのがあって，これを include したオブジェクトは，自身に対して何かしらの反復処理ができるようになる[^1]．
