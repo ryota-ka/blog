@@ -1,3 +1,10 @@
+---
+keywords:
+  - Dhall
+  - Haskell
+  - Rank-2 polymorphism
+---
+
 # 引数で受け取った値を通じてのみ値を構築することを強制するランク2多相を使ったテクニック
 
 Dhall の Prelude を眺めていて見付けた，ランク2多相を使ったテクニックを紹介する．
