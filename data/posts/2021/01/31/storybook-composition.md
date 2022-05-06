@@ -1,3 +1,8 @@
+---
+keywords:
+  - Storybook
+---
+
 # Storybook の中から別の Storybook を参照できる Storybook composition を試してみる
 
 Storybook 6.0 から，ある Storybook の中から別の Storybook を参照することができる "Storybook composition" という機能が導入された．
