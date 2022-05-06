@@ -1,3 +1,9 @@
+---
+keywords:
+  - Nix
+  - Puppeteer
+---
+
 # Nix でのビルド時に Puppeteer を使う場合には $FONTCONFIG_FILE を設定しよう
 
 ## TL; DR
