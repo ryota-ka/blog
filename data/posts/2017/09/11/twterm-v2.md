@@ -1,3 +1,8 @@
+---
+keywords:
+  - twterm
+---
+
 # エンジニアのための Twitter クライアント twterm v2 をリリースした
 
 ターミナルエミュレータ上で動作する [twterm](https://twterm.ryota-ka.me/) の v2 をリリースした．
