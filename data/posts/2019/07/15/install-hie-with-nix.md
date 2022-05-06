@@ -1,3 +1,10 @@
+---
+keywords:
+  - Haskell
+  - Haskell IDE Engine
+  - Nix
+---
+
 # Nix で Haskell IDE Engine をシュッと入れる
 
 みなさん，Haskell やってますか？普通に [Haskell IDE Engine](https://github.com/haskell/haskell-ide-engine) を入れようとするとビルドにメッチャ時間がかかって「地獄か？」という感じがするので，Nix でシュッと入れていきましょう．
