@@ -12,9 +12,9 @@ export class OpenGraphCard extends NonShadowedElement {
         title: { attribute: true },
     };
 
-    public description!: string;
+    public description!: string | null;
     public href!: string;
-    public image!: string;
+    public image!: string | null;
     public title!: string;
 
     public constructor() {
