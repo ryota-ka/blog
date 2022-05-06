@@ -7,12 +7,13 @@ import rehypeStringify from 'rehype-stringify';
 import remarkParse from 'remark-parse';
 import { unified } from 'unified';
 
-import { Layout, SideBySide, TableOfContents } from '../../../../../components';
+import { Keywords, Layout, Sidebar, SideBySide, TableOfContents } from '../../../../../components';
 import * as Post from '../../../../../Post';
 import { PostRepository } from '../../../../../PostRepository';
 
 type Props = {
     date: string;
+    keywords: string[];
     html: string;
     preface: string;
     preview: string | null;
@@ -20,7 +21,7 @@ type Props = {
     title: string;
 };
 
-const Page: React.FC<Props> = ({ date, html, preface, preview, sections, title }) => {
+const Page: React.FC<Props> = ({ date, html, keywords, preface, preview, sections, title }) => {
     const router = useRouter();
 
     return (
@@ -47,7 +48,10 @@ const Page: React.FC<Props> = ({ date, html, preface, preview, sections, title }
                     className="global-article sm:rounded-xl p-2 sm:p-3 md:p-4 shadow bg-zinc-50 dark:bg-zinc-900 dark:border-y sm:dark:border dark:border-zinc-700"
                     dangerouslySetInnerHTML={{ __html: html }}
                 />
-                <TableOfContents className="sticky top-4" sections={sections} />
+                <Sidebar className="sticky top-4">
+                    <Keywords keywords={keywords} />
+                    <TableOfContents sections={sections} />
+                </Sidebar>
             </SideBySide>
         </Layout>
     );
@@ -101,12 +105,14 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
 
     const title = Post.Title.extract(unified().use(remarkParse).parse(body));
     const preface = toString({ type: 'root', children: Post.Preface.extract(mdast) });
+    const { keywords } = Post.Frontmatter.extract(mdast);
 
     const tableOfContents = Post.TableOfContents.extract(mdast);
 
     return {
         props: {
             date: `${year}-${month}-${day}`,
+            keywords,
             html,
             preface,
             preview,
