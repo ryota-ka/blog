@@ -36,11 +36,9 @@ const getStaticPaths: GetStaticPaths = async () => {
     const keywords = new Set<string>();
 
     for (const path of keys) {
-        const { body } = await PostRepository.lookup(path);
-        const mdast = Post.Body.parse(body);
-        const frontmatter = Post.Frontmatter.extract(mdast);
+        const post = await PostRepository.lookup(path);
 
-        frontmatter.keywords.forEach((keyword) => {
+        post.keywords.forEach((keyword) => {
             keywords.add(keyword);
         });
     }
@@ -66,16 +64,11 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
     }
 
     for (const key of keys.reverse()) {
-        const { body, date, path, preview, slug } = await PostRepository.lookup(key);
-        const mdast = Post.Body.parse(body);
-
-        const { keywords } = Post.Frontmatter.extract(mdast);
+        const { date, keywords, path, preface, preview, slug, title } = await PostRepository.lookup(key);
 
         if (!keywords.includes(keyword)) {
             continue;
         }
-
-        const preface = Post.Preface.extract(mdast);
 
         const prefaceHTML = unified()
             .use(rehypeStringify)
@@ -83,7 +76,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
 
         posts.push({
             slug,
-            title: Post.Title.extract(mdast),
+            title,
             date,
             path,
             preview,

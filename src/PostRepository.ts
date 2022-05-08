@@ -1,14 +1,22 @@
 import fs from 'fs/promises';
+import type { Content, Root } from 'mdast';
 import path from 'path';
+import remarkParse from 'remark-parse';
+import { unified } from 'unified';
+
+import * as Post from './Post';
 
 type Key = [year: string, month: string, day: string, slug: string];
 
 type Post = {
-    body: string;
+    body: Root;
     date: [year: string, month: string, day: string];
+    keywords: string[];
     path: string;
+    preface: Content[];
     preview: string | null;
     slug: string;
+    title: string;
 };
 
 const mdRoot = path.join(process.cwd(), 'data', 'posts');
@@ -16,7 +24,7 @@ const assetsRoot = path.join(process.cwd(), 'public', 'posts');
 
 const PostRepository = {
     async lookup([year, month, day, slug]: Key): Promise<Post> {
-        const body = await fs.readFile(path.join(mdRoot, year, month, day, `${slug}.md`), { encoding: 'utf-8' });
+        const md = await fs.readFile(path.join(mdRoot, year, month, day, `${slug}.md`), { encoding: 'utf-8' });
 
         let previewExists = false;
         try {
@@ -26,12 +34,21 @@ const PostRepository = {
             // nop
         }
 
+        const body = Post.Body.parse(md);
+        const preface = Post.Preface.extract(body);
+        const { keywords } = Post.Frontmatter.extract(body);
+
+        const title = Post.Title.extract(unified().use(remarkParse).parse(md));
+
         return {
             body,
             date: [year, month, day],
+            keywords,
             path: `/posts/${year}/${month}/${day}/${slug}`,
+            preface,
             preview: previewExists ? `/posts/${year}/${month}/${day}/${slug}/preview.png` : null,
             slug,
+            title,
         };
     },
 

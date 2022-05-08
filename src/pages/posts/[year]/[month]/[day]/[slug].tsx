@@ -3,7 +3,6 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
 import path from 'path';
 import rehypeStringify from 'rehype-stringify';
-import remarkParse from 'remark-parse';
 import { unified } from 'unified';
 
 import { Keywords, Layout, Sidebar, SideBySide, TableOfContents } from '../../../../../components';
@@ -91,25 +90,20 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
         };
     }
 
-    const { body, preview } = await PostRepository.lookup([year, month, day, slug]);
+    const { body, keywords, preface, preview, title } = await PostRepository.lookup([year, month, day, slug]);
 
-    const mdast = Post.Body.parse(body);
     const html = unified()
         .use(rehypeStringify)
-        .stringify(await Post.Body.transform(mdast));
+        .stringify(await Post.Body.transform(body));
 
-    const title = Post.Title.extract(unified().use(remarkParse).parse(body));
-    const preface = toString({ type: 'root', children: Post.Preface.extract(mdast) });
-    const { keywords } = Post.Frontmatter.extract(mdast);
-
-    const tableOfContents = Post.TableOfContents.extract(mdast);
+    const tableOfContents = Post.TableOfContents.extract(body);
 
     return {
         props: {
             date: `${year}-${month}-${day}`,
             keywords,
             html,
-            preface,
+            preface: toString({ type: 'root', children: preface }),
             preview,
             sections: tableOfContents,
             title,

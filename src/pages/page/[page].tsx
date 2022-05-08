@@ -75,11 +75,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
     const offset = (page - 1) * PER_PAGE;
 
     for (const key of keys.reverse().slice(offset, offset + PER_PAGE)) {
-        const { body, date, path, preview, slug } = await PostRepository.lookup(key);
-        const mdast = Post.Body.parse(body);
-
-        const title = Post.Title.extract(mdast);
-        const preface = Post.Preface.extract(mdast);
+        const { date, path, preface, preview, slug, title } = await PostRepository.lookup(key);
 
         const prefaceHTML = unified()
             .use(rehypeStringify)
@@ -87,7 +83,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
 
         posts.push({
             slug,
-            title: Post.Title.extract(mdast),
+            title,
             date,
             path,
             preview,
