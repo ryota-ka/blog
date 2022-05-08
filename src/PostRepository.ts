@@ -1,21 +1,30 @@
 import fs from 'fs/promises';
+import type { Content, Root } from 'mdast';
 import path from 'path';
+import remarkParse from 'remark-parse';
+import { unified } from 'unified';
 
-type Path = [year: string, month: string, day: string, slug: string];
+import * as Post from './Post';
+
+type Key = [year: string, month: string, day: string, slug: string];
 
 type Post = {
-    body: string;
+    body: Root;
     date: [year: string, month: string, day: string];
+    keywords: string[];
+    path: string;
+    preface: Content[];
     preview: string | null;
-    url: string;
+    slug: string;
+    title: string;
 };
 
 const mdRoot = path.join(process.cwd(), 'data', 'posts');
 const assetsRoot = path.join(process.cwd(), 'public', 'posts');
 
 const PostRepository = {
-    async getByPath([year, month, day, slug]: Path): Promise<Post> {
-        const body = await fs.readFile(path.join(mdRoot, year, month, day, `${slug}.md`), { encoding: 'utf-8' });
+    async lookup([year, month, day, slug]: Key): Promise<Post> {
+        const md = await fs.readFile(path.join(mdRoot, year, month, day, `${slug}.md`), { encoding: 'utf-8' });
 
         let previewExists = false;
         try {
@@ -25,18 +34,26 @@ const PostRepository = {
             // nop
         }
 
+        const body = Post.Body.parse(md);
+        const preface = Post.Preface.extract(body);
+        const { keywords } = Post.Frontmatter.extract(body);
+
+        const title = Post.Title.extract(unified().use(remarkParse).parse(md));
+
         return {
             body,
             date: [year, month, day],
-            preview: previewExists
-                ? `https://blog.ryota-ka.me/posts/${year}/${month}/${day}/${slug}/preview.png`
-                : null,
-            url: `https://blog.ryota-ka.me/posts/${year}/${month}/${day}/${slug}`,
+            keywords,
+            path: `/posts/${year}/${month}/${day}/${slug}`,
+            preface,
+            preview: previewExists ? `/posts/${year}/${month}/${day}/${slug}/preview.png` : null,
+            slug,
+            title,
         };
     },
 
-    async list(): Promise<Path[]> {
-        const paths: Path[] = [];
+    async list(): Promise<Key[]> {
+        const keys: Key[] = [];
 
         const years = await fs.readdir(mdRoot);
 
@@ -50,14 +67,14 @@ const PostRepository = {
                     const files = await fs.readdir(path.join(mdRoot, year, month, day));
 
                     for (const file of files) {
-                        paths.push([year, month, day, path.parse(file).name]);
+                        keys.push([year, month, day, path.parse(file).name]);
                     }
                 }
             }
         }
 
-        return paths;
+        return keys;
     },
 };
 
-export { type Path, type Post, PostRepository };
+export { type Key, type Post, PostRepository };

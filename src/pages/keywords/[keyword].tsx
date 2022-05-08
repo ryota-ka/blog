@@ -14,6 +14,7 @@ type Props = {
 type Post = {
     date: [day: string, month: string, day: string];
     slug: string;
+    path: string;
     preview: string | null;
     preface: string;
     title: string;
@@ -31,15 +32,13 @@ const Page: NextPage<Props> = ({ keyword, posts }) => (
 );
 
 const getStaticPaths: GetStaticPaths = async () => {
-    const paths = await PostRepository.list();
+    const keys = await PostRepository.list();
     const keywords = new Set<string>();
 
-    for (const path of paths) {
-        const { body } = await PostRepository.getByPath(path);
-        const mdast = Post.Body.parse(body);
-        const frontmatter = Post.Frontmatter.extract(mdast);
+    for (const path of keys) {
+        const post = await PostRepository.lookup(path);
 
-        frontmatter.keywords.forEach((keyword) => {
+        post.keywords.forEach((keyword) => {
             keywords.add(keyword);
         });
     }
@@ -55,7 +54,7 @@ const getStaticPaths: GetStaticPaths = async () => {
 };
 
 const getStaticProps: GetStaticProps<Props> = async (ctx) => {
-    const paths = await PostRepository.list();
+    const keys = await PostRepository.list();
 
     const posts = [];
 
@@ -64,26 +63,22 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
         return { notFound: true };
     }
 
-    for (const path of paths.reverse()) {
-        const { body, date, preview } = await PostRepository.getByPath(path);
-        const mdast = Post.Body.parse(body);
-
-        const { keywords } = Post.Frontmatter.extract(mdast);
+    for (const key of keys.reverse()) {
+        const { date, keywords, path, preface, preview, slug, title } = await PostRepository.lookup(key);
 
         if (!keywords.includes(keyword)) {
             continue;
         }
-
-        const preface = Post.Preface.extract(mdast);
 
         const prefaceHTML = unified()
             .use(rehypeStringify)
             .stringify(await Post.Body.transform({ type: 'root', children: preface }));
 
         posts.push({
-            slug: path[3],
-            title: Post.Title.extract(mdast),
+            slug,
+            title,
             date,
+            path,
             preview,
             preface: prefaceHTML,
         });
