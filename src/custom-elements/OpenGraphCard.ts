@@ -51,6 +51,8 @@ export class OpenGraphCard extends NonShadowedElement {
     }
 
     #renderImage(): TemplateResult | null {
-        return this.image === null ? null : html`<img class="rounded-t-xl" alt="" src=${this.image} />`;
+        return this.image === null
+            ? null
+            : html`<img class="rounded-t-xl" alt="" src=${this.image} loading="lazy" decoding="async" />`;
     }
 }
