@@ -1,18 +1,13 @@
-import fs from 'fs/promises';
-import { toString } from 'mdast-util-to-string';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import Link from 'next/link';
-import * as path from 'path';
 import rehypeStringify from 'rehype-stringify';
 import { unified } from 'unified';
 
 import { Layout, Links, PostCollection, SideBySide } from '../../components';
 import * as Post from '../../Post';
 import { PostRepository } from '../../PostRepository';
-import { RSSFeed } from '../../RSSFeed';
 
 type Props = {
-    page: number;
+    keyword: string;
     posts: Post[];
 };
 
@@ -24,37 +19,36 @@ type Post = {
     title: string;
 };
 
-const Page: NextPage<Props> = ({ page, posts }) => (
-    <Layout>
+const Page: NextPage<Props> = ({ keyword, posts }) => (
+    <Layout title={keyword}>
         <div className="sm:px-2 md:px-4 pt-4">
             <SideBySide>
-                <PostCollection
-                    posts={posts}
-                    accessory={
-                        <Link href={`/page/${page + 1}`}>
-                            <a className="block w-72 text-center mx-auto border border-zinc-500 dark:border-zinc-400 py-2">
-                                次のページ
-                            </a>
-                        </Link>
-                    }
-                />
+                <PostCollection posts={posts} />
                 <Links />
             </SideBySide>
         </div>
     </Layout>
 );
 
-const PER_PAGE = 5;
-
 const getStaticPaths: GetStaticPaths = async () => {
     const paths = await PostRepository.list();
-    const n = Math.floor(paths.length / PER_PAGE);
+    const keywords = new Set<string>();
+
+    for (const path of paths) {
+        const { body } = await PostRepository.getByPath(path);
+        const mdast = Post.Body.parse(body);
+        const frontmatter = Post.Frontmatter.extract(mdast);
+
+        frontmatter.keywords.forEach((keyword) => {
+            keywords.add(keyword);
+        });
+    }
 
     return {
         fallback: false,
-        paths: Array.from({ length: n }).map((_, i) => ({
+        paths: Array.from(keywords).map((keyword) => ({
             params: {
-                page: String(i + 1),
+                keyword,
             },
         })),
     };
@@ -64,20 +58,22 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
     const paths = await PostRepository.list();
 
     const posts = [];
-    const feed = new RSSFeed();
 
-    const pagestr = ctx.params?.page ?? '1';
-    if (typeof pagestr !== 'string') {
+    const keyword = ctx.params?.keyword;
+    if (typeof keyword !== 'string') {
         return { notFound: true };
     }
-    const page = Number.parseInt(pagestr, 10);
-    const offset = (page - 1) * PER_PAGE;
 
-    for (const path of paths.reverse().slice(offset, offset + PER_PAGE)) {
-        const { body, date, preview, url } = await PostRepository.getByPath(path);
+    for (const path of paths.reverse()) {
+        const { body, date, preview } = await PostRepository.getByPath(path);
         const mdast = Post.Body.parse(body);
 
-        const title = Post.Title.extract(mdast);
+        const { keywords } = Post.Frontmatter.extract(mdast);
+
+        if (!keywords.includes(keyword)) {
+            continue;
+        }
+
         const preface = Post.Preface.extract(mdast);
 
         const prefaceHTML = unified()
@@ -91,25 +87,11 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
             preview,
             preface: prefaceHTML,
         });
-
-        feed.register({
-            title,
-            preface: toString({
-                type: 'root',
-                children: preface,
-            }),
-            date,
-            url,
-        });
-    }
-
-    if (page === 1) {
-        await fs.writeFile(path.join(process.cwd(), 'public', 'feed.xml'), feed.generate());
     }
 
     return {
         props: {
-            page,
+            keyword,
             posts,
         },
     };
