@@ -30,9 +30,7 @@ const PostRepository = {
             body,
             date: [year, month, day],
             path: `/posts/${year}/${month}/${day}/${slug}`,
-            preview: previewExists
-                ? `https://blog.ryota-ka.me/posts/${year}/${month}/${day}/${slug}/preview.png`
-                : null,
+            preview: previewExists ? `/posts/${year}/${month}/${day}/${slug}/preview.png` : null,
             slug,
         };
     },

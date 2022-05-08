@@ -34,7 +34,7 @@ const PostCollection: React.FC<PostCollection.Props> = ({ accessory, posts }) =>
                         {preview !== null && (
                             <Image
                                 className="brightness-25 sm:rounded-t-xl"
-                                src={`/posts/${year}/${month}/${day}/${slug}/preview.png`}
+                                src={preview}
                                 layout="fill"
                                 objectFit="cover"
                             />

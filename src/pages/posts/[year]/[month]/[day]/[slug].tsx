@@ -1,7 +1,6 @@
 import { toString } from 'mdast-util-to-string';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import path from 'path';
 import rehypeStringify from 'rehype-stringify';
 import remarkParse from 'remark-parse';
@@ -22,24 +21,20 @@ type Props = {
 };
 
 const Page: React.FC<Props> = ({ date, html, keywords, preface, preview, sections, title }) => {
-    const router = useRouter();
-
     return (
-        <Layout article={{ date }} title={title} description={preface} preview={preview ?? undefined}>
+        <Layout
+            article={{ date }}
+            title={title}
+            description={preface}
+            preview={preview === null ? undefined : 'https://blog.ryota-ka.me' + preview}
+        >
             <header
                 className={
                     `w-full h-48 mb-2 lg:mb-4 lg:mb-12 relative flex flex-col items-center justify-center text-white bg-zinc-900 ` +
                     (preview === null ? '' : 'lg:h-80')
                 }
             >
-                {preview !== null && (
-                    <Image
-                        className="brightness-25"
-                        src={new URL(router.asPath, 'https://example.com').pathname + '/preview.png'}
-                        layout="fill"
-                        objectFit="cover"
-                    />
-                )}
+                {preview !== null && <Image className="brightness-25" src={preview} layout="fill" objectFit="cover" />}
                 <h1 className="text-xl lg:text-3xl font-semibold w-5/6 lg:w-2/3 text-center z-10">{title}</h1>
                 <time className="z-10 mt-2 lg:mt-4 text-base lg:text-xl">{date}</time>
             </header>
