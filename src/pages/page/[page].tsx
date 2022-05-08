@@ -74,7 +74,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
     const offset = (page - 1) * PER_PAGE;
 
     for (const key of keys.reverse().slice(offset, offset + PER_PAGE)) {
-        const { body, date, preview, url } = await PostRepository.lookup(key);
+        const { body, date, preview, slug, url } = await PostRepository.lookup(key);
         const mdast = Post.Body.parse(body);
 
         const title = Post.Title.extract(mdast);
@@ -85,7 +85,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
             .stringify(await Post.Body.transform({ type: 'root', children: preface }));
 
         posts.push({
-            slug: key[3],
+            slug,
             title: Post.Title.extract(mdast),
             date,
             preview,

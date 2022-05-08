@@ -7,6 +7,7 @@ type Post = {
     body: string;
     date: [year: string, month: string, day: string];
     preview: string | null;
+    slug: string;
     url: string;
 };
 
@@ -31,6 +32,7 @@ const PostRepository = {
             preview: previewExists
                 ? `https://blog.ryota-ka.me/posts/${year}/${month}/${day}/${slug}/preview.png`
                 : null,
+            slug,
             url: `https://blog.ryota-ka.me/posts/${year}/${month}/${day}/${slug}`,
         };
     },
