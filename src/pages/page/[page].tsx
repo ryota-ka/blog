@@ -19,6 +19,7 @@ type Props = {
 type Post = {
     date: [day: string, month: string, day: string];
     slug: string;
+    path: string;
     preview: string | null;
     preface: string;
     title: string;
@@ -74,7 +75,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
     const offset = (page - 1) * PER_PAGE;
 
     for (const key of keys.reverse().slice(offset, offset + PER_PAGE)) {
-        const { body, date, preview, slug, url } = await PostRepository.lookup(key);
+        const { body, date, path, preview, slug } = await PostRepository.lookup(key);
         const mdast = Post.Body.parse(body);
 
         const title = Post.Title.extract(mdast);
@@ -88,6 +89,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
             slug,
             title: Post.Title.extract(mdast),
             date,
+            path,
             preview,
             preface: prefaceHTML,
         });
@@ -99,7 +101,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
                 children: preface,
             }),
             date,
-            url,
+            url: 'https://blog.ryota-ka.me' + path,
         });
     }
 

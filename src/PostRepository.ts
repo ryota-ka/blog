@@ -6,9 +6,9 @@ type Key = [year: string, month: string, day: string, slug: string];
 type Post = {
     body: string;
     date: [year: string, month: string, day: string];
+    path: string;
     preview: string | null;
     slug: string;
-    url: string;
 };
 
 const mdRoot = path.join(process.cwd(), 'data', 'posts');
@@ -29,11 +29,11 @@ const PostRepository = {
         return {
             body,
             date: [year, month, day],
+            path: `/posts/${year}/${month}/${day}/${slug}`,
             preview: previewExists
                 ? `https://blog.ryota-ka.me/posts/${year}/${month}/${day}/${slug}/preview.png`
                 : null,
             slug,
-            url: `https://blog.ryota-ka.me/posts/${year}/${month}/${day}/${slug}`,
         };
     },
 

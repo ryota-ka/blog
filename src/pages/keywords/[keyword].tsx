@@ -14,6 +14,7 @@ type Props = {
 type Post = {
     date: [day: string, month: string, day: string];
     slug: string;
+    path: string;
     preview: string | null;
     preface: string;
     title: string;
@@ -65,7 +66,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
     }
 
     for (const key of keys.reverse()) {
-        const { body, date, preview, slug } = await PostRepository.lookup(key);
+        const { body, date, path, preview, slug } = await PostRepository.lookup(key);
         const mdast = Post.Body.parse(body);
 
         const { keywords } = Post.Frontmatter.extract(mdast);
@@ -84,6 +85,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
             slug,
             title: Post.Title.extract(mdast),
             date,
+            path,
             preview,
             preface: prefaceHTML,
         });
