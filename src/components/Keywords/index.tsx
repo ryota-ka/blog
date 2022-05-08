@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { SidebarContent } from '..';
 
 declare namespace Keywords {
@@ -11,7 +13,11 @@ const Keywords: React.FC<Keywords.Props> = ({ keywords }) => {
         <SidebarContent title="Keywords">
             <ul className="space-y-1 list-disc list-inside pl-2">
                 {keywords.map((kw) => (
-                    <li key={kw}>{kw}</li>
+                    <li key={kw}>
+                        <Link href={`/keywords/${kw}`}>
+                            <a>{kw}</a>
+                        </Link>
+                    </li>
                 ))}
             </ul>
         </SidebarContent>
