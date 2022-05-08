@@ -14,7 +14,7 @@ const mdRoot = path.join(process.cwd(), 'data', 'posts');
 const assetsRoot = path.join(process.cwd(), 'public', 'posts');
 
 const PostRepository = {
-    async getByPath([year, month, day, slug]: Path): Promise<Post> {
+    async lookup([year, month, day, slug]: Path): Promise<Post> {
         const body = await fs.readFile(path.join(mdRoot, year, month, day, `${slug}.md`), { encoding: 'utf-8' });
 
         let previewExists = false;

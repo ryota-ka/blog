@@ -35,7 +35,7 @@ const getStaticPaths: GetStaticPaths = async () => {
     const keywords = new Set<string>();
 
     for (const path of paths) {
-        const { body } = await PostRepository.getByPath(path);
+        const { body } = await PostRepository.lookup(path);
         const mdast = Post.Body.parse(body);
         const frontmatter = Post.Frontmatter.extract(mdast);
 
@@ -65,7 +65,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
     }
 
     for (const path of paths.reverse()) {
-        const { body, date, preview } = await PostRepository.getByPath(path);
+        const { body, date, preview } = await PostRepository.lookup(path);
         const mdast = Post.Body.parse(body);
 
         const { keywords } = Post.Frontmatter.extract(mdast);

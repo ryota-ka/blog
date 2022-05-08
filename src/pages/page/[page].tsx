@@ -74,7 +74,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
     const offset = (page - 1) * PER_PAGE;
 
     for (const path of paths.reverse().slice(offset, offset + PER_PAGE)) {
-        const { body, date, preview, url } = await PostRepository.getByPath(path);
+        const { body, date, preview, url } = await PostRepository.lookup(path);
         const mdast = Post.Body.parse(body);
 
         const title = Post.Title.extract(mdast);

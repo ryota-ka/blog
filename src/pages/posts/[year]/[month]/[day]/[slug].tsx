@@ -96,7 +96,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
         };
     }
 
-    const { body, preview } = await PostRepository.getByPath([year, month, day, slug]);
+    const { body, preview } = await PostRepository.lookup([year, month, day, slug]);
 
     const mdast = Post.Body.parse(body);
     const html = unified()
