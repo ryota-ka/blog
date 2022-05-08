@@ -31,10 +31,10 @@ const Page: NextPage<Props> = ({ keyword, posts }) => (
 );
 
 const getStaticPaths: GetStaticPaths = async () => {
-    const paths = await PostRepository.list();
+    const keys = await PostRepository.list();
     const keywords = new Set<string>();
 
-    for (const path of paths) {
+    for (const path of keys) {
         const { body } = await PostRepository.lookup(path);
         const mdast = Post.Body.parse(body);
         const frontmatter = Post.Frontmatter.extract(mdast);
@@ -55,7 +55,7 @@ const getStaticPaths: GetStaticPaths = async () => {
 };
 
 const getStaticProps: GetStaticProps<Props> = async (ctx) => {
-    const paths = await PostRepository.list();
+    const keys = await PostRepository.list();
 
     const posts = [];
 
@@ -64,8 +64,8 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
         return { notFound: true };
     }
 
-    for (const path of paths.reverse()) {
-        const { body, date, preview } = await PostRepository.lookup(path);
+    for (const key of keys.reverse()) {
+        const { body, date, preview } = await PostRepository.lookup(key);
         const mdast = Post.Body.parse(body);
 
         const { keywords } = Post.Frontmatter.extract(mdast);
@@ -81,7 +81,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
             .stringify(await Post.Body.transform({ type: 'root', children: preface }));
 
         posts.push({
-            slug: path[3],
+            slug: key[3],
             title: Post.Title.extract(mdast),
             date,
             preview,

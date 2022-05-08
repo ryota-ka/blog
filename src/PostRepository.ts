@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-type Path = [year: string, month: string, day: string, slug: string];
+type Key = [year: string, month: string, day: string, slug: string];
 
 type Post = {
     body: string;
@@ -14,7 +14,7 @@ const mdRoot = path.join(process.cwd(), 'data', 'posts');
 const assetsRoot = path.join(process.cwd(), 'public', 'posts');
 
 const PostRepository = {
-    async lookup([year, month, day, slug]: Path): Promise<Post> {
+    async lookup([year, month, day, slug]: Key): Promise<Post> {
         const body = await fs.readFile(path.join(mdRoot, year, month, day, `${slug}.md`), { encoding: 'utf-8' });
 
         let previewExists = false;
@@ -35,8 +35,8 @@ const PostRepository = {
         };
     },
 
-    async list(): Promise<Path[]> {
-        const paths: Path[] = [];
+    async list(): Promise<Key[]> {
+        const keys: Key[] = [];
 
         const years = await fs.readdir(mdRoot);
 
@@ -50,14 +50,14 @@ const PostRepository = {
                     const files = await fs.readdir(path.join(mdRoot, year, month, day));
 
                     for (const file of files) {
-                        paths.push([year, month, day, path.parse(file).name]);
+                        keys.push([year, month, day, path.parse(file).name]);
                     }
                 }
             }
         }
 
-        return paths;
+        return keys;
     },
 };
 
-export { type Path, type Post, PostRepository };
+export { type Key, type Post, PostRepository };

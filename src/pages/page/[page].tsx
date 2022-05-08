@@ -47,8 +47,8 @@ const Page: NextPage<Props> = ({ page, posts }) => (
 const PER_PAGE = 5;
 
 const getStaticPaths: GetStaticPaths = async () => {
-    const paths = await PostRepository.list();
-    const n = Math.floor(paths.length / PER_PAGE);
+    const keys = await PostRepository.list();
+    const n = Math.floor(keys.length / PER_PAGE);
 
     return {
         fallback: false,
@@ -61,7 +61,7 @@ const getStaticPaths: GetStaticPaths = async () => {
 };
 
 const getStaticProps: GetStaticProps<Props> = async (ctx) => {
-    const paths = await PostRepository.list();
+    const keys = await PostRepository.list();
 
     const posts = [];
     const feed = new RSSFeed();
@@ -73,8 +73,8 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
     const page = Number.parseInt(pagestr, 10);
     const offset = (page - 1) * PER_PAGE;
 
-    for (const path of paths.reverse().slice(offset, offset + PER_PAGE)) {
-        const { body, date, preview, url } = await PostRepository.lookup(path);
+    for (const key of keys.reverse().slice(offset, offset + PER_PAGE)) {
+        const { body, date, preview, url } = await PostRepository.lookup(key);
         const mdast = Post.Body.parse(body);
 
         const title = Post.Title.extract(mdast);
@@ -85,7 +85,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
             .stringify(await Post.Body.transform({ type: 'root', children: preface }));
 
         posts.push({
-            slug: path[3],
+            slug: key[3],
             title: Post.Title.extract(mdast),
             date,
             preview,
