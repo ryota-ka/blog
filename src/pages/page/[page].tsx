@@ -6,12 +6,13 @@ import * as path from 'path';
 import rehypeStringify from 'rehype-stringify';
 import { unified } from 'unified';
 
-import { Layout, Links, PostCollection, SideBySide } from '../../components';
+import { Layout, Links, PostCollection, Sidebar, SidebarContent, SideBySide } from '../../components';
 import * as Post from '../../Post';
 import { PostRepository } from '../../PostRepository';
 import { RSSFeed } from '../../RSSFeed';
 
 type Props = {
+    keywords: Array<[string, number]>;
     page: number;
     posts: Post[];
 };
@@ -25,7 +26,7 @@ type Post = {
     title: string;
 };
 
-const Page: NextPage<Props> = ({ page, posts }) => (
+const Page: NextPage<Props> = ({ keywords, page, posts }) => (
     <Layout>
         <div className="sm:px-2 md:px-4 pt-4">
             <SideBySide>
@@ -39,7 +40,21 @@ const Page: NextPage<Props> = ({ page, posts }) => (
                         </Link>
                     }
                 />
-                <Links />
+                <Sidebar>
+                    <SidebarContent title="Keywords">
+                        <ul className="space-y-1 list-disc list-inside pl-2">
+                            {keywords.map(([kw, count]) => (
+                                <li key={kw}>
+                                    <Link href={`/keywords/${kw}`}>
+                                        <a>{kw}</a>
+                                    </Link>{' '}
+                                    ({count})
+                                </li>
+                            ))}
+                        </ul>
+                    </SidebarContent>
+                    <Links />
+                </Sidebar>
             </SideBySide>
         </div>
     </Layout>
@@ -74,8 +89,10 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
     const page = Number.parseInt(pagestr, 10);
     const offset = (page - 1) * PER_PAGE;
 
-    for (const key of keys.reverse().slice(offset, offset + PER_PAGE)) {
-        const { date, path, preface, preview, slug, title } = await PostRepository.lookup(key);
+    const ps = await Promise.all(keys.reverse().map(async (key) => await PostRepository.lookup(key)));
+
+    for (const post of ps.slice(offset, offset + PER_PAGE)) {
+        const { date, path, preface, preview, slug, title } = post;
 
         const prefaceHTML = unified()
             .use(rehypeStringify)
@@ -101,12 +118,30 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
         });
     }
 
+    const keywords = new Map<string, number>();
+    for (const post of ps) {
+        for (const kw of post.keywords) {
+            const count = keywords.get(kw);
+
+            if (count === undefined) {
+                keywords.set(kw, 1);
+            } else {
+                keywords.set(kw, count + 1);
+            }
+        }
+    }
+
     if (page === 1) {
         await fs.writeFile(path.join(process.cwd(), 'public', 'feed.xml'), feed.generate());
     }
 
     return {
         props: {
+            keywords: Array.from(keywords.entries())
+                .sort((a, b) =>
+                    a[1] === b[1] ? a[0].toLowerCase().localeCompare(b[0].toLowerCase()) : a[1] < b[1] ? 1 : -1,
+                )
+                .slice(0, 5),
             page,
             posts,
         },
