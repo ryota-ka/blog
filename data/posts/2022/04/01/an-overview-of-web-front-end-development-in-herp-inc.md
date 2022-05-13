@@ -22,9 +22,9 @@ https://lp.herp.cloud/
 
 https://lp.herp.cloud/nurture/
 
-そもそもプロダクトを通じて何を実現したいかについては，HERP Culture Deck の以下のページを参照されたい．
+そもそもプロダクトを通じて何を実現したいかについては，HERP Culture Deck の以下の節を参照されたい．
 
-https://culture.herp.co.jp/fcc88971ec924bb1b4ad77d36157bfcb
+https://culture.herp.co.jp/#9bb1b98bba3643bfb464bc5eac254525
 
 ソフトウェア開発者にとって，開発しているプロダクトや，開発プロセスに関する情報もまた重要であるとは重々承知している．しかし，それぞれ独立した記事が書けてしまうほどに大きな話題なので，この記事では大胆にも割愛し，私以外の開発者が筆を執る機会に譲ることにする．
 
