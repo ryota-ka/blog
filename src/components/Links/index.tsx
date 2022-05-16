@@ -4,25 +4,23 @@ declare namespace Links {
     type Props = Record<string, never>;
 }
 
+const links = [
+    ['ryota-ka.me', 'https://ryota-ka.me/'],
+    ['GitHub', 'https://github.com/ryota-ka'],
+    ['Twitter', 'https://twitter.com/ryotakameoka'],
+];
+
 const Links: React.FC<Links.Props> = () => {
     return (
         <SidebarContent title="Links">
             <ul className="list-inside list-disc ml-2 space-y-1">
-                <li>
-                    <a href="https://ryota-ka.me/" target="_blank" rel="noopener noreferrer">
-                        ryota-ka.me
-                    </a>
-                </li>
-                <li>
-                    <a href="https://github.com/ryota-ka" target="_blank" rel="noopener noreferrer">
-                        GitHub
-                    </a>
-                </li>
-                <li>
-                    <a href="https://twitter.com/ryotakameoka" target="_blank" rel="noopener noreferrer">
-                        Twitter
-                    </a>
-                </li>
+                {links.map(([title, href]) => (
+                    <li key={href}>
+                        <a href={href} target="_blank" rel="noopener noreferrer">
+                            {title}
+                        </a>
+                    </li>
+                ))}
             </ul>
         </SidebarContent>
     );
