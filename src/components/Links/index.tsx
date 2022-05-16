@@ -16,7 +16,12 @@ const Links: React.FC<Links.Props> = () => {
             <ul className="list-inside list-disc ml-2 space-y-1">
                 {links.map(([title, href]) => (
                     <li key={href}>
-                        <a href={href} target="_blank" rel="noopener noreferrer">
+                        <a
+                            className="hover:text-sky-700 dark:hover:text-amber-500"
+                            href={href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
                             {title}
                         </a>
                     </li>
