@@ -15,7 +15,7 @@ const Keywords: React.FC<Keywords.Props> = ({ keywords }) => {
                 {keywords.map((kw) => (
                     <li key={kw}>
                         <Link href={`/keywords/${kw}`}>
-                            <a>{kw}</a>
+                            <a className="hover:text-sky-700 dark:hover:text-amber-500">{kw}</a>
                         </Link>
                     </li>
                 ))}

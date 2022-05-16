@@ -46,7 +46,7 @@ const Page: NextPage<Props> = ({ keywords, page, posts }) => (
                             {keywords.map(([kw, count]) => (
                                 <li key={kw}>
                                     <Link href={`/keywords/${kw}`}>
-                                        <a>{kw}</a>
+                                        <a className="hover:text-sky-700 dark:hover:text-amber-500">{kw}</a>
                                     </Link>{' '}
                                     ({count})
                                 </li>
