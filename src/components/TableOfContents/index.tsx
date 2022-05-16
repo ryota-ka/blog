@@ -1,22 +1,19 @@
+import { SidebarContent } from '..';
 import type * as Post from '../../Post';
 
 type Props = {
-    className?: string;
     sections: Post.TableOfContents.T;
 };
 
-const TableOfContents: React.FC<Props> = ({ className = '', sections }) => {
+const TableOfContents: React.FC<Props> = ({ sections }) => {
     const items = sections.flatMap(({ href, subsections, title }) => [
         { title, href, sub: false },
         ...subsections.map(({ href, title }) => ({ href, title, sub: true })),
     ]);
 
     return (
-        <div
-            className={`${className} bg-zinc-50 dark:bg-zinc-900 rounded-xl px-2 py-4 shadow dark:border border-zinc-700`}
-        >
-            <div className="text-lg mb-3 font-bold">Table of Contents</div>
-            <ul className="space-y-1">
+        <SidebarContent title="Table of Contents">
+            <ul className="space-y-1 pl-2">
                 {items.map(({ title, href, sub }) => (
                     <li key={href}>
                         <a
@@ -31,7 +28,7 @@ const TableOfContents: React.FC<Props> = ({ className = '', sections }) => {
                     </li>
                 ))}
             </ul>
-        </div>
+        </SidebarContent>
     );
 };
 
