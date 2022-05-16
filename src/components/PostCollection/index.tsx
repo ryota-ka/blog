@@ -27,7 +27,7 @@ const PostCollection: React.FC<PostCollection.Props> = ({ accessory, posts }) =>
                 >
                     <header
                         className={
-                            `w-full h-48 mb-2 lg:mb-4 relative flex flex-col items-center justify-center text-white text-center bg-zinc-900 dark:bg-zinc-800 sm:rounded-xl ` +
+                            `w-full h-48 mb-2 lg:mb-4 relative flex flex-col items-center justify-center text-white text-center bg-zinc-900 dark:bg-zinc-800 sm:rounded-t-xl ` +
                             (preview === null ? '' : 'lg:h-80')
                         }
                     >
