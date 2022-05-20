@@ -32,10 +32,10 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@herp-inc/eslint-config@0.17.0":
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/@herp-inc/eslint-config/-/eslint-config-0.17.0.tgz#2606a931e7a3636fde5e50e080b067eb5d551f3c"
-  integrity sha512-MQTdF88tZC+5cd1Tez5losAh6rTc4BHkA3CF7axkHq/nWHNYK7tjMj8H7eEKAObPMWbjaUWO/kVrQa0ePZynZw==
+"@herp-inc/eslint-config@0.18.0":
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/@herp-inc/eslint-config/-/eslint-config-0.18.0.tgz#224409e907975f8ed46dcccb7f6b06b8ede5c592"
+  integrity sha512-O0e8gjC477iZr+gb0rYuSiNMjGQR3f8nN9iVGfdrPBT9f0AUO7wcOkt8D1V5Bo0ktFfT8u5f9bgm8lWrpuEBMg==
 
 "@humanwhocodes/config-array@^0.9.2":
   version "0.9.5"
