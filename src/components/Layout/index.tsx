@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 
 type Props = {
     article?: Article | undefined;
+    children: React.ReactNode;
     description?: string | undefined;
     preview?: string | undefined;
     title?: string | undefined;
