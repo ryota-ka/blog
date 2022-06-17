@@ -10,7 +10,12 @@ const targetBlank: Plugin<[], Root, Root> = () => (tree) => {
 
         node.data ??= {};
         node.data.hProperties ??= {};
-        Object.assign(node.data.hProperties, {
+
+        if (typeof node.data.hProperties !== 'object') {
+            throw new Error(`hProperties must be an object`);
+        }
+
+        Object.assign(node.data.hProperties ?? {}, {
             rel: 'noopener',
             target: '_blank',
         });
