@@ -17,7 +17,7 @@ declare namespace PostCollection {
     };
 }
 
-const PostCollection: React.FC<PostCollection.Props> = ({ accessory, posts }) => {
+const PostCollection: React.FC<PostCollection.Props> = ({ accessory, posts }, i) => {
     return (
         <section className="space-y-6 md:space-y-8">
             {posts.map(({ date: [year, month, day], slug, preface, path, preview, title }) => (
@@ -37,6 +37,7 @@ const PostCollection: React.FC<PostCollection.Props> = ({ accessory, posts }) =>
                                 src={preview}
                                 layout="fill"
                                 objectFit="cover"
+                                priority={i < 2}
                             />
                         )}
                         <h1 className="text-xl lg:text-3xl font-semibold leading-relaxed w-11/12 text-center z-10">
