@@ -2,13 +2,19 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import rehypeStringify from 'rehype-stringify';
 import { unified } from 'unified';
 
-import { Layout, Links, PostCollection, SideBySide } from '../../components';
+import { LatestPosts, Layout, Links, PostCollection, Sidebar, SideBySide } from '../../components';
 import * as Post from '../../Post';
 import { PostRepository } from '../../PostRepository';
 
 type Props = {
     keyword: string;
+    latestPosts: LatestPost[];
     posts: Post[];
+};
+
+type LatestPost = {
+    title: string;
+    path: string;
 };
 
 type Post = {
@@ -20,12 +26,15 @@ type Post = {
     title: string;
 };
 
-const Page: NextPage<Props> = ({ keyword, posts }) => (
+const Page: NextPage<Props> = ({ keyword, latestPosts, posts }) => (
     <Layout title={keyword}>
         <div className="sm:px-2 md:px-4 pt-4">
             <SideBySide>
                 <PostCollection posts={posts} />
-                <Links />
+                <Sidebar>
+                    <LatestPosts about={keyword} posts={latestPosts} />
+                    <Links />
+                </Sidebar>
             </SideBySide>
         </div>
     </Layout>
@@ -84,9 +93,12 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
         });
     }
 
+    const latestPosts = posts.slice(0, 5);
+
     return {
         props: {
             keyword,
+            latestPosts,
             posts,
         },
     };

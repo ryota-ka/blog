@@ -6,15 +6,21 @@ import * as path from 'path';
 import rehypeStringify from 'rehype-stringify';
 import { unified } from 'unified';
 
-import { Layout, Links, PostCollection, Sidebar, SidebarContent, SideBySide } from '../../components';
+import { LatestPosts, Layout, Links, PostCollection, Sidebar, SidebarContent, SideBySide } from '../../components';
 import * as Post from '../../Post';
 import { PostRepository } from '../../PostRepository';
 import { RSSFeed } from '../../RSSFeed';
 
 type Props = {
     keywords: Array<[string, number]>;
+    latestPosts: LatestPost[];
     page: number;
     posts: Post[];
+};
+
+type LatestPost = {
+    title: string;
+    path: string;
 };
 
 type Post = {
@@ -26,7 +32,7 @@ type Post = {
     title: string;
 };
 
-const Page: NextPage<Props> = ({ keywords, page, posts }) => (
+const Page: NextPage<Props> = ({ keywords, latestPosts, page, posts }) => (
     <Layout>
         <div className="sm:px-2 md:px-4 pt-4">
             <SideBySide>
@@ -41,6 +47,7 @@ const Page: NextPage<Props> = ({ keywords, page, posts }) => (
                     }
                 />
                 <Sidebar>
+                    <LatestPosts posts={latestPosts} />
                     <SidebarContent title="Keywords">
                         <ul className="space-y-1 list-disc list-inside pl-2">
                             {keywords.map(([kw, count]) => (
@@ -135,6 +142,8 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
         await fs.writeFile(path.join(process.cwd(), 'public', 'feed.xml'), feed.generate());
     }
 
+    const latestPosts = ps.slice(0, 5);
+
     return {
         props: {
             keywords: Array.from(keywords.entries())
@@ -142,6 +151,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
                     a[1] === b[1] ? a[0].toLowerCase().localeCompare(b[0].toLowerCase()) : a[1] < b[1] ? 1 : -1,
                 )
                 .slice(0, 5),
+            latestPosts,
             page,
             posts,
         },
