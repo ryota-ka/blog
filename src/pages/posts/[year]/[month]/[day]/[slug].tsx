@@ -36,7 +36,7 @@ const Page: React.FC<Props> = ({ date, html, keywords, preface, preview, section
                 {preview !== null && (
                     <Image className="brightness-25" src={preview} layout="fill" objectFit="cover" priority />
                 )}
-                <h1 className="text-xl lg:text-3xl font-semibold w-5/6 lg:w-2/3 text-center z-10">{title}</h1>
+                <h1 className="text-xl lg:text-3xl font-medium w-5/6 text-center z-10">{title}</h1>
                 <time className="z-10 mt-2 lg:mt-4 text-base lg:text-xl">{date}</time>
             </header>
             <SideBySide>

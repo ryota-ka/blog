@@ -40,7 +40,7 @@ const PostCollection: React.FC<PostCollection.Props> = ({ accessory, posts }, i)
                                 priority={i < 2}
                             />
                         )}
-                        <h1 className="text-xl lg:text-3xl font-semibold leading-relaxed w-11/12 text-center z-10">
+                        <h1 className="text-xl lg:text-3xl font-medium leading-relaxed w-5/6 text-center z-10">
                             <Link href={path}>
                                 <a>{title}</a>
                             </Link>
