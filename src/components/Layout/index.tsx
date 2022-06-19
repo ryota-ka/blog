@@ -42,7 +42,7 @@ export const Layout: React.FC<Props> = ({ article, children, description, previe
                 {preview !== undefined && <meta name="twitter:image" content={preview} />}
             </Head>
             <header className="px-2 sm:px-4 md:px-6 lg:px-8 py-4 bg-white dark:bg-zinc-900 drop-shadow">
-                <h1 className="text-base">
+                <h1 className="text-base font-medium">
                     <Link href="/">blog.ryota-ka.me</Link>
                 </h1>
             </header>
