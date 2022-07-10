@@ -1,0 +1,9 @@
+@use 'sass:meta';
+
+@media (prefers-color-scheme: dark) {
+  @include meta.load-css('highlight.js/styles/github-dark');
+}
+
+@media (prefers-color-scheme: light) {
+  @include meta.load-css('highlight.js/styles/github');
+}
