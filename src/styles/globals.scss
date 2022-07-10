@@ -10,7 +10,7 @@
 }
 
 .global-article {
-  @apply sm:text-lg md:text-xl leading-7 lg:leading-9;
+  @apply sm:text-lg md:text-xl leading-7 lg:leading-9 tracking-wide;
 
   & > * + * {
     @apply mt-4 lg:mt-6;
@@ -41,6 +41,8 @@
   }
 
   code {
+    @apply tracking-normal;
+
     &.hljs {
       @apply text-sm rounded-lg md:text-lg;
     }
