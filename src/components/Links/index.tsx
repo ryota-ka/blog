@@ -13,7 +13,7 @@ const links = [
 const Links: React.FC<Links.Props> = () => {
     return (
         <SidebarContent title="Links">
-            <ul className="list-inside list-disc ml-2 space-y-1">
+            <ul className="space-y-1 pl-2 list-['-_'] list-inside marker:text-gray-500 marker:text-gray-400">
                 {links.map(([title, href]) => (
                     <li key={href}>
                         <a

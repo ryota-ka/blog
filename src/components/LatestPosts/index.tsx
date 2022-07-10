@@ -17,7 +17,7 @@ declare namespace LatestPosts {
 const LatestPosts: React.FC<LatestPosts.Props> = ({ about, posts }) => {
     return (
         <SidebarContent title={`Latest posts${about === undefined ? '' : ` about ${about}`}`}>
-            <ul className="space-y-1 list-disc list-inside pl-2">
+            <ul className="space-y-1 pl-2 list-['-_'] list-inside marker:text-gray-500 marker:text-gray-400">
                 {posts.map(({ path, title }) => (
                     <li key={path}>
                         <Link href={path}>
