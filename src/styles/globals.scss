@@ -25,14 +25,14 @@
   }
 
   .codeblock-with-metadata {
-    @apply bg-slate-700 dark:bg-slate-800 rounded-md pt-2;
+    @apply bg-slate-100 dark:bg-slate-800 rounded-md pt-2;
 
     &__header {
       @apply flex;
     }
 
     &__filename {
-      @apply ml-4 text-gray-50 rounded-t text-base bg-[#0d1117] mr-auto px-2 md:px-3 pt-1 md:pt-2 pb-1 text-sm lg:text-base;
+      @apply ml-4 text-gray-900 dark:text-gray-50 rounded-t text-base bg-white dark:bg-[#0d1117] mr-auto px-2 md:px-3 pt-1 md:pt-2 pb-1 text-sm lg:text-base;
     }
 
     .hljs {
