@@ -2,7 +2,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import rehypeStringify from 'rehype-stringify';
 import { unified } from 'unified';
 
-import { LatestPosts, Layout, Links, PostCollection, Sidebar, SideBySide } from '../../components';
+import { LatestPosts, Layout, Links, PostCollection, SideBySide } from '../../components';
 import * as Post from '../../Post';
 import { PostRepository } from '../../PostRepository';
 
@@ -31,10 +31,10 @@ const Page: NextPage<Props> = ({ keyword, latestPosts, posts }) => (
         <div className="sm:px-2 md:px-4 pt-4">
             <SideBySide>
                 <PostCollection posts={posts} />
-                <Sidebar>
+                <>
                     <LatestPosts about={keyword} posts={latestPosts} />
                     <Links />
-                </Sidebar>
+                </>
             </SideBySide>
         </div>
     </Layout>

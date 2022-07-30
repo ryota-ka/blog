@@ -6,7 +6,7 @@ import * as path from 'path';
 import rehypeStringify from 'rehype-stringify';
 import { unified } from 'unified';
 
-import { Keywords, LatestPosts, Layout, Links, PostCollection, Sidebar, SideBySide } from '../../components';
+import { Keywords, LatestPosts, Layout, Links, PostCollection, SideBySide } from '../../components';
 import * as Post from '../../Post';
 import { PostRepository } from '../../PostRepository';
 import { RSSFeed } from '../../RSSFeed';
@@ -46,11 +46,11 @@ const Page: NextPage<Props> = ({ keywords, latestPosts, page, posts }) => (
                         </Link>
                     }
                 />
-                <Sidebar>
+                <>
                     <LatestPosts posts={latestPosts} />
                     <Keywords keywords={keywords.map(([keyword, count]) => ({ keyword, count }))} />
                     <Links />
-                </Sidebar>
+                </>
             </SideBySide>
         </div>
     </Layout>
