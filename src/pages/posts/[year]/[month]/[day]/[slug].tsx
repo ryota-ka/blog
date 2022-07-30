@@ -5,7 +5,7 @@ import path from 'path';
 import rehypeStringify from 'rehype-stringify';
 import { unified } from 'unified';
 
-import { Keywords, Layout, Sidebar, SideBySide, TableOfContents } from '../../../../../components';
+import { Keywords, Layout, SideBySide, TableOfContents } from '../../../../../components';
 import * as Post from '../../../../../Post';
 import { PostRepository } from '../../../../../PostRepository';
 
@@ -44,10 +44,10 @@ const Page: React.FC<Props> = ({ date, html, keywords, preface, preview, section
                     className="global-article sm:rounded-xl p-2 sm:p-3 md:p-4 shadow bg-zinc-50 dark:bg-zinc-900 dark:border-y sm:dark:border dark:border-zinc-700"
                     dangerouslySetInnerHTML={{ __html: html }}
                 />
-                <Sidebar className="sticky top-4">
+                <>
                     <Keywords keywords={keywords.map((keyword) => ({ keyword, count: null }))} />
-                    {sections.length > 0 && <TableOfContents sections={sections} />}
-                </Sidebar>
+                    {sections.length > 0 && <TableOfContents className="sticky top-4" sections={sections} />}
+                </>
             </SideBySide>
         </Layout>
     );
