@@ -56,7 +56,11 @@
   }
 
   h2 {
-    @apply text-2xl lg:text-3xl border-b border-zinc-400 pb-1 font-medium mb-2 mt-16 lg:mt-20;
+    @apply text-2xl lg:text-3xl border-b border-zinc-400 pb-1 font-medium mb-2;
+
+    &:not(:first-child) {
+      @apply mt-16 lg:mt-20;
+    }
   }
 
   h3 {
