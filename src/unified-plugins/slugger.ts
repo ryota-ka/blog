@@ -6,9 +6,9 @@ import type { Plugin } from 'unified';
 import { visit } from 'unist-util-visit';
 
 export const slugger: Plugin<[], Root, Root> = () => {
-    const slugs = new Slugger();
-
     return (tree) => {
+        const slugs = new Slugger();
+
         visit(tree, 'element', (node) => {
             const rank = headingRank(node);
             if (rank === null || rank === 1) {
