@@ -24,18 +24,14 @@
   }
 
   .codeblock-with-metadata {
-    @apply bg-slate-100 dark:bg-slate-800 rounded-md pt-2;
+    @apply bg-gray-100 dark:bg-slate-800 pt-2;
 
     &__header {
       @apply flex;
     }
 
     &__filename {
-      @apply ml-4 text-gray-900 dark:text-gray-50 rounded-t text-base bg-white dark:bg-[#0d1117] mr-auto px-2 md:px-3 pt-1 md:pt-2 pb-1 text-sm lg:text-base;
-    }
-
-    .hljs {
-      @apply rounded-t-none;
+      @apply ml-4 text-gray-900 dark:text-gray-50 text-base bg-gray-50 dark:bg-gray-900 mr-auto px-2 md:px-3 pt-1 md:pt-2 pb-1 text-sm lg:text-base;
     }
   }
 
@@ -43,7 +39,7 @@
     @apply tracking-normal;
 
     &.hljs {
-      @apply text-sm rounded-lg md:text-lg;
+      @apply text-sm md:text-lg bg-gray-50 dark:bg-gray-900;
     }
 
     &:not(.hljs) {
@@ -56,7 +52,7 @@
   }
 
   h2 {
-    @apply text-2xl lg:text-3xl border-b border-zinc-400 pb-1 font-medium mb-2;
+    @apply text-2xl lg:text-3xl pb-1 font-medium mb-2;
 
     &:not(:first-child) {
       @apply mt-16 lg:mt-20;
@@ -84,7 +80,7 @@
   }
 
   ol {
-    @apply list-decimal list-inside space-y-1 ml-2 pl-0;
+    @apply list-decimal list-inside space-y-1 pl-0;
   }
 
   p {
@@ -107,7 +103,7 @@
   }
 
   ul {
-    @apply list-disc list-inside space-y-1 ml-2 pl-0;
+    @apply list-['-_'] list-inside space-y-1 pl-0 marker:text-gray-500 dark:marker:text-gray-400;
   }
 
   :hover .heading-anchor {

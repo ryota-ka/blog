@@ -29,7 +29,7 @@ const Page: React.FC<Props> = ({ date, html, keywords, preface, preview, section
         >
             <header
                 className={
-                    `w-full h-48 mb-2 lg:mb-4 lg:mb-12 relative flex flex-col items-center justify-center text-white bg-zinc-900 ` +
+                    `w-full h-36 sm:h-40 md:h-48 mb-2 lg:mb-4 lg:mb-12 relative flex flex-col items-center justify-center text-white bg-zinc-900 ` +
                     (preview === null ? '' : 'lg:h-80')
                 }
             >
@@ -41,12 +41,12 @@ const Page: React.FC<Props> = ({ date, html, keywords, preface, preview, section
             </header>
             <SideBySide>
                 <article
-                    className="global-article sm:rounded-xl p-2 sm:p-3 md:p-4 shadow bg-zinc-50 dark:bg-zinc-900 dark:border-y sm:dark:border dark:border-zinc-700"
+                    className="global-article px-2 sm:px-3 md:px-4 pt-2"
                     dangerouslySetInnerHTML={{ __html: html }}
                 />
                 <>
                     <Keywords keywords={keywords.map((keyword) => ({ keyword, count: null }))} />
-                    {sections.length > 0 && <TableOfContents className="sticky top-4" sections={sections} />}
+                    {sections.length > 0 && <TableOfContents className="sticky top-16" sections={sections} />}
                 </>
             </SideBySide>
         </Layout>
