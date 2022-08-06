@@ -21,7 +21,7 @@ https://twterm.ryota-ka.me/
 $ gem install twterm
 ```
 
-バージョン2.1以上くらいの Ruby じゃないと動かないと思う (詳しくは未確認)．
+ヴァージョン2.1以上くらいの Ruby じゃないと動かないと思う (詳しくは未確認)．
 
 Linux の場合は，`readline-dev` とか `readline-devel` とか適当に入れてから Ruby をビルドしてあげてください．
 

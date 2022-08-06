@@ -25,7 +25,7 @@ https://qiita.com/lotz/items/6c038698c8f04f57113a
 
 ---
 
-この記事では，以下の GHC 言語拡張を使う．また，GHC のバージョンは 8.2.2 である．
+この記事では，以下の GHC 言語拡張を使う．また，GHC のヴァージョンは 8.2.2 である．
 
 - `AllowAmbiguousTypes`
 - `OverloadedStrings`
@@ -46,11 +46,11 @@ data User
 newtype UserKey = UserKey { unUserKey :: Int } deriving (Eq, Show)
 ```
 
-さてここで，DBの中では primary key として `INT` 型を用いたいが，エンドユーザからはその整数の表現を隠蔽したいものとしよう．そのためには，整数をいい感じにエンコード・デコードしたものを，primary key の表現として用いればよさそうだ．このようなモチベーションはよくあるので，"Hashids"[^1] というライブラリが公開されている．これは様々な言語向けに実装が提供されていて，[Haskell 版も Hackage から入手可能である](https://github.com/laserpants/hashids-haskell)．
+さてここで，DBの中では primary key として `INT` 型を用いたいが，エンドユーザからはその整数の表現を隠蔽したいものとしよう．そのためには，整数をいい感じにエンコード・デコードしたものを，primary key の表現として用いればよさそうだ．このようなモチベーションはよくあるので，Hashids[^1] というライブラリが公開されている．これは様々な言語向けに実装が提供されていて，[Haskell 版も Hackage から入手可能である](https://github.com/laserpants/hashids-haskell)．
 
 http://hashids.org/
 
-このライブラリが (DB 上での内部表現である) `Int` と (エンドユーザが目にする表現である) `ByteString` の間の相互変換を提供してくれる．エンコードされた `UserKey` を表現する，次のような型を定義しよう．
+このライブラリが (DB 上での内部表現である) `Int` と (エンドユーザが目にする表現である) `ByteString` の間の相互変換を提供してくれる．エンコードされた `UserKey` を表現する次のような型を定義しよう．
 
 ```haskell
 newtype EncodedUserKey = EncodedUserKey { unEncodedUserKey :: ByteString } deriving (Eq, Show)
@@ -102,17 +102,17 @@ decodeTeamKey (EncodedTeamKey x) =
         _   -> Nothing
 ```
 
-`User` の場合とまったく同じ実装になってしまったので，これらを型クラスで抽象化しよう．先に `User` 型や `Team` 型を取って，その key を返す型レベル関数 `Key` を type family を用いて定義する．つまり，
+`User` の場合とまったく同じ実装になってしまったので，これらを型クラスで抽象化しよう．先に `User` 型や `Team` 型を取って，その key を返す型レヴェル関数 `Key` を type family を用いて定義する．つまり，
 
 - `User` $\mapsto$ `UserKey`
 - `Team` $\mapsto$ `TeamKey`
 
-なる型レベル関数である．また，ついでなので，`Key` の中身の `Int` を取り出したり，また `Int` を取って `Key` を作る部分を抽象化しておく．
+なる型レヴェル関数である．また，ついでなので，`Key` の中身の `Int` を取り出したり，また `Int` を取って `Key` を作る部分を抽象化しておく．
 
 ```haskell
 -- 何かしらの key を持つことを表す型クラス
 class HasKey a where
-    type Key a -- a をとって key を返す型レベル関数 (e.g. Key User = UserKey)
+    type Key a -- a をとって key を返す型レヴェル関数 (e.g. Key User = UserKey)
     wrapKey   :: Int -> Key a
     unwrapKey :: Key a -> Int
 
@@ -234,16 +234,16 @@ class HasKey a => HasCodableKey a where
    |                    ^^^^^^^
 ```
 
-よくよく読んでみると，「型レベル関数である `Key` とか `EncodedKey` が injective ではないぞ」と言われている．
+よくよく読んでみると，「型レヴェル関数である `Key` とか `EncodedKey` が injective ではないぞ」と言われている．
 
 関数 $f: A \to B$ が injective (単射) であるとは，$\forall x, y \in A$ について $x \neq y \Rightarrow f(x) \neq f(y)$ ということであるが，直感的には $f$ で写した先の集合 $B$ で要素が互いに**ぶつからない**とイメージすることができる．今回の場合 `EncodedKey` は，
 
 - `User` $\mapsto$ `EncodedUserKey`
 - `Company` $\mapsto$ `EncodedCompanyKey`
 
-といった挙動をするが，**`User` 以外の適当な型 `a` を持ってきて，それを `EncodedUserKey` に写されると困る** のである．
+といった挙動をするが，**`User` 以外の適当な型 `a` を持ってきて，それを `EncodedUserKey` に写されると困る**のである．
 
-関数で写した先でぶつからないということは，取りも直さず**写した先の要素 $f(x) \in B$ から，写す前の要素 $x \in A$ を一意に特定できる**ということを意味する．つまり，`EncodedUserKey` から `User` 型を特定でき，`EncodedTeamKey` からは `Team` 型を特定することができる．「この型レベル関数はこのように injective に振る舞いますよ，(`a` から `EncodedKey a` が定まることは当然として，逆に)`EncodedKey a` から `a` が定まることを前提に型推論してくださいね」という注記を与えるための機能こそが `TypeFamilyDependencies` だったのだ．
+関数で写した先でぶつからないということは，取りも直さず**写した先の要素 $f(x) \in B$ から，写す前の要素 $x \in A$ を一意に特定できる**ということを意味する．つまり，`EncodedUserKey` から `User` 型を特定でき，`EncodedTeamKey` からは `Team` 型を特定することができる．「この型レヴェル関数はこのように injective に振る舞いますよ，(`a` から `EncodedKey a` が定まることは当然として，逆に)`EncodedKey a` から `a` が定まることを前提に型推論してくださいね」という注記を与えるための機能こそが `TypeFamilyDependencies` だったのだ．
 
 では実際に `TypeFamilyDependencies` を有効にして，先程のコードの型検査が通るように書き換えてみよう．
 
@@ -336,7 +336,7 @@ newtype TeamKey = TeamKey { unTeamKey :: Int } deriving (Eq, Show)
 
 -- 何かしらの key を持つことを表す型クラス
 class HasKey a where
-    type Key a = (r :: *) | r -> a -- a をとって key を返す型レベル関数 (e.g. Key User = UserKey)
+    type Key a = (r :: *) | r -> a -- a をとって key を返す型レヴェル関数 (e.g. Key User = UserKey)
     wrapKey   :: Int -> Key a
     unwrapKey :: Key a -> Int
 

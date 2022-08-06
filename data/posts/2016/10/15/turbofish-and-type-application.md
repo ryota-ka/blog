@@ -5,7 +5,7 @@ keywords:
   - Type application
 ---
 
-# Rust の turbofish と GHC 8 の Type Application ― または我々は如何にして多相な関数を単相化するか
+# Rust の turbofish と GHC 8 の Type Application —— または我々は如何にして多相な関数を単相化するか
 
 Rust には [`std::str::FromStr`](https://doc.rust-lang.org/std/str/trait.FromStr.html) という trait があり，データ型がこれを実装すると，`from_str` という名前の [associated function](https://doc.rust-lang.org/book/method-syntax.html#associated-functions)[^1] を通じて，[`str`](https://doc.rust-lang.org/std/primitive.str.html) からそのデータ型に変換できるようになる．
 
@@ -29,7 +29,7 @@ fn parse<F>(&self) -> Result<F, F::Err>
 where F: FromStr
 ```
 
-`str` である自身を受け取って，`Result<F, F::Err>` 型を返す―ただし，`F` は `FromStr` trait を実装している[^2]―といったところだ．前述した ` std::str::FromStr::from_str` と同じことをしているが，いわば見る視点が逆転しているのである．つまり，`std::str::FromStr::from_str` は，`Self` から `str` を，`std::str::parse` は，`str` から `F` を，それぞれ眺めている．
+`str` である自身を受け取って，`Result<F, F::Err>` 型を返す——ただし，`F` は `FromStr` trait を実装している[^2]——といったところだ．前述した ` std::str::FromStr::from_str` と同じことをしているが，いわば見る視点が逆転しているのである．つまり，`std::str::FromStr::from_str` は，`Self` から `str` を，`std::str::parse` は，`str` から `F` を，それぞれ眺めている．
 
 さて，前者は `str` に視点を定めればよいのは明らかだが，立場が逆になるとうまくいかない．`F` は多相なので，どこを見ればよいかが定かでない．
 

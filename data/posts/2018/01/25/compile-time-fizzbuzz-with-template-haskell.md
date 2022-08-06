@@ -214,4 +214,4 @@ Ok, one module loaded.
 ## 脚注
 
 [^1]: GHC stage restriction: ‘answerExpr’ is used in a top-level splice, quasi-quote, or annotation, and must be imported, not defined locally
-[^2]: 欲しかったのは `Exp` ではなく `Q Exp` だが，`Q` は `Applicative` のインスタンスなので `pure` すればOK．
+[^2]: 欲しかったのは `Exp` ではなく `Q Exp` だが，`Q` は `Applicative` のインスタンスなので `pure` すればよい．

@@ -37,7 +37,7 @@ fib.take(10) # => [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
 
 更に，[`Enumerator::Lazy`](http://docs.ruby-lang.org/ja/2.2.0/class/Enumerator=3a=3aLazy.html) というものもある．こちらは，`map`, `flat_map`, `select`, `reject`, `grep`, `take`, `drop`, `zip` などのメソッドが，即値で配列を返すのではなく，別の `Enumerator::Lazy` のインスタンスを返すようにオーバーライドされている．
 
-先程のフィボナッチ数列のジェネレータの遅延評価バージョンを作ってみる．`Enumerable#lazy` を呼ぶと，`Enumerator::Lazy` のインスタンスが得られる．
+先程のフィボナッチ数列のジェネレータの遅延評価ヴァージョンを作ってみる．`Enumerable#lazy` を呼ぶと，`Enumerator::Lazy` のインスタンスが得られる．
 
 ```ruby
 lazy_fib = fib.lazy

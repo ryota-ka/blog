@@ -8,13 +8,13 @@ keywords:
 
 この記事は [CAMPHOR- Advent Calendar 2017](https://advent.camph.net/) の21日目の記事です．
 
-12月といえば，万人受けしなさそうなネタでブログを書いては「はてブが付かねえ」と文句を言う季節だが，今年もそういう方針で，TypeScript での型レベル計算について書く．型レベルでの自然数などが定義できると，リストに型レベルで長さを付けることができて，空リストの先頭の要素を取ろうとしてランタイムで落ちる，という悲劇が生じる可能性をコンパイル時に排除できてとても嬉しい[^1]．
+12月といえば，万人受けしなさそうなネタでブログを書いては「はてブが付かねえ」と文句を言う季節だが，今年もそういう方針で，TypeScript での型レヴェル計算について書く．型レヴェルでの自然数などが定義できると，リストに型レヴェルで長さを付けることができて，空リストの先頭の要素を取ろうとしてランタイムで落ちる，という悲劇が生じる可能性をコンパイル時に排除できてとても嬉しい[^1]．
 
-なお，使用している TypeScript のバージョンは，少し古くて 2.4.1 である．これは，手元でたまたま 2.6 系のプロジェクトと 2.4 系のプロジェクトがあったのだが，2.6 系だと型推論が停止しない (`tsc` が "Maximum call stack size exceeded" で死ぬ) ことに気付き，悲しい気持ちになったからである．
+なお，使用している TypeScript のヴァージョンは，少し古くて 2.4.1 である．これは，手元でたまたま 2.6 系のプロジェクトと 2.4 系のプロジェクトがあったのだが，2.6 系だと型推論が停止しない (`tsc` が "Maximum call stack size exceeded" で死ぬ) ことに気付き，悲しい気持ちになったからである．
 
 ---
 
-## 型レベル真偽値
+## 型レヴェル真偽値
 
 あると色々便利なので，まずは真偽値を作る．
 
@@ -25,7 +25,7 @@ type True = 't';
 type Bool = False | True;
 ```
 
-ここでは [_string literal type_](https://www.typescriptlang.org/docs/handbook/advanced-types.html#string-literal-types) を用いて，`False` 型と `True` 型を定義している． `False` は値として文字列の `'f'` のみを，`True` は文字列の `'t'` のみを取る型で，`Bool` はこれらの [_union type_](https://www.typescriptlang.org/docs/handbook/advanced-types.html#union-types) になっている．_string literal type_ のエイリアスとして定義している理由は直後に述べる．これを用いると，以下のような型レベルの条件分岐や論理演算を記述することができる．
+ここでは [_string literal type_](https://www.typescriptlang.org/docs/handbook/advanced-types.html#string-literal-types) を用いて，`False` 型と `True` 型を定義している． `False` は値として文字列の `'f'` のみを，`True` は文字列の `'t'` のみを取る型で，`Bool` はこれらの [_union type_](https://www.typescriptlang.org/docs/handbook/advanced-types.html#union-types) になっている．_string literal type_ のエイリアスとして定義している理由は直後に述べる．これを用いると，以下のような型レヴェルの条件分岐や論理演算を記述することができる．
 
 ```typescript
 type If<Cond extends Bool, Then, Else> = {
@@ -34,7 +34,7 @@ type If<Cond extends Bool, Then, Else> = {
 }[Cond];
 ```
 
-`If` の定義を見てみよう．`If` は3つの _generic parameter_ を取る型で，`Cond` は `Bool` (= `'t' | 'f'`) の部分型であり，残りの `Then` と `Else` は任意の型になっている．`{ f: Else; t: Then; }` の部分はオブジェクトの型定義で，`f` というプロパティに `Else` 型を，`t` というプロパティに `Then` 型を持つオブジェクトを表している．最後の `[Cond]` は [_index type_](https://www.typescriptlang.org/docs/handbook/advanced-types.html#index-types) で，先に定義したオブジェクトのある (`f` または `t`) プロパティに含まれる型を取り出している．先程の種明かしになるが，このような操作をするために，`Bool` の定義に _string literal type_ を用いたのだった．この例からわかるように，_index type_ を使えば，取りうる引数が `string` の部分型に限られてしまうものの，型レベル関数がいとも簡単に記述できてしまう．
+`If` の定義を見てみよう．`If` は3つの _generic parameter_ を取る型で，`Cond` は `Bool` (= `'t' | 'f'`) の部分型であり，残りの `Then` と `Else` は任意の型になっている．`{ f: Else; t: Then; }` の部分はオブジェクトの型定義で，`f` というプロパティに `Else` 型を，`t` というプロパティに `Then` 型を持つオブジェクトを表している．最後の `[Cond]` は [_index type_](https://www.typescriptlang.org/docs/handbook/advanced-types.html#index-types) で，先に定義したオブジェクトのある (`f` または `t`) プロパティに含まれる型を取り出している．先程の種明かしになるが，このような操作をするために，`Bool` の定義に _string literal type_ を用いたのだった．この例からわかるように，_index type_ を使えば，取りうる引数が `string` の部分型に限られてしまうものの，型レヴェル関数がいとも簡単に記述できてしまう．
 
 `If` を使った論理演算を幾つか記述してみよう．
 
@@ -66,9 +66,9 @@ let a: AssertBoolEq<True, False>;
 // error, Type '"f"' does not satisfy the constraint '"t"'.
 ```
 
-## 型レベル自然数
+## 型レヴェル自然数
 
-次に型レベル自然数を定義する．
+次に型レヴェル自然数を定義する．
 
 ```typescript
 type Zero = { isZero: True };
@@ -227,9 +227,9 @@ let c: Sub<_2, _5>;
 // error, Type 'Succ<Succ<Succ<Succ<Succ<Zero>>>>>' does not satisfy the constraint 'Zero | Succ<Zero> | Succ<Succ<Zero>>'. Type 'Succ<Succ<Succ<Succ<Succ<Zero>>>>>' is not assignable to type 'Succ<Zero>'. Types of property 'pred' are incompatible. Type 'Succ<Succ<Succ<Succ<Zero>>>>' is not assignable to type 'Zero'. Types of property 'isZero' are incompatible. Type '"f"' is not assignable to type '"t"'.
 ```
 
-## 型レベルリスト
+## 型レヴェルリスト
 
-複数の型をまとめて扱えると楽しいので，型レベルヘテロリストを作る．
+複数の型をまとめて扱えると楽しいので，型レヴェルヘテロリストを作る．
 
 ```typescript
 type HNil = { isNil: True };
@@ -263,7 +263,7 @@ type Upto3 = HCons<_0, HCons<_1, HCons<_2, HCons<_3, HNil>>>>;
 let xs: Reverse<Upto3>; // let xs: HCons<Succ<Succ<Succ<Zero>>>, HCons<Succ<Succ<Zero>>, HCons<Succ<Zero>, HCons<Zero, HNil>>>>
 ```
 
-次に，与えられた型レベルリストの長さを型レベル自然数で返す `Length<Xs extends HList>` を定義する．
+次に，与えられた型レヴェルリストの長さを型レヴェル自然数で返す `Length<Xs extends HList>` を定義する．
 
 ```typescript
 type Length<Xs extends HList> = {
@@ -346,7 +346,7 @@ let ys: Drop<_5, FibHList<_7>>;
 
 # おわりに
 
-株式会社HERPでは，いざという時[^3]に型レベルプログラミングでプロダクトの堅牢性を高める[^4]ことのできるエンジニアを募集しています．
+株式会社HERPでは，いざという時[^3]に型レヴェルプログラミングでプロダクトの堅牢性を高める[^4]ことのできるエンジニアを募集しています．
 
 https://www.wantedly.com/projects/175599
 

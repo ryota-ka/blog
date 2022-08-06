@@ -70,7 +70,7 @@ data QuasiQuoter
     }
 ```
 
-文字列を受け取って，式・パターン・型・トップレベル宣言にそれぞれ変換するものであると主張している．`[quoter| string |]` の `string` の部分が**任意の**文字列だったことを思い出すと，準クォートを通じてできることは，任意の文字列を受け取り，それをパーズし，Haskell のプログラムに変換することであることがわかる．つまり，パーザさえ書けば Haskell のコード中に任意の言語を埋め込めてしまう！
+文字列を受け取って，式・パターン・型・トップレヴェル宣言にそれぞれ変換するものであると主張している．`[quoter| string |]` の `string` の部分が**任意の**文字列だったことを思い出すと，準クォートを通じてできることは，任意の文字列を受け取り，それをパーズし，Haskell のプログラムに変換することであることがわかる．つまり，パーザさえ書けば Haskell のコード中に任意の言語を埋め込めてしまう！
 
 さて，準クォートとはなんぞやということがわかったところで，実際に quasiquoter を定義し，JSON をコード中に埋め込んでみよう．ここで JSON のパーザを用意しないといけないのだが，今回の目的は JSON のパーザを書くことではないし，自前で実装したところで performant であるとは思えないので，素直に [`aeson`](https://hackage.haskell.org/package/aeson) のパーザを使うことにする．
 
@@ -167,7 +167,7 @@ instance FromJSON Person where
         <*> o .: "spouse"
 ```
 
-「`Lift` ってなんやねん」と思ってしまうが，[焦らずに Hackage を確認すると](https://hackage.haskell.org/package/template-haskell-2.12.0.0/docs/Language-Haskell-TH-Syntax.html#t:Lift)，トップレベルにない Oxford brackets (`[| ... |]`) に式を埋め込む際に必要らしい．`DeriveLift` を有効化することでインスタンスの自動導出を行える．
+「`Lift` ってなんやねん」と思ってしまうが，[焦らずに Hackage を確認すると](https://hackage.haskell.org/package/template-haskell-2.12.0.0/docs/Language-Haskell-TH-Syntax.html#t:Lift)，トップレヴェルにない Oxford brackets (`[| ... |]`) に式を埋め込む際に必要らしい．`DeriveLift` を有効化することでインスタンスの自動導出を行える．
 
 次に，`src/Lib.hs` に以下のように書き加える[^2]．
 

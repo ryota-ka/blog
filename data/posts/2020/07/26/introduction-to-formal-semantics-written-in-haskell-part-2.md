@@ -72,11 +72,11 @@ $$
 
 ## §9. 新しい言語
 
-さて，変項割当を Haskell 上で表現してみよう．変項割当は自然数の集合 $\mathbb{N}$ から個体の集合 $D_e$ への部分関数だったが，項レベルの計算で部分関数を扱いたくないので，型レベルで扱うことにする．型レベルで扱うことにより，適切でない文脈で発話がなされたことを型エラーとして検知することができる．
+さて，変項割当を Haskell 上で表現してみよう．変項割当は自然数の集合 $\mathbb{N}$ から個体の集合 $D_e$ への部分関数だったが，項レヴェルの計算で部分関数を扱いたくないので，型レヴェルで扱うことにする．型レヴェルで扱うことにより，適切でない文脈で発話がなされたことを型エラーとして検知することができる．
 
-変項割当を導入したモチベーションは，発話文脈を形式的に扱うことであった．文脈上に存在する値を参照するような計算は，Haskell では `Reader` として知られている．ただし，今我々が欲しいのは単なる `Reader` ではなく，型レベル自然数を指定した際，その自然数に対応するような値を取ってくることのできる `Reader` である．このような挙動を実現するため，[`membership`](https://hackage.haskell.org/package/membership) および [`extensible-skeleton`](https://hackage.haskell.org/package/extensible-skeleton) package を用い，extensible effects を用いて対象言語を構築することにする．
+変項割当を導入したモチベーションは，発話文脈を形式的に扱うことであった．文脈上に存在する値を参照するような計算は，Haskell では `Reader` として知られている．ただし，今我々が欲しいのは単なる `Reader` ではなく，型レヴェル自然数を指定した際，その自然数に対応するような値を取ってくることのできる `Reader` である．このような挙動を実現するため，[`membership`](https://hackage.haskell.org/package/membership) および [`extensible-skeleton`](https://hackage.haskell.org/package/extensible-skeleton) package を用い，extensible effects を用いて対象言語を構築することにする．
 
-自然数と個体の対応関係を表す型 `index |-> entity` を以下のように定義する．ここで `index` は型レベル自然数である，すなわち `Nat` 種をもつ．
+自然数と個体の対応関係を表す型 `index |-> entity` を以下のように定義する．ここで `index` は型レヴェル自然数である，すなわち `Nat` 種をもつ．
 
 ```haskell
 import GHC.Types (Type)
@@ -90,7 +90,7 @@ type index |-> entity = index >: ReaderEff entity
 
 例えば `1 |-> PEANUTS` という型は，指標 `1` に `PEANUTS` 型の値が割り当てられていることを意味する．
 
-前編で定義した `Model` 言語を書き換え，extensible effects に埋め込むことにする．この言語では，項が `Eff ctx a` という型で表現される．ただし，[`Eff` 型は `extensible-skeleton` package で定義されている](https://hackage.haskell.org/package/extensible-skeleton/docs/Data-Extensible-Effect.html#t:Eff)．ここで `ctx` は `ctx :: [Assoc Nat (Type -> Type)]` という種をもち，具体的には `ctx = '[1 |-> PEANUTS, 2 |-> PEANUTS]` のような型になる．`e :: Eff ctx a` は直観的には `ctx` という文脈を伴った `a` 型の項 `e`，と読むことができる．
+前編で定義した `Model` 言語を書き換え，extensible effects に埋め込むことにする．この言語では，項が `Eff ctx a` という型で表現される．ただし，[`Eff` 型は `extensible-skeleton` package で定義されている](https://hackage.haskell.org/package/extensible-skeleton/docs/Data-Extensible-Effect.html#t:Eff)．ここで `ctx` は `ctx :: [Assoc Nat (Type -> Type)]` という種をもち，具体的には `ctx = '[1 |-> PEANUTS, 2 |-> PEANUTS]` のような型になる．`e :: Eff ctx a` は直観的には「`ctx` という文脈を伴った `a` 型の項 `e`」と読むことができる．
 
 さて，前編で導入した FA と PM という2つの意味計算規則を，この新しい言語に沿う形で再び埋め込む必要がある．
 
@@ -195,7 +195,7 @@ $$
 \end{align*}
 $$
 
-さて，この T&P は Haskell では以下のように実装できる．ただし前述の通り，変項割当は値レベルではなく型レベルで表現する．
+さて，この T&P は Haskell では以下のように実装できる．ただし前述の通り，変項割当は値レヴェルではなく型レヴェルで表現する．
 
 ```haskell
 import Data.Kind (Type)
@@ -208,9 +208,9 @@ traceOrPronoun
 traceOrPronoun = askEff (Proxy @index)
 ```
 
-ここで型変数 `index :: Nat` は，代名詞または痕跡に与えられた指標 (型レベル自然数) である．`entity :: Type` はその文において考えているモデルに存在する個体の型を表す型変数であり，具体的には `PEANUTS` 型などが代入される．`ctx :: '[Assoc Nat (Type -> Type)]` はこの発話がなされた発話文脈，すなわち変項割当である．また，`Lookup ctx index (ReaderEff entity)` という constraint は，この変項割当に対する要請を表している．どのような要請かというと，指標 `index` に対応する個体が定められていることを要求しているのである．
+ここで型変数 `index :: Nat` は，代名詞または痕跡に与えられた指標 (型レヴェル自然数) である．`entity :: Type` はその文において考えているモデルに存在する個体の型を表す型変数であり，具体的には `PEANUTS` 型などが代入される．`ctx :: '[Assoc Nat (Type -> Type)]` はこの発話がなされた発話文脈，すなわち変項割当である．また，`Lookup ctx index (ReaderEff entity)` という constraint は，この変項割当に対する要請を表している．どのような要請かというと，指標 `index` に対応する個体が定められていることを要求しているのである．
 
-constraint を無視して `=>` の後ろだけに注目すれば `Eff ctx entity` という単純な型をしており，(`ctx` という effects を伴った) 個体の型を表していることが見て取れる．また，実装部分は `askEff Proxy` と非常にシンプルで，`ReaderEff entity` という effect を発生させているだけであることがわかる．ただしこの effect は型レベル自然数 `index` に対応付けられている．
+constraint を無視して `=>` の後ろだけに注目すれば `Eff ctx entity` という単純な型をしており，(`ctx` という effects を伴った) 個体の型を表していることが見て取れる．また，実装部分は `askEff Proxy` と非常にシンプルで，`ReaderEff entity` という effect を発生させているだけであることがわかる．ただしこの effect は型レヴェル自然数 `index` に対応付けられている．
 
 `traceOrPronoun` 関数を用いて $\textit{She}_\mathrm{1} \textit{ loves } \textit{him}_\mathrm{2} \textit{.}$ を Haskell に埋め込むと次のようになる．
 
@@ -269,13 +269,13 @@ main = hspec $ do
             denotation `shouldBe` False
 ```
 
-仮に不十分な発話文脈のもとで文が発話された場合，すなわち `runReaderEff` 関数で与えた変項割当が不十分である場合，コンパイルに成功しない．`leaveEff :: Eff '[] a -> a` 関数は `ctx` が空 (`'[]`) であることを要求するため，引数に effect が残存している場合には型が合わないためである．このように変項割当を型レベルで扱うことにより，発話文脈に対する型安全性を獲得することができる．
+仮に不十分な発話文脈のもとで文が発話された場合，すなわち `runReaderEff` 関数で与えた変項割当が不十分である場合，コンパイルに成功しない．`leaveEff :: Eff '[] a -> a` 関数は `ctx` が空 (`'[]`) であることを要求するため，引数に effect が残存している場合には型が合わないためである．このように変項割当を型レヴェルで扱うことにより，発話文脈に対する型安全性を獲得することができる．
 
 ### §10のまとめ
 
 - T&P という意味計算規則が導入された
   - $\alpha_i$ が代名詞または痕跡で，$g$ が変項割当であり，$i$ が $g$ の定義域に含まれるとき，$[\![\alpha_i]\!] = g(i)$ である．
-- 指標を型レベルで扱えば，T&P は `askEff` 関数によって表現でき，文脈上の具体的な指示対象は `runReaderEff` 関数によって与えられる
+- 指標を型レヴェルで扱えば，T&P は `askEff` 関数によって表現でき，文脈上の具体的な指示対象は `runReaderEff` 関数によって与えられる
 
 ## §11 Predicate Abstraction (PA)
 
@@ -489,7 +489,7 @@ main = hspec $ do
 
 ## 終わりに
 
-本記事では『形式意味論入門』で紹介されている4つの意味計算規則を，その前提知識を交えて紹介し，Haskell のプログラムに書き下すことで理解を深めた．また，後半の2つの意味計算規則については，Haskell 上で型レベルの制約を表現することで，発話文脈に関する型安全性を獲得することができた．
+本記事では『形式意味論入門』で紹介されている4つの意味計算規則を，その前提知識を交えて紹介し，Haskell のプログラムに書き下すことで理解を深めた．また，後半の2つの意味計算規則については，Haskell 上で型レヴェルの制約を表現することで，発話文脈に関する型安全性を獲得することができた．
 
 本記事では筆者の見切り発車と技術的な制約により Haskell を採用したが，Haskell では副作用を扱うにあたってモナドを明示的にユーザに見せるという点であまり良い選択肢ではなかったかもしれない．後編の内容に関して言えば，暗黙に Kleisli 圏の上で考えるような，algebraic effects and handlers をネイティヴに扱える言語の方が向いているかもしれないので，機会があれば挑戦してみたい．
 
