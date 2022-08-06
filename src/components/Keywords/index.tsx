@@ -16,7 +16,7 @@ declare namespace Keywords {
 const Keywords: React.FC<Keywords.Props> = ({ keywords }) => {
     return (
         <SidebarContent title="Keywords">
-            <ul className="space-y-1 pl-2 list-['-_'] list-inside marker:text-gray-500 marker:text-gray-400">
+            <ul className="space-y-1 pl-2 list-['-_'] list-inside marker:text-gray-500 dark:marker:text-gray-400">
                 {keywords.map(({ count, keyword }) => (
                     <li key={keyword}>
                         <Link href={`/keywords/${keyword}`}>
