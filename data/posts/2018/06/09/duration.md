@@ -12,8 +12,6 @@ https://hackage.haskell.org/package/duration
 
 [](https://github.com/ryota-ka/duration)
 
-(実は GW 前くらいには既に公開していたけど，ブログを書く余裕がなかった……)
-
 ---
 
 ## モチベーション
@@ -22,7 +20,7 @@ JavaScript のライブラリに，ms というものがある．
 
 https://www.npmjs.com/package/ms
 
-README を読めば一瞬で使い方が把握できるが，以下の様なことができる．
+README を読めば一目で使い方が把握できるが，以下のなことができる．
 
 ```javascript
 ms('2 days'); // 172800000
@@ -66,7 +64,7 @@ main = fix $ \loop -> do
     loop
 ```
 
-[`threadDelay`](http://hackage.haskell.org/package/base-4.11.1.0/docs/Control-Concurrent.html#v:threadDelay) は，`Int` 型の値を受け取り，指定された長さだけ現在のスレッドの実行を停止するが，この際に受け取るのはマイクロ秒である．ソースコード中に現れる `1000000` という値が1秒間という長さを表していることは必ずしも自明でないが，duration を使えば以下のように記述することができる．
+[`threadDelay`](http://hackage.haskell.org/package/base-4.11.1.0/docs/Control-Concurrent.html#v:threadDelay) は，`Int` 型の値を受け取り，指定された長さだけ現在のスレッドの実行を停止するが，この際に受け取るのはマイクロ秒である．ソースコード中に現れる `1000000` という値が1秒間という長さを表していることは必ずしも自明ではない．しかし，duration を使えば以下のように記述することができる．
 
 ```haskell
 {-# LANGUAGE QuasiQuotes #-}
@@ -103,7 +101,7 @@ handleRequest = do
 
 ## その他
 
-[@hiroqn](https://github.com/hiroqn) が OCaml バージョンを作ったらしい．お楽しみに．
+[@hiroqn](https://github.com/hiroqn) が OCaml ヴァージョンを作ったらしい．お楽しみに．
 
 (2018/06/30 追記) 公開された
 

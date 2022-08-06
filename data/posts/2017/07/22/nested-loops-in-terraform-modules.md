@@ -3,7 +3,7 @@ keywords:
   - Terraform
 ---
 
-# Terraform の module で2重ループしたい ― GitHub の issue labels を例に
+# Terraform の module で2重ループしたい —— GitHub の issue labels を例に
 
 ## 実現したいこと
 

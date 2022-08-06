@@ -33,7 +33,7 @@ $ yarn add -D babel-core babel-loader babel-plugin-transform-react-jsx babel-pre
 
 1行目の dependencies が，アプリケーションを動かすために必要なパッケージで，2行目の dev dependencies は，記述したスクリプトをブラウザが解釈できるようなコードにトランスパイルするために必要なパッケージである．
 
-なお，本稿執筆時点では，`@cycle/dom` を普通に `yarn add` で 入れると 15.0.0-rc1 が入るが，このバージョンを用いると，webpack でビルドする際に，以下のようなエラーが発生するので，使用するバージョンを陽に指定してある．
+なお，本稿執筆時点では，`@cycle/dom` を普通に `yarn add` で 入れると 15.0.0-rc1 が入るが，このヴァージョンを用いると，webpack でビルドする際に，以下のようなエラーが発生するので，使用するヴァージョンを陽に指定してある．
 
 ```sh
 ERROR in ./~/@cycle/dom/lib/MainDOMSource.js
