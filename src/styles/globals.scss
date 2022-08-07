@@ -9,7 +9,7 @@
 }
 
 .global-article {
-  @apply sm:text-lg md:text-xl leading-7 lg:leading-9 tracking-wide;
+  @apply sm:text-lg md:text-xl leading-7 lg:leading-10 tracking-wider;
 
   & > * + * {
     @apply mt-4 lg:mt-6;
