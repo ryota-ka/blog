@@ -33,7 +33,7 @@ export class OpenGraphCard extends NonShadowedElement {
                 rel="noopener noreferrer"
             >
                 <div class="overflow-hidden max-h-96 flex items-center rounded-t-xl">${this.#renderImage()}</div>
-                <div class="py-2 px-3">
+                <div class="py-2 px-3 tracking-normal">
                     <div class="line-clamp-1 text-gray-500 dark:text-gray-400">${new URL(this.href).host}</div>
                     <div class="line-clamp-1 text-gray-900 dark:text-gray-100">${this.title}</div>
                     ${this.#renderDescription()}
