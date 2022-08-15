@@ -103,7 +103,7 @@
   }
 
   ul {
-    @apply list-['-_'] list-inside space-y-1 pl-0 marker:text-gray-500 dark:marker:text-gray-400;
+    @apply list-['-_'] list-inside pl-0 marker:text-gray-500 dark:marker:text-gray-400;
   }
 
   :hover .heading-anchor {
