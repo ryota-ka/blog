@@ -1,3 +1,6 @@
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faRssSquare } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -41,10 +44,29 @@ export const Layout: React.FC<Props> = ({ article, children, description, previe
                 {description !== undefined && <meta name="twitter:description" content={description} />}
                 {preview !== undefined && <meta name="twitter:image" content={preview} />}
             </Head>
-            <header className="px-2 sm:px-4 md:px-6 lg:px-8 py-4 bg-white/50 dark:bg-zinc-900/50 sticky top-0 z-20 backdrop-blur-xs">
+            <header className="px-2 sm:px-4 md:px-6 lg:px-8 py-4 flex items-center justify-between">
                 <h1 className="text-base font-medium">
                     <Link href="/">blog.ryota-ka.me</Link>
                 </h1>
+                <div className="flex items-center justify-between space-x-4">
+                    <a
+                        className="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                        href="https://github.com/ryota-ka/blog"
+                        target="_blank"
+                        title="GitHub"
+                        rel="noreferrer"
+                    >
+                        <FontAwesomeIcon icon={faGithub} width="20px" />
+                    </a>
+                    <a
+                        className="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                        href="/feed.xml"
+                        title="RSS feed"
+                        target="_blank"
+                    >
+                        <FontAwesomeIcon icon={faRssSquare} width="20px" />
+                    </a>
+                </div>
             </header>
             <main className="relative">{children}</main>
         </>

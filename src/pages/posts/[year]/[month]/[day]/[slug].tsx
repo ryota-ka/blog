@@ -46,7 +46,7 @@ const Page: React.FC<Props> = ({ date, html, keywords, preface, preview, section
                 />
                 <>
                     <Keywords keywords={keywords.map((keyword) => ({ keyword, count: null }))} />
-                    {sections.length > 0 && <TableOfContents className="sticky top-16" sections={sections} />}
+                    {sections.length > 0 && <TableOfContents className="sticky top-8" sections={sections} />}
                 </>
             </SideBySide>
         </Layout>
