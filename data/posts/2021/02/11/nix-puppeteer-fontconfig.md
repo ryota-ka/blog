@@ -105,6 +105,7 @@ pkgs.stdenv.mkDerivation {
 ```
 
 また，この件に関しては GitHub に issue を立てておいた．
+
 https://github.com/storybookjs/storybook/issues/13724
 
 ## 立ち上がらない Chromium

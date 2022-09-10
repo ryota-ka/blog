@@ -164,7 +164,7 @@ $ npx sb extract ./dist
 
 ## CORS に関する設定を行う
 
-Storybook composition では，参照元の Storybook を開いているブラウザから [Cross-Origin Resource Sharing](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) (CORS) を用いて外部のリソースを読み込むため，参照先の Storybook をホストしているサーバ側で，CORS を許可するよう設定を行っておく必要がある．
+Storybook composition では，参照元の Storybook を開いているブラウザから [Cross-Origin Resource Sharing](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) (CORS) を用いて外部のリソースを読み込むため，参照先の Storybook をホストしているサーヴァ側で，CORS を許可するよう設定を行っておく必要がある．
 
 HERP では Storybook を配信する Docker image を，[Istio](https://istio.io/) が入った Kubernetes クラスタにデプロイしているため，[`VirtualService`](https://istio.io/latest/docs/reference/config/networking/virtual-service/) に以下のような [`CorsPolicy`](https://istio.io/latest/docs/reference/config/networking/virtual-service/#CorsPolicy) を追加することで対応した．また，[`oauth2-proxy`](https://oauth2-proxy.github.io/oauth2-proxy/) を用いたアクセス制限を施しているため，`allowCredentials: true` を指定している．
 
