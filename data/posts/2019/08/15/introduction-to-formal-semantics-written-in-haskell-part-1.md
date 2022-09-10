@@ -185,13 +185,13 @@ $$
 
 である．
 
-以上をまとめると，一般名詞・形容詞・自動詞の外延は $D_e$ から $D_t$ への関数だと思ってよさそうである．同じことだが，対象言語のレイヤーでは，一般名詞・形容詞・自動詞は $e \to t$ 型をもつ．
+以上をまとめると，一般名詞・形容詞・自動詞の外延は $D_e$ から $D_t$ への関数だと思ってよさそうである．同じことだが，対象言語のレイヤでは，一般名詞・形容詞・自動詞は $e \to t$ 型をもつ．
 
 ### 3.3 $\textit{love}$ の外延
 
 他動詞 $\textit{love}$ の外延 $[\![love]\!]$ を考えてみよう．$\textit{love}$ を用いた例文として $\textit{Plato loves Socrates.}$ というものを考えてみる．
 
-前節で自動詞 $\textit{run}$ の意味を考える際，$P_\text{run} (x) = x \text{ runs}$ という述語について，項 $x \in D_e$ を探してきてはガチャガチャと当てはめてみて，$P_\text{run} (x)$ を真にするものとそうでないものに分類したのだった．同じように $\textit{love}$ の意味を考えてみると，$P_\text{love} (x, y) = x \text{loves} y$ という命題に対し，$x, y \in D_e$ を探してきてはガチャガチャと当てはめてみて，$P_\text{love} (x, y)$ を真にする組とそうでない組に分類してみるとよさそうだ．ここで，$\langle x, y \rangle = \langle \text{Plato}, \text{Socrates} \rangle$ という組は $P_\text{love} (x, y)$ を真にする，といった具合である．
+前節で自動詞 $\textit{run}$ の意味を考える際，$P_\text{run} (x) = x \text{ runs}$ という述語について，項 $x \in D_e$ を探してきてはガチャガチャと当てはめてみて，$P_\text{run} (x)$ を真にするものとそうでないものに分類したのだった．同じように $\textit{love}$ の意味を考えてみると，$P_\text{love} (x, y) = x \text{ loves } y$ という命題に対し，$x, y \in D_e$ を探してきてはガチャガチャと当てはめてみて，$P_\text{love} (x, y)$ を真にする組とそうでない組に分類してみるとよさそうだ．ここで，$\langle x, y \rangle = \langle \text{Plato}, \text{Socrates} \rangle$ という組は $P_\text{love} (x, y)$ を真にする，といった具合である．
 
 $[\![love]\!]$ を，$P_\text{love} (x, y)$ を真にするような $D_e \times D_e$ の部分集合，つまり $D_e$ 上の二項関係[^16]と捉えると，$[\![love]\!]$ は以下のように定義できる．
 
@@ -245,7 +245,7 @@ $\text{Model PEANUTS}$ には，以下の8つ (のみ) の個体が存在する�
 - $[\![\textit{Patty}]\!] = \text{Patty}$
 - $[\![\textit{Schroeder}]\!] = \text{Schroeder}$
 
-また，$\textit{boy}$ という項が存在する．この語の外延は以下の通りである．
+また，$\textit{boy}$ という語が存在する．この語の外延は以下の通りである．
 
 $$
 \chi_{boy}(x) =
@@ -257,7 +257,7 @@ $$
 \end{cases}
 $$
 
-これ以外にも語彙は必要に応じて適宜導入する．
+これ以外の語彙は必要に応じて適宜導入する．
 
 ### §4のまとめ
 
@@ -312,7 +312,7 @@ eval (TruthValue t) = t
 eval (Function f)   = f
 ```
 
-`eval` を用いると，$[\![\textit{Snoopy}]\!] = \text{Snoopy}$ という関係は `eval (Entity Snoopy) = Snoopy` と書ける．
+`eval` を用いると，$[\![\textit{Snoopy}]\!] = \text{Snoopy}$ という関係は `eval (Entity Snoopy) = Snoopy` と書くことができる．
 
 ### 4つの意味計算規則
 
@@ -356,7 +356,7 @@ boy = Function \case
     _         -> False
 ```
 
-$\textit{Linus is a boy.}$ という文の意味計算をしたい．まず，この文は以下のような統語構造を持つ．
+さて，手始めに $\textit{Linus is a boy.}$ という文の意味計算を行いたい．まず，この文は以下のような統語構造を持つ．
 
 <div align="center">
 <img alt="&quot;Linus is a boy.&quot; の統語構造" src="https://gyazo.com/aa019eeeea7f269d64e044b57185a220.png" />

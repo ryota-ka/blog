@@ -84,7 +84,7 @@ main = fix $ \loop -> do
 
 ## ユースケースその2
 
-HTTP サーバの実装時に，[`Web.Cookie`](http://hackage.haskell.org/package/cookie-0.4.4/docs/Web-Cookie.html) を用いて，レスポンスに `Set-Cookie` ヘッダを含める場合を考えよう．Cookie の Max-age は，[time](https://hackage.haskell.org/package/time) package が提供する [`DiffTime`](https://hackage.haskell.org/package/time-1.9.1/docs/Data-Time-Clock.html#t:DiffTime) 型で与えることができるが，duration を使えばこれを非常に簡潔に記述することができる．
+HTTP サーヴァの実装時に，[`Web.Cookie`](http://hackage.haskell.org/package/cookie-0.4.4/docs/Web-Cookie.html) を用いて，レスポンスに `Set-Cookie` ヘッダを含める場合を考えよう．Cookie の Max-age は，[time](https://hackage.haskell.org/package/time) package が提供する [`DiffTime`](https://hackage.haskell.org/package/time-1.9.1/docs/Data-Time-Clock.html#t:DiffTime) 型で与えることができるが，duration を使えばこれを非常に簡潔に記述することができる．
 
 ```haskell
 import Data.Default (def)
