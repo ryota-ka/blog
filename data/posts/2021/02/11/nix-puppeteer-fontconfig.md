@@ -43,7 +43,7 @@ $ sudo apt-get install -y \
     libxtst6
 ```
 
-Docker イメージをビルドする際にも `metadata.json` を生成する必要があるため，`Dockerfile` にもほぼ同じ (`sudo` を除いただけの) コマンドを記述しており，二重管理になっていた．Nix を用いれば依存関係の解決が簡単に行なえるし，かつ [`dockerTools`](https://nixos.org/manual/nixpkgs/unstable/#sec-pkgs-dockerTools) を利用すればビルドプロセスをそのまま Docker イメージの作成にも流用できるため，Nix で Chromium をインストールしてビルドに用いることにした．
+Docker イメージをビルドする際にも `stories.json` を生成する必要があるため，`Dockerfile` にもほぼ同じ (`sudo` を除いただけの) コマンドを記述しており，二重管理になっていた．Nix を用いれば依存関係の解決が簡単に行なえるし，かつ [`dockerTools`](https://nixos.org/manual/nixpkgs/unstable/#sec-pkgs-dockerTools) を利用すればビルドプロセスをそのまま Docker イメージの作成にも流用できるため，Nix で Chromium をインストールしてビルドに用いることにした．
 
 ## The first Nix file
 
@@ -134,7 +134,7 @@ Nix で `fontconfig` をインストールした際には，`/etc/` 以下にフ
    buildPhase = ''
 ```
 
-こうして無事に Nix を用いて `metadata.json` を伴った静的な Storybook をビルドすることができた．
+こうして無事に Nix を用いて `stories.json` を伴った静的な Storybook をビルドすることができた．
 
 ## コード全文
 
