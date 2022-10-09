@@ -16,16 +16,21 @@ declare namespace Keywords {
 const Keywords: React.FC<Keywords.Props> = ({ keywords }) => {
     return (
         <SidebarContent title="Keywords">
-            <ul className="space-y-1 pl-2 list-['-_'] list-inside marker:text-gray-500 dark:marker:text-gray-400">
-                {keywords.map(({ count, keyword }) => (
-                    <li key={keyword}>
-                        <Link href={`/keywords/${keyword}`}>
-                            <a className="hover:text-sky-700 dark:hover:text-amber-500">{keyword}</a>
-                        </Link>
-                        {count !== null && ` (${count})`}
-                    </li>
-                ))}
-            </ul>
+            <div className="ml-2">
+                <ul className="space-y-1 mb-2 list-['-_'] list-inside marker:text-gray-500 dark:marker:text-gray-400">
+                    {keywords.map(({ count, keyword }) => (
+                        <li key={keyword}>
+                            <Link href={`/keywords/${keyword}`}>
+                                <a className="hover:text-sky-700 dark:hover:text-amber-500">{keyword}</a>
+                            </Link>
+                            {count !== null && ` (${count})`}
+                        </li>
+                    ))}
+                </ul>
+                <Link href="/keywords">
+                    <a className="hover:text-sky-700 dark:hover:text-amber-500">See all keywords</a>
+                </Link>
+            </div>
         </SidebarContent>
     );
 };
