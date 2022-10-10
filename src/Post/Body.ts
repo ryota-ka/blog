@@ -19,7 +19,7 @@ import remarkRehype, { all } from 'remark-rehype';
 import { unified } from 'unified';
 import { u } from 'unist-builder';
 
-import { fancyLinks, removeTitle, slugger, targetBlank } from '../unified-plugins';
+import { fancyLinks, removeTitle, sectionalize, slugger, targetBlank } from '../unified-plugins';
 
 const parser = unified().use(remarkParse).use(remarkGfm).use(remarkMath).use(remarkFrontmatter, ['yaml']).freeze();
 
@@ -96,6 +96,7 @@ const transformer = unified()
             thematicBreak: (h: H, node: MdastNode) => h(node, 'span', { id: 'more' }, []),
         },
     })
+    .use(sectionalize)
     .use(rehypeKatex, { strict: true })
     .use(rehypeHighlight, {
         aliases: {

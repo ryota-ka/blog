@@ -9,10 +9,14 @@
 }
 
 .global-article {
-  @apply sm:text-lg md:text-xl leading-7 sm:leading-8 md:leading-9 lg:leading-10 tracking-wider;
+  @apply sm:text-lg md:text-xl leading-7 sm:leading-8 md:leading-9 lg:leading-10 tracking-wider space-y-16 lg:space-y-20;
 
-  & > * + * {
-    @apply mt-4 lg:mt-6;
+  & > section {
+    @apply space-y-10 md:space-y-12;
+
+    & > section {
+      @apply space-y-4 lg:space-y-6;
+    }
   }
 
   a {
@@ -53,14 +57,10 @@
 
   h2 {
     @apply text-2xl lg:text-3xl pb-1 font-medium mb-2;
-
-    &:not(:first-child) {
-      @apply mt-16 lg:mt-20;
-    }
   }
 
   h3 {
-    @apply text-xl md:text-2xl font-medium mt-10 md:mt-12;
+    @apply text-xl md:text-2xl font-medium;
   }
 
   h2,
