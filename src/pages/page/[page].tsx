@@ -13,6 +13,7 @@ import { RSSFeed } from '../../RSSFeed';
 
 type Props = {
     keywords: Array<[string, number]>;
+    hasMore: boolean;
     latestPosts: LatestPost[];
     page: number;
     posts: Post[];
@@ -33,18 +34,20 @@ type Post = {
     title: string;
 };
 
-const Page: NextPage<Props> = ({ keywords, latestPosts, page, posts }) => (
+const Page: NextPage<Props> = ({ keywords, hasMore, latestPosts, page, posts }) => (
     <Layout>
         <div className="px-2 sm:px-4 md:px-6 lg:px-8 pt-4">
             <SideBySide>
                 <PostCollection
                     posts={posts}
                     accessory={
-                        <Link href={`/page/${page + 1}`}>
-                            <a className="block w-72 text-center mx-auto border border-zinc-500 dark:border-zinc-400 py-2">
-                                次のページ
-                            </a>
-                        </Link>
+                        hasMore && (
+                            <Link href={`/page/${page + 1}`}>
+                                <a className="block w-72 text-center mx-auto border border-zinc-500 dark:border-zinc-400 py-2">
+                                    次のページ
+                                </a>
+                            </Link>
+                        )
                     }
                 />
                 <>
@@ -142,6 +145,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
                     a[1] === b[1] ? a[0].toLowerCase().localeCompare(b[0].toLowerCase()) : a[1] < b[1] ? 1 : -1,
                 )
                 .slice(0, 5),
+            hasMore: ps.length > offset + PER_PAGE,
             latestPosts,
             page,
             posts,
