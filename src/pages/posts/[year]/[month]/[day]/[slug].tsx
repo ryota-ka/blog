@@ -2,6 +2,7 @@ import { toString } from 'mdast-util-to-string';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
 import path from 'path';
+import { useEffect, useRef, useState } from 'react';
 import rehypeStringify from 'rehype-stringify';
 import { unified } from 'unified';
 
@@ -20,6 +21,44 @@ type Props = {
 };
 
 const Page: React.FC<Props> = ({ date, html, keywords, preface, preview, sections, title }) => {
+    const [currentSection, setCurrentSection] = useState<string | null>(null);
+
+    const ref = useRef<HTMLElement>(null);
+    useEffect(() => {
+        if (ref.current === null) {
+            return;
+        }
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const entry = entries.filter((entry) => entry.isIntersecting).at(-1);
+                if (entry === undefined) {
+                    return;
+                }
+
+                const heading = entry.target.querySelector('h2, h3');
+                if (heading === null) {
+                    setCurrentSection(null);
+                } else {
+                    setCurrentSection('#' + heading.id);
+                }
+            },
+            {
+                rootMargin: '-20% 0px -80% 0px',
+            },
+        );
+
+        const sections = ref.current.querySelectorAll('section');
+
+        sections.forEach((section) => {
+            observer.observe(section);
+        });
+
+        return () => {
+            observer.disconnect();
+        };
+    });
+
     return (
         <Layout
             article={{ date }}
@@ -43,10 +82,13 @@ const Page: React.FC<Props> = ({ date, html, keywords, preface, preview, section
                 <article
                     className="global-article px-2 sm:px-4 md:px-6 lg:px-8 pt-2"
                     dangerouslySetInnerHTML={{ __html: html }}
+                    ref={ref}
                 />
                 <>
                     <Keywords keywords={keywords.map((keyword) => ({ keyword, count: null }))} seeAllKeywords={false} />
-                    {sections.length > 0 && <TableOfContents className="sticky top-8" sections={sections} />}
+                    {sections.length > 0 && (
+                        <TableOfContents className="sticky top-8" current={currentSection} sections={sections} />
+                    )}
                 </>
             </SideBySide>
         </Layout>
