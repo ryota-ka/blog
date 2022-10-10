@@ -64,7 +64,7 @@ const PER_PAGE = 5;
 
 const getStaticPaths: GetStaticPaths = async () => {
     const keys = await PostRepository.list();
-    const n = Math.floor(keys.length / PER_PAGE);
+    const n = Math.ceil(keys.length / PER_PAGE);
 
     return {
         fallback: false,
