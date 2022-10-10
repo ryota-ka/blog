@@ -33,7 +33,10 @@ const Page: NextPage<Props> = ({ keywords, latestPosts }) => (
                 </>
                 <>
                     <LatestPosts posts={latestPosts} />
-                    <Keywords keywords={keywords.slice(0, 5).map(([keyword, count]) => ({ keyword, count }))} />
+                    <Keywords
+                        keywords={keywords.slice(0, 5).map(([keyword, count]) => ({ keyword, count }))}
+                        seeAllKeywords={true}
+                    />
                     <Links />
                 </>
             </SideBySide>

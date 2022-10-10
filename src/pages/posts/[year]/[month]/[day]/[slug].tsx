@@ -45,7 +45,7 @@ const Page: React.FC<Props> = ({ date, html, keywords, preface, preview, section
                     dangerouslySetInnerHTML={{ __html: html }}
                 />
                 <>
-                    <Keywords keywords={keywords.map((keyword) => ({ keyword, count: null }))} />
+                    <Keywords keywords={keywords.map((keyword) => ({ keyword, count: null }))} seeAllKeywords={false} />
                     {sections.length > 0 && <TableOfContents className="sticky top-8" sections={sections} />}
                 </>
             </SideBySide>

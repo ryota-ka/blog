@@ -52,7 +52,10 @@ const Page: NextPage<Props> = ({ keywords, hasMore, latestPosts, page, posts }) 
                 />
                 <>
                     <LatestPosts posts={latestPosts} />
-                    <Keywords keywords={keywords.map(([keyword, count]) => ({ keyword, count }))} />
+                    <Keywords
+                        keywords={keywords.map(([keyword, count]) => ({ keyword, count }))}
+                        seeAllKeywords={true}
+                    />
                     <Links />
                 </>
             </SideBySide>
