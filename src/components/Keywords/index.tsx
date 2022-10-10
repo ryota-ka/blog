@@ -5,6 +5,7 @@ import { SidebarContent } from '..';
 declare namespace Keywords {
     type Props = {
         keywords: Keyword[];
+        seeAllKeywords: boolean;
     };
 
     type Keyword = {
@@ -13,7 +14,7 @@ declare namespace Keywords {
     };
 }
 
-const Keywords: React.FC<Keywords.Props> = ({ keywords }) => {
+const Keywords: React.FC<Keywords.Props> = ({ keywords, seeAllKeywords }) => {
     return (
         <SidebarContent title="Keywords">
             <div className="ml-2">
@@ -27,9 +28,11 @@ const Keywords: React.FC<Keywords.Props> = ({ keywords }) => {
                         </li>
                     ))}
                 </ul>
-                <Link href="/keywords">
-                    <a className="hover:text-sky-700 dark:hover:text-amber-500">See all keywords</a>
-                </Link>
+                {seeAllKeywords && (
+                    <Link href="/keywords">
+                        <a className="hover:text-sky-700 dark:hover:text-amber-500">See all keywords</a>
+                    </Link>
+                )}
             </div>
         </SidebarContent>
     );
