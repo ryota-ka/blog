@@ -8,6 +8,7 @@ declare namespace PostCollection {
 
     type Post = {
         date: [day: string, month: string, day: string];
+        keywords: string[];
         slug: string;
         path: string;
         preface: string;
@@ -18,17 +19,35 @@ declare namespace PostCollection {
 const PostCollection: React.FC<PostCollection.Props> = ({ accessory, posts }) => {
     return (
         <section className="space-y-12 md:space-y-24">
-            {posts.map(({ date: [year, month, day], slug, preface, path, title }) => (
+            {posts.map(({ date: [year, month, day], keywords, slug, preface, path, title }) => (
                 <article key={slug}>
-                    <header className="w-full mb-2 lg:mb-4">
+                    <header className="w-full mb-4 md:mb-6 lg:mb-8">
                         <time className="block md:mb-2 text-base lg:text-xl">
                             {year}-{month}-{day}
                         </time>
-                        <h1 className="text-xl lg:text-3xl font-medium leading-relaxed pb-2">
+                        <h1 className="text-xl lg:text-3xl font-medium leading-relaxed">
                             <Link href={path}>
                                 <a>{title}</a>
                             </Link>
                         </h1>
+
+                        {keywords.length > 0 && (
+                            <div className="md:text-lg md:mt-1">
+                                Keywords:
+                                <ul className="inline-flex flex-row">
+                                    {keywords.map((keyword, i) => (
+                                        <li key={keyword} className="ml-1">
+                                            <Link href={`/keywords/${keyword}`}>
+                                                <a className="hover:text-sky-700 dark:hover:text-amber-500">
+                                                    {keyword}
+                                                </a>
+                                            </Link>
+                                            {i < keywords.length - 1 && ','}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
                     </header>
                     <div>
                         <div className="global-article" dangerouslySetInnerHTML={{ __html: preface }} />

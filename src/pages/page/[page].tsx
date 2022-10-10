@@ -25,6 +25,7 @@ type LatestPost = {
 
 type Post = {
     date: [day: string, month: string, day: string];
+    keywords: string[];
     slug: string;
     path: string;
     preview: string | null;
@@ -88,7 +89,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
     const ps = await Promise.all(keys.reverse().map(async (key) => await PostRepository.lookup(key)));
 
     for (const post of ps.slice(offset, offset + PER_PAGE)) {
-        const { date, path, preface, preview, slug, title } = post;
+        const { date, keywords, path, preface, preview, slug, title } = post;
 
         const prefaceHTML = unified()
             .use(rehypeStringify)
@@ -98,6 +99,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
             slug,
             title,
             date,
+            keywords,
             path,
             preview,
             preface: prefaceHTML,
