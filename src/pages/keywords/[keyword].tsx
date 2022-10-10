@@ -19,6 +19,7 @@ type LatestPost = {
 
 type Post = {
     date: [day: string, month: string, day: string];
+    keywords: string[];
     slug: string;
     path: string;
     preview: string | null;
@@ -87,6 +88,7 @@ const getStaticProps: GetStaticProps<Props> = async (ctx) => {
             slug,
             title,
             date,
+            keywords,
             path,
             preview,
             preface: prefaceHTML,
