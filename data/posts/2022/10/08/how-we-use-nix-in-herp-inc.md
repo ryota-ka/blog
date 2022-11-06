@@ -92,7 +92,7 @@ pkgs.stdenv.mkDerivation {
 
 手元の環境で開発を行ったアプリケーションを実際に顧客に提供するためには，まずリポジトリ内のソースコードを「ビルド」と呼ばれる成果物に変換する必要がある[^4]．このような変換は，ほとんどの場合 Nix を利用して行われている．
 
-既に述べたように，Nix を用いてアプリケーションをビルドすれば，ビルド時に必要になる依存を Nix 経由で調達することができる[^5]．[以前の記事](https://blog.ryota-ka.me/posts/2021/02/11/nix-puppeteer-fontconfig)では，Nix を利用して `stories.json` というファイルを含んだ Storybook をビルドする事例を紹介した．このケースではビルドにあたって Puppeteer を利用するため Chromium が必要であり，正面から取り組むとセットアップがいささか面倒だが，Nix を利用することでビルド時に必要になる依存を簡単に解決することができる．
+Nix を用いてアプリケーションをビルドすれば，既に述べたように，ビルド時に必要になる依存を Nix 経由で調達することができる[^5]．[以前の記事](https://blog.ryota-ka.me/posts/2021/02/11/nix-puppeteer-fontconfig)では，Nix を利用して `stories.json` というファイルを含んだ Storybook をビルドする事例を紹介した．このケースではビルドにあたって Puppeteer を利用するため Chromium が必要であり，正面から取り組むとセットアップがいささか面倒だが，Nix を利用することでビルド時に必要になる依存を簡単に解決することができる．
 
 https://blog.ryota-ka.me/posts/2021/02/11/nix-puppeteer-fontconfig
 
