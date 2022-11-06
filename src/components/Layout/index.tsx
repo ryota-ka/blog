@@ -44,7 +44,7 @@ export const Layout: React.FC<Props> = ({ article, children, description, previe
                 {description !== undefined && <meta name="twitter:description" content={description} />}
                 {preview !== undefined && <meta name="twitter:image" content={preview} />}
             </Head>
-            <header className="px-2 sm:px-4 md:px-6 lg:px-8 py-4 flex items-center justify-between">
+            <header className="max-w-screen-2xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8 py-4 flex items-center justify-between">
                 <h1 className="text-base font-medium">
                     <Link href="/">blog.ryota-ka.me</Link>
                 </h1>

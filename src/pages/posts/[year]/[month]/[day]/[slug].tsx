@@ -78,7 +78,7 @@ const Page: React.FC<Props> = ({ date, html, keywords, preface, preview, section
                 <h1 className="text-xl lg:text-3xl font-medium w-5/6 text-center z-10">{title}</h1>
                 <time className="z-10 mt-2 lg:mt-4 text-base lg:text-xl">{date}</time>
             </header>
-            <SideBySide>
+            <SideBySide className="max-w-screen-2xl mx-auto">
                 <article
                     className="global-article px-2 sm:px-4 md:px-6 lg:px-8 pt-2"
                     dangerouslySetInnerHTML={{ __html: html }}

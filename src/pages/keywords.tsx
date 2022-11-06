@@ -16,7 +16,7 @@ type Props = {
 
 const Page: NextPage<Props> = ({ keywords, latestPosts }) => (
     <Layout title="Keywords">
-        <div className="px-2 sm:px-4 md:px-6 lg:px-8 pt-4">
+        <div className="max-w-screen-2xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8 pt-4">
             <SideBySide>
                 <>
                     <h1 className="text-2xl mb-4">Keywords</h1>
