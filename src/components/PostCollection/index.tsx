@@ -26,9 +26,7 @@ const PostCollection: React.FC<PostCollection.Props> = ({ accessory, posts }) =>
                             {year}-{month}-{day}
                         </time>
                         <h1 className="text-xl lg:text-3xl font-medium leading-relaxed">
-                            <Link href={path}>
-                                <a>{title}</a>
-                            </Link>
+                            <Link href={path}>{title}</Link>
                         </h1>
 
                         {keywords.length > 0 && (
@@ -37,10 +35,11 @@ const PostCollection: React.FC<PostCollection.Props> = ({ accessory, posts }) =>
                                 <ul className="inline-flex flex-row">
                                     {keywords.map((keyword, i) => (
                                         <li key={keyword} className="ml-1">
-                                            <Link href={`/keywords/${keyword}`}>
-                                                <a className="hover:text-sky-700 dark:hover:text-amber-500">
-                                                    {keyword}
-                                                </a>
+                                            <Link
+                                                href={`/keywords/${keyword}`}
+                                                className="hover:text-sky-700 dark:hover:text-amber-500"
+                                            >
+                                                {keyword}
                                             </Link>
                                             {i < keywords.length - 1 && ','}
                                         </li>
@@ -51,10 +50,11 @@ const PostCollection: React.FC<PostCollection.Props> = ({ accessory, posts }) =>
                     </header>
                     <div>
                         <div className="global-article" dangerouslySetInnerHTML={{ __html: preface }} />
-                        <Link href={path + '#more'}>
-                            <a className="block w-48 mt-6 mx-auto border border-zinc-500 dark:border-zinc-600 px-4 py-2 text-center dark:text-white">
-                                続きを読む
-                            </a>
+                        <Link
+                            href={path + '#more'}
+                            className="block w-48 mt-6 mx-auto border border-zinc-500 dark:border-zinc-600 px-4 py-2 text-center dark:text-white"
+                        >
+                            続きを読む
                         </Link>
                     </div>
                 </article>

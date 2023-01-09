@@ -23,8 +23,11 @@ const Page: NextPage<Props> = ({ keywords, latestPosts }) => (
                     <ul className="space-y-1 text-lg list-['-_'] list-inside marker:text-gray-500 dark:marker:text-gray-400">
                         {keywords.map(([keyword, count]) => (
                             <li key={keyword}>
-                                <Link href={`/keywords/${keyword}`}>
-                                    <a className="hover:text-sky-700 dark:hover:text-amber-500">{keyword}</a>
+                                <Link
+                                    href={`/keywords/${keyword}`}
+                                    className="hover:text-sky-700 dark:hover:text-amber-500"
+                                >
+                                    {keyword}
                                 </Link>{' '}
                                 ({count})
                             </li>

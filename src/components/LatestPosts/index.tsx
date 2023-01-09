@@ -20,8 +20,8 @@ const LatestPosts: React.FC<LatestPosts.Props> = ({ about, posts }) => {
             <ul className="space-y-1 pl-2 list-['-_'] list-inside marker:text-gray-500 dark:marker:text-gray-400">
                 {posts.map(({ path, title }) => (
                     <li key={path}>
-                        <Link href={path}>
-                            <a className="hover:text-sky-700 dark:hover:text-amber-500">{title}</a>
+                        <Link href={path} className="hover:text-sky-700 dark:hover:text-amber-500">
+                            {title}
                         </Link>
                     </li>
                 ))}
