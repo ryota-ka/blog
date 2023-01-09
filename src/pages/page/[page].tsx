@@ -42,10 +42,11 @@ const Page: NextPage<Props> = ({ keywords, hasMore, latestPosts, page, posts }) 
                     posts={posts}
                     accessory={
                         hasMore && (
-                            <Link href={`/page/${page + 1}`}>
-                                <a className="block w-72 text-center mx-auto border border-zinc-500 dark:border-zinc-400 py-2">
-                                    次のページ
-                                </a>
+                            <Link
+                                href={`/page/${page + 1}`}
+                                className="block w-72 text-center mx-auto border border-zinc-500 dark:border-zinc-400 py-2"
+                            >
+                                次のページ
                             </Link>
                         )
                     }
