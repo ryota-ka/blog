@@ -1,4 +1,3 @@
-import fetch from 'isomorphic-unfetch';
 import type { Root } from 'mdast';
 import type { Plugin } from 'unified';
 
