@@ -30,6 +30,7 @@ const fancyLinks: Plugin<[], Root, void> = () => async (tree: Root) => {
             const res = await fetch(url, {
                 headers: {
                     Accept: 'text/html',
+                    'Accept-Language': 'ja;q=1.0, en;q=0.8, *;q=0.5',
                 },
             });
             const html = await res.text();
