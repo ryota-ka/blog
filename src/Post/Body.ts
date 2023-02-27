@@ -34,6 +34,10 @@ const transformer = unified()
                     return;
                 }
 
+                if (node.lang === 'mermaid') {
+                    return h(node, 'div', { class: 'mermaid' }, [u('text', node.value)]);
+                }
+
                 const meta = new Map(
                     (node.meta?.split(' ') ?? []).map((x) => x.split('=').slice(0, 2) as [string, string]),
                 );
