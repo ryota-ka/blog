@@ -1,5 +1,7 @@
 import Link from 'next/link';
 
+import { Article } from '../Article';
+
 declare namespace PostCollection {
     type Props = {
         accessory?: React.ReactNode;
@@ -49,7 +51,7 @@ const PostCollection: React.FC<PostCollection.Props> = ({ accessory, posts }) =>
                         )}
                     </header>
                     <div>
-                        <div className="global-article" dangerouslySetInnerHTML={{ __html: preface }} />
+                        <Article html={preface} />
                         <Link
                             href={path + '#more'}
                             className="block w-48 mt-6 mx-auto border border-zinc-500 dark:border-zinc-600 px-4 py-2 text-center dark:text-white"
