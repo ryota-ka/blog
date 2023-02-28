@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import rehypeStringify from 'rehype-stringify';
 import { unified } from 'unified';
 
-import { Keywords, Layout, SideBySide, TableOfContents } from '../../../../../components';
+import { Article, Keywords, Layout, SideBySide, TableOfContents } from '../../../../../components';
 import * as Post from '../../../../../Post';
 import { PostRepository } from '../../../../../PostRepository';
 
@@ -86,11 +86,7 @@ const Page: React.FC<Props> = ({ date, html, keywords, preface, preview, section
                 <time className="z-10 mt-2 lg:mt-4 text-base lg:text-xl">{date}</time>
             </header>
             <SideBySide className="max-w-screen-2xl mx-auto">
-                <article
-                    className="global-article px-2 sm:px-4 md:px-6 lg:px-8 pt-2"
-                    dangerouslySetInnerHTML={{ __html: html }}
-                    ref={ref}
-                />
+                <Article className="px-2 sm:px-4 md:px-6 lg:px-8 pt-2" html={html} ref={ref} />
                 <>
                     <Keywords keywords={keywords.map((keyword) => ({ keyword, count: null }))} seeAllKeywords={false} />
                     {sections.length > 0 && (

@@ -1,3 +1,4 @@
+export { Article } from './Article';
 export { Keywords } from './Keywords';
 export { LatestPosts } from './LatestPosts';
 export { Layout } from './Layout';
