@@ -5,6 +5,7 @@ import '../styles/hljs.scss';
 
 import mermaid from 'mermaid';
 import type { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
 import Script from 'next/script';
 import { useEffect } from 'react';
 
@@ -26,6 +27,8 @@ const App = ({ Component, pageProps }: AppProps): React.ReactNode => {
         import('../custom-elements');
     }, []);
 
+    const router = useRouter();
+
     useEffect(() => {
         const mql = window.matchMedia('(prefers-color-scheme: dark)');
         const dark = mql.matches;
@@ -33,7 +36,7 @@ const App = ({ Component, pageProps }: AppProps): React.ReactNode => {
             darkMode: true,
             theme: dark ? 'dark' : 'default',
         });
-    }, []);
+    }, [router.pathname]);
 
     return (
         <>
