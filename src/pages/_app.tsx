@@ -3,7 +3,6 @@ import 'katex/dist/katex.css';
 import '../styles/globals.scss';
 import '../styles/hljs.scss';
 
-import mermaid from 'mermaid';
 import type { AppProps } from 'next/app';
 import Script from 'next/script';
 import { useEffect } from 'react';
@@ -24,15 +23,6 @@ const gaTrackingID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID!;
 const App = ({ Component, pageProps }: AppProps): React.ReactNode => {
     useEffect(() => {
         import('../custom-elements');
-    }, []);
-
-    useEffect(() => {
-        const mql = window.matchMedia('(prefers-color-scheme: dark)');
-        const dark = mql.matches;
-        mermaid.initialize({
-            darkMode: true,
-            theme: dark ? 'dark' : 'default',
-        });
     }, []);
 
     return (
