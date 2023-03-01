@@ -117,9 +117,7 @@ const transformer = unified()
     .use(slugger)
     .use(rehypeAutolinkHeadings, {
         behavior: 'append',
-        properties: {
-            className: 'heading-anchor',
-        },
+        properties: {},
         content: {
             type: 'text',
             value: '#',
