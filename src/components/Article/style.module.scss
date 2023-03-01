@@ -21,7 +21,7 @@
     @apply space-y-4 border-l-2 bg-zinc-50 dark:bg-zinc-900 pl-3 pr-3 py-2 border-gray-400 dark:border-gray-500;
   }
 
-  .codeblock-with-metadata {
+  :global .codeblock-with-metadata {
     @apply bg-gray-100 dark:bg-slate-800 pt-2;
 
     &__header {
@@ -33,7 +33,7 @@
     }
   }
 
-  code {
+  :global code {
     @apply tracking-normal;
 
     &.hljs {
@@ -45,7 +45,7 @@
     }
   }
 
-  p code:not(.hljs) {
+  :global p code:not(.hljs) {
     @apply text-sm md:text-lg;
   }
 
@@ -108,7 +108,7 @@
     @apply list-['-_'] list-inside pl-0 marker:text-gray-500 dark:marker:text-gray-400;
   }
 
-  .math-display {
+  :global(.math-display) {
     overflow-x: scroll;
   }
 }
