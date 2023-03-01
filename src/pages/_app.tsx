@@ -1,7 +1,4 @@
-import 'katex/dist/katex.css';
-
-import '../styles/globals.scss';
-import '../styles/hljs.scss';
+import '../styles/index.scss';
 
 import type { AppProps } from 'next/app';
 import Script from 'next/script';
