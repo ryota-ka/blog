@@ -61,8 +61,16 @@
   h3 {
     @apply relative pr-4;
 
-    .heading-anchor {
-      @apply block opacity-0 ml-auto text-sm text-lg p-1 rounded text-zinc-500 dark:text-zinc-400 hover:text-sky-700 dark:hover:text-amber-500 transition ease-out duration-100 absolute top-0 bottom-0 right-0;
+    a[href^='#'] {
+      @apply block opacity-0 focus:opacity-100 ml-auto text-sm text-lg p-1 rounded text-zinc-500 dark:text-zinc-400 hover:text-sky-700 dark:hover:text-amber-500 transition ease-out duration-100 absolute top-0 bottom-0 right-0;
+    }
+
+    &:hover a[href^='#'] {
+      @apply opacity-100;
+    }
+
+    &:target a[href^='#'] {
+      @apply opacity-100 text-sky-700 dark:text-amber-500;
     }
   }
 
@@ -98,14 +106,6 @@
 
   ul {
     @apply list-['-_'] list-inside pl-0 marker:text-gray-500 dark:marker:text-gray-400;
-  }
-
-  :hover .heading-anchor {
-    @apply opacity-100;
-  }
-
-  :target .heading-anchor {
-    @apply opacity-100 text-sky-700 dark:text-amber-500;
   }
 
   .math-display {
