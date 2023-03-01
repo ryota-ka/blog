@@ -1,6 +1,8 @@
 import mermaid from 'mermaid';
 import { forwardRef, useEffect } from 'react';
 
+import styles from './style.module.scss';
+
 declare namespace Article {
     type Props = Readonly<{
         className?: string;
@@ -21,7 +23,13 @@ const Article = forwardRef<HTMLElement, Article.Props>(function Article({ classN
         });
     }, []);
 
-    return <article className={`global-article ${className}`} dangerouslySetInnerHTML={{ __html: html }} ref={ref} />;
+    return (
+        <article
+            className={`${styles.className ?? ''} ${className}`}
+            dangerouslySetInnerHTML={{ __html: html }}
+            ref={ref}
+        />
+    );
 });
 
 export { Article };

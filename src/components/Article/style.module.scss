@@ -1,0 +1,114 @@
+.className {
+  @apply sm:text-lg md:text-xl leading-7 sm:leading-8 md:leading-9 lg:leading-10 tracking-wider;
+
+  & > section > section {
+    @apply space-y-4 lg:space-y-6;
+
+    &:last-child {
+      @apply pb-16 lg:pb-20;
+    }
+
+    &:not(:last-child) {
+      @apply pb-10 lg:pb-12;
+    }
+  }
+
+  a {
+    @apply text-sky-800 hover:text-sky-700 dark:text-amber-500 dark:hover:text-amber-400;
+  }
+
+  blockquote {
+    @apply space-y-4 border-l-2 bg-zinc-50 dark:bg-zinc-900 pl-3 pr-3 py-2 border-gray-400 dark:border-gray-500;
+  }
+
+  .codeblock-with-metadata {
+    @apply bg-gray-100 dark:bg-slate-800 pt-2;
+
+    &__header {
+      @apply flex;
+    }
+
+    &__filename {
+      @apply ml-4 text-gray-900 dark:text-gray-50 text-base bg-gray-50 dark:bg-gray-900 mr-auto px-2 md:px-3 pt-1 md:pt-2 pb-1 text-sm lg:text-base;
+    }
+  }
+
+  code {
+    @apply tracking-normal;
+
+    &.hljs {
+      @apply text-sm md:text-lg bg-gray-50 dark:bg-gray-900;
+    }
+
+    &:not(.hljs) {
+      @apply bg-zinc-100 dark:bg-slate-800 border border-zinc-300 dark:border-zinc-700 rounded px-1 md:px-2 break-all;
+    }
+  }
+
+  p code:not(.hljs) {
+    @apply text-sm md:text-lg;
+  }
+
+  h2 {
+    @apply text-2xl lg:text-3xl pb-1 font-medium mb-2;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl font-medium;
+  }
+
+  h2,
+  h3 {
+    @apply relative pr-4;
+
+    .heading-anchor {
+      @apply block opacity-0 ml-auto text-sm text-lg p-1 rounded text-zinc-500 dark:text-zinc-400 hover:text-sky-700 dark:hover:text-amber-500 transition ease-out duration-100 absolute top-0 bottom-0 right-0;
+    }
+  }
+
+  li {
+    & > ul,
+    & > ol {
+      @apply ml-8 mt-1;
+    }
+  }
+
+  ol {
+    @apply list-decimal list-inside space-y-1 pl-0;
+  }
+
+  p {
+    @apply text-justify;
+  }
+
+  table {
+    @apply border-collapse rounded-lg;
+  }
+
+  td,
+  th {
+    @apply border border-zinc-300 px-3 py-1;
+  }
+
+  tr {
+    &:nth-child(even) {
+      @apply bg-zinc-100 dark:bg-zinc-800;
+    }
+  }
+
+  ul {
+    @apply list-['-_'] list-inside pl-0 marker:text-gray-500 dark:marker:text-gray-400;
+  }
+
+  :hover .heading-anchor {
+    @apply opacity-100;
+  }
+
+  :target .heading-anchor {
+    @apply opacity-100 text-sky-700 dark:text-amber-500;
+  }
+
+  .math-display {
+    overflow-x: scroll;
+  }
+}
