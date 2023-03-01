@@ -1,6 +1,3 @@
 {
-  "extends": ["github>herp-inc/renovate.json"],
-  "lockFileMaintenance": {
-    "enabled": true
-  }
+  "extends": ["github>herp-inc/renovate.json"]
 }
