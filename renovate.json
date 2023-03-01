@@ -1,3 +1,4 @@
 {
-  "extends": ["github>herp-inc/renovate.json"]
+  "extends": ["github>herp-inc/renovate.json"],
+  "postUpdateOptions": ["yarnDedupeHighest"]
 }
