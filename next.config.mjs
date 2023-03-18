@@ -7,6 +7,7 @@ export default {
   },
   experimental: {
     esmExternals: true,
+    scrollRestoration: true,
   },
   poweredByHeader: false,
   reactStrictMode: true,
