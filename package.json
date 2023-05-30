@@ -57,7 +57,7 @@
     "unist-builder": "3.0.0",
     "unist-util-remove": "3.1.0",
     "unist-util-visit": "4.1.1",
-    "yaml": "2.2.1",
+    "yaml": "2.3.0",
     "zod": "3.21.0"
   }
 }
