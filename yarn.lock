@@ -79,10 +79,10 @@
   dependencies:
     prop-types "^15.8.1"
 
-"@herp-inc/eslint-config@0.22.0":
-  version "0.22.0"
-  resolved "https://registry.yarnpkg.com/@herp-inc/eslint-config/-/eslint-config-0.22.0.tgz#37e954bec3271c299fd007bb3e53ffd408692c6f"
-  integrity sha512-xsI6PwGyti5uCMRaNrUXSZULg848d6KHQVKhdan6hyKBEJmwrmp20PU2O8tBw77AkhqXoHy0YNFMEM2+LgzAQQ==
+"@herp-inc/eslint-config@0.23.0":
+  version "0.23.0"
+  resolved "https://registry.yarnpkg.com/@herp-inc/eslint-config/-/eslint-config-0.23.0.tgz#a486b4d11d3bb0375862353424e5d3f2ed8be699"
+  integrity sha512-7dW4mQQGP6a8WPmFwPlYSVB7LEnE/WavFQh9uJy2r2NFtr/AlLP6+wSQu2t58N+oHkPo7x98UaGuODQpQ1jiBw==
 
 "@humanwhocodes/config-array@^0.11.8":
   version "0.11.8"
