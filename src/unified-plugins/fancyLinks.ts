@@ -26,15 +26,24 @@ const fancyLinks: Plugin<[], Root, void> = () => async (tree: Root) => {
                 return node;
             }
 
-            const res = await fetch(url, {
-                headers: {
-                    Accept: 'text/html',
-                    'Accept-Language': 'ja;q=1.0, en;q=0.8, *;q=0.5',
-                },
-            });
-            const html = await res.text();
+            let openGraph: OpenGraph = {
+                description: null,
+                image: null,
+                title: null,
+            };
+            try {
+                const res = await fetch(url, {
+                    headers: {
+                        Accept: 'text/html',
+                        'Accept-Language': 'ja;q=1.0, en;q=0.8, *;q=0.5',
+                    },
+                });
+                const html = await res.text();
 
-            const openGraph = OpenGraph.parse(html);
+                openGraph = OpenGraph.parse(html);
+            } catch {
+                // nop
+            }
 
             Object.assign(node.data, {
                 hName: 'open-graph-card',
