@@ -23,6 +23,7 @@ module.exports = {
             ],
             serif: [
                 [
+                    '"Times"',
                     '"Times New Roman"',
                     '"YuMincho"',
                     '"Yu Mincho"',
