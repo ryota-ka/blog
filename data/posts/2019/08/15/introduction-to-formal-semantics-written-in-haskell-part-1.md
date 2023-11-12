@@ -38,28 +38,28 @@ $$
 という文の意味を考えてみよう．この主張は伝統的に正しいとされている[^7]ので，この文の意味は真となるはずである．この事実を
 
 $$
-[\![\textit{Socrates is mortal.}]\!] = \text{True}
+\llbracket \textit{Socrates is mortal.} \rrbracket = \text{True}
 $$
 
-と書く．$[\![\cdot]\!]$ は**外延割当関数** (denotation assignment function) と呼ばれ，言語表現 (対象言語の項) をその意味に写す関数である．『形式意味論入門』によれば，「意味」とは
+と書く．$\llbracket \cdot \rrbracket$ は**外延割当関数** (denotation assignment function) と呼ばれ，言語表現 (対象言語の項) をその意味に写す関数である．『形式意味論入門』によれば，「意味」とは
 
 > 「自然言語表現」と「世界のあり方」の対応関係
 
 として定義される[^8]．また，このような定義に基づき「記号と対応する実際の存在物・概念」という意味で「意味」を捉えるとき，「**外延**」と呼ぶ[^9]．以下この記事中では，「意味」と「外延」を区別せず用いる．
 
-続いて，固有名詞 $\textit{Socrates}$ の意味 $[\![\textit{Socrates}]\!]$ を考えてみよう．これはもちろん古代ギリシアはアテナイの哲学者 $\text{Socrates}$ のことを指す．この事実を
+続いて，固有名詞 $\textit{Socrates}$ の意味 $\llbracket \textit{Socrates} \rrbracket$ を考えてみよう．これはもちろん古代ギリシアはアテナイの哲学者 $\text{Socrates}$ のことを指す．この事実を
 
 $$
-[\![\textit{Socrates}]\!] = \text{Socrates (という人物)}
+\llbracket \textit{Socrates} \rrbracket = \text{Socrates (という人物)}
 $$
 
 と書く．左辺の外延割当関数の中にある $\textit{Socrates}$ がイタリック体になっていることに注意されたい．形式意味論では，言語を用いて言語を説明するという構造を取らざるを得ないため，説明の対象となる言語と，説明のために用いる言語とを区別しておく必要がある．これらをそれぞれ**対象言語** (object language) と**メタ言語** (meta language) と呼ぶ．また，混同を避けるため，**対象言語はイタリック体で記述する**．左辺の $\textit{Socrates}$ は単なる対象言語内の記号であり，右辺の $\text{Socrates}$ は，実在する歴史上の人物としてのソクラテスである．また，地の文で書かれているものはメタ言語である．
 
 ところで，[合成性原理 (principle of compositionality)](https://en.wikipedia.org/wiki/Principle_of_compositionality) によれば，$\textit{Socrates is mortal.}$ という文の意味は，その文中の語彙の意味
 
-- $[\![\textit{Socrates}]\!] = \text{Socrates}$
-- $[\![\textit{is}]\!] = \text{?}$
-- $[\![\textit{mortal}]\!] = \text{?}$
+- $\llbracket \textit{Socrates} \rrbracket = \text{Socrates}$
+- $\llbracket \textit{is} \rrbracket = \text{?}$
+- $\llbracket \textit{mortal} \rrbracket = \text{?}$
 
 と，それらの組み合わせ方によって，また**それらによってのみ**計算されるはずである．この語彙の組み合わせ方を**意味計算規則**と呼ぶ．
 
@@ -69,9 +69,9 @@ $$
 
 - 「意味」とは「自然言語表現」と「世界のあり方」の対応関係である．
 - 文の意味は真理値である．
-- 外延割当関数 $[\![\cdot]\!]$ は，言語表現をその意味に写す．
-  - $[\![\textit{Socrates}]\!] = \text{Socrates (という人物)}$
-  - $[\![\textit{Socrates is mortal.}]\!] = \text{True}$
+- 外延割当関数 $\llbracket \cdot \rrbracket$ は，言語表現をその意味に写す．
+  - $\llbracket \textit{Socrates} \rrbracket = \text{Socrates (という人物)}$
+  - $\llbracket \textit{Socrates is mortal.} \rrbracket = \text{True}$
 - 文の意味は，文中の語彙の意味と，それらの組み合わせ方 (意味計算規則) によって，またそれらによってのみ計算される．
 
 ## §2 意味タイプ
@@ -101,13 +101,13 @@ $$
 という記述は妥当であり，「$\textit{Socrates}$ という語は $e$ 型を持つ」という主張になるが，
 
 $$
-[\![\textit{Socrates}]\!] : e
+\llbracket \textit{Socrates} \rrbracket : e
 $$
 
 という記述は妥当でない (と思う)[^13]．一方，
 
 $$
-[\![\textit{Socrates}]\!] \in D_e
+\llbracket \textit{Socrates} \rrbracket \in D_e
 $$
 
 はメタ言語のレイヤにおける妥当な記述である．
@@ -125,11 +125,11 @@ $$
 
 ### 3.1 $\textit{Socrates}$ の外延
 
-$\textit{Socrates}$ という語の意味，すなわち $[\![Socrates]\!]$ は，前述の通り，古代ギリシアの哲学者であるソクラテスのことを指している．このように，固有名詞が与えられたとき，その外延は，$D_e$ (個体全部の集合) の要素として一意に定まる．ゆえに，固有名詞は $e$ 型をもつ．
+$\textit{Socrates}$ という語の意味，すなわち $\llbracket Socrates \rrbracket$ は，前述の通り，古代ギリシアの哲学者であるソクラテスのことを指している．このように，固有名詞が与えられたとき，その外延は，$D_e$ (個体全部の集合) の要素として一意に定まる．ゆえに，固有名詞は $e$ 型をもつ．
 
 ### 3.2 $\textit{apple} \cdot \textit{beautiful} \cdot \textit{run}$ の外延
 
-続いて $\textit{apple}$ という語彙の外延 $[\![apple]\!]$ を考えてみよう．ある個体 $x \in D_e$ を与えられたとき，我々は $x$ がリンゴであるかどうかを見分けることができる[^14]．ゆえに，$[\![apple]\!]$ は $D_e$ の部分集合で，リンゴであるような個体だけを集めてきた集合
+続いて $\textit{apple}$ という語彙の外延 $\llbracket apple \rrbracket$ を考えてみよう．ある個体 $x \in D_e$ を与えられたとき，我々は $x$ がリンゴであるかどうかを見分けることができる[^14]．ゆえに，$\llbracket apple \rrbracket$ は $D_e$ の部分集合で，リンゴであるような個体だけを集めてきた集合
 
 $$
 \lbrace x \in D_e \mid x\text{ is an apple}\rbrace
@@ -154,7 +154,7 @@ $$
 
 と簡単に表記する．
 
-次に，自動詞 $\textit{run}$ の外延 $[\![run]\!]$ を考えてみよう．これも先程と同じように，すべての個体の中から，走っているもののみを選んできた部分集合
+次に，自動詞 $\textit{run}$ の外延 $\llbracket run \rrbracket$ を考えてみよう．これも先程と同じように，すべての個体の中から，走っているもののみを選んできた部分集合
 
 $$
 \lbrace x \in D_e \mid x \text{ runs} \rbrace
@@ -177,7 +177,7 @@ $$
 
 とも表記する．
 
-同様に，形容詞 $\textit{beautiful}$ の外延 $[\![\textit{beautiful}]\!]$ は
+同様に，形容詞 $\textit{beautiful}$ の外延 $\llbracket \textit{beautiful} \rrbracket$ は
 
 $$
 \lambda x. x \text{ is beautiful}
@@ -189,11 +189,11 @@ $$
 
 ### 3.3 $\textit{love}$ の外延
 
-他動詞 $\textit{love}$ の外延 $[\![love]\!]$ を考えてみよう．$\textit{love}$ を用いた例文として $\textit{Plato loves Socrates.}$ というものを考えてみる．
+他動詞 $\textit{love}$ の外延 $\llbracket love \rrbracket$ を考えてみよう．$\textit{love}$ を用いた例文として $\textit{Plato loves Socrates.}$ というものを考えてみる．
 
 前節で自動詞 $\textit{run}$ の意味を考える際，$P_\text{run} (x) = x \text{ runs}$ という述語について，項 $x \in D_e$ を探してきてはガチャガチャと当てはめてみて，$P_\text{run} (x)$ を真にするものとそうでないものに分類したのだった．同じように $\textit{love}$ の意味を考えてみると，$P_\text{love} (x, y) = x \text{ loves } y$ という命題に対し，$x, y \in D_e$ を探してきてはガチャガチャと当てはめてみて，$P_\text{love} (x, y)$ を真にする組とそうでない組に分類してみるとよさそうだ．ここで，$\langle x, y \rangle = \langle \text{Plato}, \text{Socrates} \rangle$ という組は $P_\text{love} (x, y)$ を真にする，といった具合である．
 
-$[\![love]\!]$ を，$P_\text{love} (x, y)$ を真にするような $D_e \times D_e$ の部分集合，つまり $D_e$ 上の二項関係[^15]と捉えると，$[\![love]\!]$ は以下のように定義できる．
+$\llbracket love \rrbracket$ を，$P_\text{love} (x, y)$ を真にするような $D_e \times D_e$ の部分集合，つまり $D_e$ 上の二項関係[^15]と捉えると，$\llbracket love \rrbracket$ は以下のように定義できる．
 
 $$
 \lbrace \langle x, y \rangle \in D_e \times D_e \mid x \text{ loves } y \rbrace
@@ -236,14 +236,14 @@ $$
 
 $\text{Model PEANUTS}$ には，以下の8つ (のみ) の個体が存在する．それぞれに対応する言語表現と合わせて示す．
 
-- $[\![\textit{Snoopy}]\!] = \text{Snoopy}$
-- $[\![\textit{Woodstock}]\!] = \text{Woodstock}$
-- $[\![\textit{Charlie}]\!] = \text{Charlie}$
-- $[\![\textit{Sally}]\!] = \text{Sally}$
-- $[\![\textit{Lucy}]\!] = \text{Lucy}$
-- $[\![\textit{Linus}]\!] = \text{Linus}$
-- $[\![\textit{Patty}]\!] = \text{Patty}$
-- $[\![\textit{Schroeder}]\!] = \text{Schroeder}$
+- $\llbracket \textit{Snoopy} \rrbracket = \text{Snoopy}$
+- $\llbracket \textit{Woodstock} \rrbracket = \text{Woodstock}$
+- $\llbracket \textit{Charlie} \rrbracket = \text{Charlie}$
+- $\llbracket \textit{Sally} \rrbracket = \text{Sally}$
+- $\llbracket \textit{Lucy} \rrbracket = \text{Lucy}$
+- $\llbracket \textit{Linus} \rrbracket = \text{Linus}$
+- $\llbracket \textit{Patty} \rrbracket = \text{Patty}$
+- $\llbracket \textit{Schroeder} \rrbracket = \text{Schroeder}$
 
 また，$\textit{boy}$ という語が存在する．この語の外延は以下の通りである．
 
@@ -301,7 +301,7 @@ data PEANUTS
     deriving (Show)
 ```
 
-これらを組み合わせることで，$\text{Model PEANUTS}$ を Haskell に埋め込んだ `Model PEANUTS` 言語が得られる．ここで，対象言語内の記号 $\textit{Snoopy}$ は `Entity Snoopy :: Model PEANUTS PEANUTS` と表され，その外延 $[\![\textit{Snoopy}]\!]$ は `Snoopy :: PEANUTS` と表される．
+これらを組み合わせることで，$\text{Model PEANUTS}$ を Haskell に埋め込んだ `Model PEANUTS` 言語が得られる．ここで，対象言語内の記号 $\textit{Snoopy}$ は `Entity Snoopy :: Model PEANUTS PEANUTS` と表され，その外延 $\llbracket \textit{Snoopy} \rrbracket$ は `Snoopy :: PEANUTS` と表される．
 
 また，外延割当関数を以下のように与える[^20]．
 
@@ -312,7 +312,7 @@ eval (TruthValue t) = t
 eval (Function f)   = f
 ```
 
-`eval` を用いると，$[\![\textit{Snoopy}]\!] = \text{Snoopy}$ という関係は `eval (Entity Snoopy) = Snoopy` と書くことができる．
+`eval` を用いると，$\llbracket \textit{Snoopy} \rrbracket = \text{Snoopy}$ という関係は `eval (Entity Snoopy) = Snoopy` と書くことができる．
 
 ### 4つの意味計算規則
 
@@ -362,15 +362,15 @@ boy = Function \case
 <img alt="&quot;Linus is a boy.&quot; の統語構造" src="https://gyazo.com/aa019eeeea7f269d64e044b57185a220.png" />
 </div>
 
-ここで $\textit{is}$ と $\textit{a}$ は「語彙的に空虚」であると考える[^21]．すると，合成性原理に従えば，この文の意味 $[\![\textit{Linus is a boy.}]\!]$ ——これは前述の通り真理値になる——は $[\![\textit{Linus}]\!]$ 及び $[\![\textit{boy}]\!]$ と**その合成の仕方によって，またそれらによってのみ**計算されるはずである．
+ここで $\textit{is}$ と $\textit{a}$ は「語彙的に空虚」であると考える[^21]．すると，合成性原理に従えば，この文の意味 $\llbracket \textit{Linus is a boy.} \rrbracket$ ——これは前述の通り真理値になる——は $\llbracket \textit{Linus} \rrbracket$ 及び $\llbracket \textit{boy} \rrbracket$ と**その合成の仕方によって，またそれらによってのみ**計算されるはずである．
 
-実際のところ，どのような合成を行えばよいのだろうか．ここで第一の意味計算規則である **Functional Application** (FA) が導入される．$\textit{Linus} : e$ であり，かつ $\textit{boy} : e \to t$ であるから，文の意味が真理値であったことを思い出すと，直観に従って，関数適用を施した $[\![\textit{boy}]\!]([\![\textit{Linus}]\!]) \in D_t$ を意味としたいと思うのが人間の性であろう．
+実際のところ，どのような合成を行えばよいのだろうか．ここで第一の意味計算規則である **Functional Application** (FA) が導入される．$\textit{Linus} : e$ であり，かつ $\textit{boy} : e \to t$ であるから，文の意味が真理値であったことを思い出すと，直観に従って，関数適用を施した $\llbracket \textit{boy} \rrbracket(\llbracket \textit{Linus} \rrbracket) \in D_t$ を意味としたいと思うのが人間の性であろう．
 
 FA を形式的に書くと以下のようになる[^22]．
 
-> $\alpha$ が，$\beta$ と $\gamma$ を娘に持つ枝分かれ節点 (branching node) で，$[\![\beta]\!]$ が $[\![\gamma]\!]$ を定義域に含む関数であるとき，$[\![\alpha]\!] = [\![\beta]\!]([\![\gamma]\!])$ である．
+> $\alpha$ が，$\beta$ と $\gamma$ を娘に持つ枝分かれ節点 (branching node) で，$\llbracket \beta \rrbracket$ が $\llbracket \gamma \rrbracket$ を定義域に含む関数であるとき，$\llbracket \alpha \rrbracket = \llbracket \beta \rrbracket(\llbracket \gamma \rrbracket)$ である．
 
-言い換えれば次のようになる．$\alpha$ が枝分かれ節点であり，$\beta$ および $\gamma$ を娘に持つとする．ここで $\beta$ の意味は関数であり，どのような関数かというと，定義域に $[\![\gamma]\!]$ を含んでいる．このとき，$\alpha$ の意味はどのように計算されるだろうか．その答えは，$\gamma$ の意味である項 $[\![\gamma]\!]$ に，$\beta$ の意味たる関数 $[\![\beta]\!]$ を適用した値 $[\![\beta]\!]([\![\gamma]\!])$ となる．
+言い換えれば次のようになる．$\alpha$ が枝分かれ節点であり，$\beta$ および $\gamma$ を娘に持つとする．ここで $\beta$ の意味は関数であり，どのような関数かというと，定義域に $\llbracket \gamma \rrbracket$ を含んでいる．このとき，$\alpha$ の意味はどのように計算されるだろうか．その答えは，$\gamma$ の意味である項 $\llbracket \gamma \rrbracket$ に，$\beta$ の意味たる関数 $\llbracket \beta \rrbracket$ を適用した値 $\llbracket \beta \rrbracket(\llbracket \gamma \rrbracket)$ となる．
 
 $\alpha$ のような節点を `Model` 言語に追加してみよう．left-to-right な適用と right-to-left な適用の2種類が考えられるため，それぞれに対応するコンストラクタを用意する．
 
@@ -449,7 +449,7 @@ main = hspec do
 ### §6のまとめ
 
 - FA という意味計算規則が導入された．
-  - $\alpha$ が，$\beta$ と $\gamma$ を娘に持つ枝分かれ節点で，$[\![\beta]\!]$ が $[\![\gamma]\!]$ を定義域に含む関数であるとき，$[\![\alpha]\!] = [\![\beta]\!]([\![\gamma]\!])$ である．
+  - $\alpha$ が，$\beta$ と $\gamma$ を娘に持つ枝分かれ節点で，$\llbracket \beta \rrbracket$ が $\llbracket \gamma \rrbracket$ を定義域に含む関数であるとき，$\llbracket \alpha \rrbracket = \llbracket \beta \rrbracket(\llbracket \gamma \rrbracket)$ である．
 
 ## §7 Predicate Modification (PM)
 
@@ -459,9 +459,9 @@ $\textit{Snoopy is a cute dog.}$ という文の意味を計算したい．統�
 
 ここで，$\textit{cute}$ と $\textit{dog}$ を娘に持つ節点に注目したい．$cute : e \to t$ であり，かつ $dog : e \to t$ なので，FA では型が合わない．このような節点の意味を計算するための規則として **Predicate Modification** (PM) を導入する[^23]．
 
-> $\alpha$ が枝分かれ節点で，$\beta, \gamma$ がともに $\alpha$ の娘であり，$[\![\beta]\!] \in D _ {e \to t}$ かつ $[\![\gamma]\!] \in D_{e \to t}$ であるとき，$[\![\alpha]\!] = \lambda x \in D_e. [\![\beta]\!](x) \land [\![\gamma]\!](x)$ である．
+> $\alpha$ が枝分かれ節点で，$\beta, \gamma$ がともに $\alpha$ の娘であり，$\llbracket \beta \rrbracket \in D _ {e \to t}$ かつ $\llbracket \gamma \rrbracket \in D_{e \to t}$ であるとき，$\llbracket \alpha \rrbracket = \lambda x \in D_e. \llbracket \beta \rrbracket(x) \land \llbracket \gamma \rrbracket(x)$ である．
 
-$x \in D _ e$ に関する2つの述語 $[\![\beta]\!] = \lambda x.P(x)$ と $[\![\gamma]\!] = \lambda x.Q(x)$ が与えられたならば，それらの論理積を取った新しい述語 $\lambda x. P(x) \land Q(x)$ として取り扱おう，というアイディアである．
+$x \in D _ e$ に関する2つの述語 $\llbracket \beta \rrbracket = \lambda x.P(x)$ と $\llbracket \gamma \rrbracket = \lambda x.Q(x)$ が与えられたならば，それらの論理積を取った新しい述語 $\lambda x. P(x) \land Q(x)$ として取り扱おう，というアイディアである．
 
 PM を `Model` 言語に追加してみよう
 
@@ -478,7 +478,7 @@ eval :: Model entity a -> a
 eval (PredicateModification p q) = \x -> eval p x && eval q x
 ```
 
-PM と FA を用いて $\textit{Snoopy is a cute dog.}$ の意味を計算すると，$(\lambda x. [\![\textit{cute}]\!](x) \land [\![\textit{dog}]\!](x))([\![Snoopy]\!])$，すなわち $[\![\textit{cute}]\!](\text{Snoopy}) \land [\![\textit{dog}]\!](\text{Snoopy})$ となる．
+PM と FA を用いて $\textit{Snoopy is a cute dog.}$ の意味を計算すると，$(\lambda x. \llbracket \textit{cute} \rrbracket(x) \land \llbracket \textit{dog} \rrbracket(x))(\llbracket Snoopy \rrbracket)$，すなわち $\llbracket \textit{cute} \rrbracket(\text{Snoopy}) \land \llbracket \textit{dog} \rrbracket(\text{Snoopy})$ となる．
 
 $\text{Model PEANUTS}$ において $\textit{cute}$ と $\textit{dog}$ の意味を次のように定義する．
 
@@ -512,12 +512,12 @@ main = do
             eval sentence `shouldBe` False -- passes
 ```
 
-Snoopy が cute であるかどうかについては議論が分かれるところだと思うが，少なくとも $\text{Model PEANUTS}$ における $\textit{cute}$ の定義に照らし合わせれば，$[\![\textit{Snoopy is a cute dog.}]\!]$ は偽ということになる．
+Snoopy が cute であるかどうかについては議論が分かれるところだと思うが，少なくとも $\text{Model PEANUTS}$ における $\textit{cute}$ の定義に照らし合わせれば，$\llbracket \textit{Snoopy is a cute dog.} \rrbracket$ は偽ということになる．
 
 ### §7のまとめ
 
 - PM という意味計算規則が導入された．
-  - $\alpha$ が枝分かれ節点で，$\beta, \gamma$ がともに $\alpha$ の娘であり，$[\![\beta]\!] \in D_{e \to t}$ かつ $[\![\gamma]\!] \in D_{e \to t}$ であるとき，$[\![\alpha]\!] = \lambda x \in D_e. [\![\beta]\!](x) \land [\![\gamma]\!](x)$ である．
+  - $\alpha$ が枝分かれ節点で，$\beta, \gamma$ がともに $\alpha$ の娘であり，$\llbracket \beta \rrbracket \in D_{e \to t}$ かつ $\llbracket \gamma \rrbracket \in D_{e \to t}$ であるとき，$\llbracket \alpha \rrbracket = \lambda x \in D_e. \llbracket \beta \rrbracket(x) \land \llbracket \gamma \rrbracket(x)$ である．
 
 ## 後編に向けて
 
@@ -639,7 +639,7 @@ main = hspec do
 [^17]: 我々が "currying" として知っている操作である．
 [^18]: $\to$ は右結合であると約束する．
 [^19]: 『形式意味論入門』p. 31 では，この定義のもとで $\textit{student}$ の外延を考えるには，「実際にこの世界中ですべての「学生」を知っていないと，この外延は定義できないことになる．」と述べられている．
-[^20]: これは一見自明に見えるが，必ずしもそうではない．Heim and Kratzer §3.1 において，"If $\alpha$ is a terminal node, $[\![\alpha]\!]$ is specified in the lexicon." という規則が与えられている．
+[^20]: これは一見自明に見えるが，必ずしもそうではない．Heim and Kratzer §3.1 において，"If $\alpha$ is a terminal node, $\llbracket \alpha \rrbracket$ is specified in the lexicon." という規則が与えられている．
 [^21]: この取り扱いが妥当なのかはちょっとわかっていない．導入部分では捨象していい程度の問題なのだろうか．
 [^22]: Heim and Kratzer §3.
 [^23]: Heim and Kratzer §4.3.1

@@ -54,11 +54,11 @@ g'' & = \phi
 \end{align*}
 $$
 
-直示を含む項の意味計算をするには，指示対象を発話文脈に問い合わせる必要があるため，**ある変項割当のもとで項の意味計算を行なう**必要がある．そこで，変項割当 $g$ のもとでの項 $e$ の外延を $[\![e]\!]^g$ と表記することにする．以降 $[\![\cdot]\!]$ は $[\![\cdot]\!]^\phi$ の略記であるとする[^3]．
+直示を含む項の意味計算をするには，指示対象を発話文脈に問い合わせる必要があるため，**ある変項割当のもとで項の意味計算を行なう**必要がある．そこで，変項割当 $g$ のもとでの項 $e$ の外延を $\llbracket e \rrbracket^g$ と表記することにする．以降 $\llbracket \cdot \rrbracket$ は $\llbracket \cdot \rrbracket^\phi$ の略記であるとする[^3]．
 
 また，**変項** (variable) という概念は形式的には次のように定義される[^4][^5]．
 
-> 終端記号 $\alpha$ は，$[\![\alpha]\!]^g \neq [\![\alpha]\!]^{g'}$ となるような変項割当 $g$ および $g'$ が存在するとき，かつそのときに限り変項であるという．
+> 終端記号 $\alpha$ は，$\llbracket \alpha \rrbracket^g \neq \llbracket \alpha \rrbracket^{g'}$ となるような変項割当 $g$ および $g'$ が存在するとき，かつそのときに限り変項であるという．
 
 変項は**自由変項** (free variable) と**束縛変項** (bound variable) に分類される[^6]が，
 ある項が自由変項を含む開いた項であるか，それとも自由変項を含まない**閉じた項** (closed term) であるかを区別することは重要である．閉じた項の意味計算はその項の内部だけで完結する一方，開いた項の意味計算を行うためには，変項の指示対象を外部から与える必要があるからである．
@@ -165,7 +165,7 @@ main = hspec $ do
 
 下準備が随分長くなってしまったが，いよいよ ${\textit{She}_\mathrm{1} \textit{ loves } \textit{him}_\mathrm{2} \text{.}}$ という直示表現を含んだ文の意味計算を行うために，第3の意味計算規則である **Traces & Pronouns** (T&P) を導入する[^7]．
 
-> $\alpha_i$ が代名詞または痕跡で，$g$ が変項割当であり，$i$ が $g$ の定義域に含まれるとき，$[\![\alpha_i]\!] = g(i)$ である．
+> $\alpha_i$ が代名詞または痕跡で，$g$ が変項割当であり，$i$ が $g$ の定義域に含まれるとき，$\llbracket \alpha_i \rrbracket = g(i)$ である．
 
 $\alpha_i$ はそれ単体では意味が定まらないが，変項割当 $g$ によって指示対象が指定されているときに，$g$ を用いて意味計算を行なうことができる，ということを表している．ここでは例として
 
@@ -183,10 +183,10 @@ $$
 
 $$
 \begin{align*}
-[\![\textit{She}_\mathrm{1} \textit{ loves } \textit{him}_\mathrm{2}]\!]
-&= [\![\textit{love him}_\mathrm{2}]\!]^g([\![\textit{she}_\mathrm{1}]\!]^g) & (\because \text{FA}) \\
-&= [\![\textit{love}]\!]^g([\![\textit{him}_\mathrm{2}]\!]^g)([\![\textit{she}_\mathrm{1}]\!]^g) & (\because \text{FA}) \\
-&= (\lambda x y. y \text{ loves } x)([\![\textit{him}_\mathrm{2}]\!]^g)([\![\textit{she}_\mathrm{1}]\!]^g) & (\because \text{lexicon}) \\
+\llbracket \textit{She}_\mathrm{1} \textit{ loves } \textit{him}_\mathrm{2} \rrbracket
+&= \llbracket \textit{love him}_\mathrm{2} \rrbracket^g(\llbracket \textit{she}_\mathrm{1} \rrbracket^g) & (\because \text{FA}) \\
+&= \llbracket \textit{love} \rrbracket^g(\llbracket \textit{him}_\mathrm{2} \rrbracket^g)(\llbracket \textit{she}_\mathrm{1} \rrbracket^g) & (\because \text{FA}) \\
+&= (\lambda x y. y \text{ loves } x)(\llbracket \textit{him}_\mathrm{2} \rrbracket^g)(\llbracket \textit{she}_\mathrm{1} \rrbracket^g) & (\because \text{lexicon}) \\
 &= (\lambda x y. y \text{ loves } x)(g(2))(g(1)) & \color{red}{(\because \text{T\&P})} \\
 &= (\lambda x y. y \text{ loves } x)(\text{Schroeder})(\text{Lucy}) & (\because \text{definition of } g) \\
 &= (\lambda y. y \text{ loves Schroeder} )(\text{Lucy}) & (\because \beta \text{-reduction}) \\
@@ -274,7 +274,7 @@ main = hspec $ do
 ### §10のまとめ
 
 - T&P という意味計算規則が導入された
-  - $\alpha_i$ が代名詞または痕跡で，$g$ が変項割当であり，$i$ が $g$ の定義域に含まれるとき，$[\![\alpha_i]\!] = g(i)$ である．
+  - $\alpha_i$ が代名詞または痕跡で，$g$ が変項割当であり，$i$ が $g$ の定義域に含まれるとき，$\llbracket \alpha_i \rrbracket = g(i)$ である．
 - 指標を型レヴェルで扱えば，T&P は `askEff` 関数によって表現でき，文脈上の具体的な指示対象は `runReaderEff` 関数によって与えられる
 
 ## §11 Predicate Abstraction (PA)
@@ -336,9 +336,9 @@ lucyLovesT1 = do
 
 ### $\textit{who}_\mathrm{1} \textit{ Lucy loves } t_\mathrm{1}$
 
-次に，関係代名詞節 $\textit{who}_\mathrm{1} \textit{ Lucy loves } t_\mathrm{1}$ を見てみよう．この世の中の個体は，Lucy が愛するものとそうでないものに分類することができるので，$[\![\textit{who}_\mathrm{1} \textit{ Lucy loves } t_\mathrm{1}]\!]$ は個体に関する述語である，つまり $\textit{who}_\mathrm{1} \textit{ Lucy loves } t_\mathrm{1}$ は $e \to t$ 型をもつことが予想される．$\textit{loves}$ の目的語である変項 $t_\mathrm{1}$ に様々な個体を代入してみては，それを Lucy が愛してるか否かを検証する，といった具合である．
+次に，関係代名詞節 $\textit{who}_\mathrm{1} \textit{ Lucy loves } t_\mathrm{1}$ を見てみよう．この世の中の個体は，Lucy が愛するものとそうでないものに分類することができるので，$\llbracket \textit{who}_\mathrm{1} \textit{ Lucy loves } t_\mathrm{1} \rrbracket$ は個体に関する述語である，つまり $\textit{who}_\mathrm{1} \textit{ Lucy loves } t_\mathrm{1}$ は $e \to t$ 型をもつことが予想される．$\textit{loves}$ の目的語である変項 $t_\mathrm{1}$ に様々な個体を代入してみては，それを Lucy が愛してるか否かを検証する，といった具合である．
 
-$[\![{\textit{who}_\mathrm{1} \textit{ Lucy loves } t_\mathrm{1}}]\!]$ は純粋に個体に関する述語であり，${\textit{who}_\mathrm{1} \textit{ Lucy loves } t_\mathrm{1}}$ という項の意味は変項割当に依存しないという点に注目したい．部分木である ${\textit{Lucy loves t}_\mathrm{1}}$ は意味計算にあたって $1$ の指示対象が定まっている必要があるにも関わらずである．
+$\llbracket {\textit{who}_\mathrm{1} \textit{ Lucy loves } t_\mathrm{1}} \rrbracket$ は純粋に個体に関する述語であり，${\textit{who}_\mathrm{1} \textit{ Lucy loves } t_\mathrm{1}}$ という項の意味は変項割当に依存しないという点に注目したい．部分木である ${\textit{Lucy loves t}_\mathrm{1}}$ は意味計算にあたって $1$ の指示対象が定まっている必要があるにも関わらずである．
 
 このような観察から，この ${\textit{who}_\mathrm{1}}$ が併合されるこの接点において，$t_\mathrm{1}$ の部分が抽象化され，$\lambda x. \text{Lucy loves } x$ なる $D_e$ から $D_t$ への関数に変換されていることが見て取れる．実際のところ，このような意味計算はどのような規則に基づいて行われると解釈すべきであろうか．『形式意味論入門』4.4. に次のような言明がある．
 
@@ -350,7 +350,7 @@ $[\![{\textit{who}_\mathrm{1} \textit{ Lucy loves } t_\mathrm{1}}]\!]$ は純粋
 
 Predicate Abstraction は以下のように定義される[^8]．
 
-> $\alpha$ が $\beta_i$ $(i \in \mathbb{N})$ および $\gamma$ を娘に持つ枝分かれ接点で，$\beta$ が代名詞または "such" であるとき，任意の変項割り当て $g$ のもとで $[\![\alpha]\!]^g = \lambda x \in D_e. [\![\gamma]\!]^{g[i \mapsto x]}$ となる．
+> $\alpha$ が $\beta_i$ $(i \in \mathbb{N})$ および $\gamma$ を娘に持つ枝分かれ接点で，$\beta$ が代名詞または "such" であるとき，任意の変項割り当て $g$ のもとで $\llbracket \alpha \rrbracket^g = \lambda x \in D_e. \llbracket \gamma \rrbracket^{g[i \mapsto x]}$ となる．
 
 ただし $g[i \mapsto x]$ は modified variable assignment と呼ばれるもので，以下のように定義される[^9]．
 
@@ -370,10 +370,10 @@ PA を用いて $\textit{who}_\mathrm{1} \textit{ Lucy loves } t_\mathrm{1}$ の
 
 $$
 \begin{align*}
-[\![\textit{who}_\mathrm{1} \textit{ Lucy loves } t_\mathrm{1}]\!]
-&= \lambda x. [\![\textit{Lucy loves } t_\mathrm{1}]\!]^{\phi[1 \mapsto x]} & \color{red}{(\because \text{PA})} \\
-&= \lambda x. [\![\textit{love}]\!]^{\phi[1 \mapsto x]}([\![t_\mathrm{1}]\!]^{\phi[1 \mapsto x]})([\![\textit{Lucy}]\!]^{\phi[1 \mapsto x]}) & (\because \text{FA} \times 2) \\
-&= \lambda x. (\lambda y z. z \text{ loves } y)([\![t_\mathrm{1}]\!]^{\phi[1 \mapsto x]})(\text{Lucy}) & (\because \text{lexicon}) \\
+\llbracket \textit{who}_\mathrm{1} \textit{ Lucy loves } t_\mathrm{1} \rrbracket
+&= \lambda x. \llbracket \textit{Lucy loves } t_\mathrm{1} \rrbracket^{\phi[1 \mapsto x]} & \color{red}{(\because \text{PA})} \\
+&= \lambda x. \llbracket \textit{love} \rrbracket^{\phi[1 \mapsto x]}(\llbracket t_\mathrm{1} \rrbracket^{\phi[1 \mapsto x]})(\llbracket \textit{Lucy} \rrbracket^{\phi[1 \mapsto x]}) & (\because \text{FA} \times 2) \\
+&= \lambda x. (\lambda y z. z \text{ loves } y)(\llbracket t_\mathrm{1} \rrbracket^{\phi[1 \mapsto x]})(\text{Lucy}) & (\because \text{lexicon}) \\
 &= \lambda x. (\lambda y z. z \text{ loves } y)(\phi[1 \mapsto x](1))(\text{Lucy}) & (\because \text{T\&P}) \\
 &= \lambda x. (\lambda y z. z \text{ loves } y)(x)(\text{Lucy}) & (\because \text{definition of } \phi[1 \mapsto x]) \\
 &= \lambda x. (\lambda z. z \text{ loves } x)(\text{Lucy}) & (\because \beta \text{-reduction}) \\
@@ -415,8 +415,8 @@ $\textit{boy} : e \to t$ および $\textit{who}_\mathrm{1} \textit{ Lucy loves 
 
 $$
 \begin{align*}
-[\![\textit{boy } \textit{who}_\mathrm{1} \textit{ Lucy loves } t_\mathrm{1}]\!]
-&= \lambda x. [\![{\textit{boy}}]\!](x) \land [\![{\textit{who}_\mathrm{1} \textit{ Lucy loves } t_\mathrm{1}}]\!](x) & (\because \text{PM}) \\
+\llbracket \textit{boy } \textit{who}_\mathrm{1} \textit{ Lucy loves } t_\mathrm{1} \rrbracket
+&= \lambda x. \llbracket {\textit{boy}} \rrbracket(x) \land \llbracket {\textit{who}_\mathrm{1} \textit{ Lucy loves } t_\mathrm{1}} \rrbracket(x) & (\because \text{PM}) \\
 &= \lambda x. x \text{ is a boy and Lucy loves } x
 \end{align*}
 $$
@@ -433,11 +433,11 @@ boyWhoLucyLoves = predicateModification boy whoLucyLoves
 
 ### $\textit{the boy } \textit{who}_\mathrm{1} \textit{ Lucy loves } t_\mathrm{1}$
 
-定冠詞 $the$ の外延 $[\![\textit{the}]\!]$ はどのようなものだろうか．Heim and Kratzer では以下のように定義されている[^10]．
+定冠詞 $the$ の外延 $\llbracket \textit{the} \rrbracket$ はどのようなものだろうか．Heim and Kratzer では以下のように定義されている[^10]．
 
-> $f(x) = \text{True}$ となるような $x$ がちょうど1つだけ存在するような任意の関数 $f \in D_{e \to t}$ について，$[\![\textit{the}]\!](f)$ は，$f(x) = \text{True}$ を満たすような唯一の $x$ である．
+> $f(x) = \text{True}$ となるような $x$ がちょうど1つだけ存在するような任意の関数 $f \in D_{e \to t}$ について，$\llbracket \textit{the} \rrbracket(f)$ は，$f(x) = \text{True}$ を満たすような唯一の $x$ である．
 
-与えられた述語 $\varphi$ を満たすような個体が，考えているモデル内にただ一つだけ存在するとき，その個体を $\textit{the } \varphi$ の意味とする．Model PEANUTS における語彙の定義に立ち返ると，$\lambda x. [\![\textit{boy } \textit{who}_\mathrm{1} \textit{ Lucy loves } t_\mathrm{1}]\!](x)$ を $\text{True}$ にする個体 $x$ は $\text{Schroeder}$ のみなので，$[\![\textit{the boy } \textit{who}_\mathrm{1} \textit{ Lucy loves } t_\mathrm{1}]\!] = \text{Schroeder}$ となるはずである．
+与えられた述語 $\varphi$ を満たすような個体が，考えているモデル内にただ一つだけ存在するとき，その個体を $\textit{the } \varphi$ の意味とする．Model PEANUTS における語彙の定義に立ち返ると，$\lambda x. \llbracket \textit{boy } \textit{who}_\mathrm{1} \textit{ Lucy loves } t_\mathrm{1} \rrbracket(x)$ を $\text{True}$ にする個体 $x$ は $\text{Schroeder}$ のみなので，$\llbracket \textit{the boy } \textit{who}_\mathrm{1} \textit{ Lucy loves } t_\mathrm{1} \rrbracket = \text{Schroeder}$ となるはずである．
 
 Haskell では以下のように実装できる[^11]．モデル内の個体を列挙する必要があるため，`Bounded entity` および `Enum entity` という制約を追加せざるを得ない．
 
@@ -453,7 +453,7 @@ the predicate = do
         _   -> error "multiple entities satisfy the given predicate"
 ```
 
-主部 $\textit{the boy } \textit{who}_\mathrm{1} \textit{ Lucy loves } t_\mathrm{1}$ の外延が $\text{Schroeder}$ であることがわかったので，あとは FA によって $[\![\textit{player}]\!](\text{Schroeder})$ を計算すれば，元の文の外延が $\text{True}$ であることがわかる．
+主部 $\textit{the boy } \textit{who}_\mathrm{1} \textit{ Lucy loves } t_\mathrm{1}$ の外延が $\text{Schroeder}$ であることがわかったので，あとは FA によって $\llbracket \textit{player} \rrbracket(\text{Schroeder})$ を計算すれば，元の文の外延が $\text{True}$ であることがわかる．
 
 ```haskell
 sentence :: Eff ('[] :: [Assoc Nat (Type -> Type)]) Bool
@@ -484,7 +484,7 @@ main = hspec $ do
 ### §11のまとめ
 
 - PA という意味計算規則が導入された
-  - $\alpha$ が $\beta_{i}$ $(i \in \mathbb{N})$ および $\gamma$ を娘に持つ枝分かれ接点で，$\beta$ が代名詞または "such" であるとき，任意の変項割り当て $g$ のもとで $[\![\alpha]\!]^g = \lambda x \in D_e. [\![\gamma]\!]^{g[i \mapsto x]}$ となる．
+  - $\alpha$ が $\beta_{i}$ $(i \in \mathbb{N})$ および $\gamma$ を娘に持つ枝分かれ接点で，$\beta$ が代名詞または "such" であるとき，任意の変項割り当て $g$ のもとで $\llbracket \alpha \rrbracket^g = \lambda x \in D_e. \llbracket \gamma \rrbracket^{g[i \mapsto x]}$ となる．
 - PA は `runReaderEff` 関数で表現できる
 
 ## 終わりに
