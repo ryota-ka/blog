@@ -16,7 +16,7 @@ const fancyLinks: Plugin<[], Root, void> = () => async (tree: Root) => {
             const { host, pathname } = new URL(url);
             const pieces = pathname.slice(1).split('/');
 
-            if (host === 'twitter.com' && pieces[1] === 'status') {
+            if ((host === 'twitter.com' || host === 'x.com') && pieces[1] === 'status') {
                 Object.assign(node.data, {
                     hName: 'embedded-tweet',
                     hProperties: {
