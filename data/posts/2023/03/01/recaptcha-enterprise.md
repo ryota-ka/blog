@@ -33,7 +33,7 @@ https://cloud.google.com/recaptcha-enterprise/docs/getting-started
 
 バックエンドを Google Cloud にデプロイする場合は，Google Cloud の[サービス アカウント](https://cloud.google.com/iam/docs/understanding-service-accounts)がそのまま利用できるため，話は簡単である[^2]．他方，Google Cloud 以外にデプロイする場合はその限りではない．
 
-以下では簡単のため，[API キーを利用したセットアップ方法](https://cloud.google.com/recaptcha-enterprise/docs/set-up-non-google-cloud-environments-api-keys)に沿って解説を進める[^3]．実際の導入時には，セキュリティリスクを軽減するため，[Workload Identity 連携](https://cloud.google.com/iam/docs/workload-identity-federation)を設定した上で，短い有効期限を持つトークンを都度発行する形にした方が望ましいだろう．
+以下では簡単のため，[API キーを利用したセットアップ方法](https://cloud.google.com/recaptcha-enterprise/docs/set-up-non-google-cloud-environments-api-keys)に沿って解説を進める[^3]．実際の導入時には，セキュリティリスクを軽減するため，[Workload Identity 連携](https://cloud.google.com/iam/docs/workload-identity-federation)を設定した上で，短い有効期限を持つトークンを都度発行する形を取るのが望ましい．
 
 ### キータイプの選択
 
