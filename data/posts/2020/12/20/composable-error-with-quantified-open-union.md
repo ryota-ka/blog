@@ -5,9 +5,9 @@ keywords:
   - Software architecture
 ---
 
-# ユースケース層が投げうるエラーの型を「量化した open union」にしておけば複数のユースケースを合成したときに上の層でエラーハンドリングが楽にできて最高です！
+# ユースケース層が投げうるエラーの型を「量化したopen union」にしておけば複数のユースケースを合成したときに上の層でエラーハンドリングが楽にできて最高です！
 
-この記事は [Haskell Advent Calendar 2020](https://qiita.com/advent-calendar/2020/haskell) 20日目の記事です．
+この記事は[Haskell Advent Calendar 2020](https://qiita.com/advent-calendar/2020/haskell) 20日目の記事です．
 
 ## TL; DR
 
@@ -17,7 +17,7 @@ keywords:
 
 ## 問題設定
 
-ユースケース層とサーヴァ層が存在する Web アプリケーションを考える．サーヴァ層はユースケース層を呼び出すことができるが，ユースケース層はサーヴァ層について無知でなければならない．
+ユースケース層とサーヴァ層が存在するWebアプリケーションを考える．サーヴァ層はユースケース層を呼び出すことができるが，ユースケース層はサーヴァ層について無知でなければならない．
 
 ```plaintext
 +----------------+
@@ -29,15 +29,15 @@ keywords:
 +----------------+
 ```
 
-このようなアプリケーションのAPI リクエストハンドラにおいて，複数のユースケースを合成して呼び出すケースを例に挙げ，それぞれのユースケースが投げうるエラーをうまく扱う open union を用いたテクニックを紹介する．
+このようなアプリケーションのAPIリクエストハンドラにおいて，複数のユースケースを合成して呼び出すケースを例に挙げ，それぞれのユースケースが投げうるエラーをうまく扱うopen unionを用いたテクニックを紹介する．
 
-今回は extensible effects を用いてユースケース層を記述するが，特に extensible effects に固有の話というわけではない．tagless final でも，`ExceptT` や単なる `Either` でも同じテクニックが使えるだろう．
+今回はextensible effectsを用いてユースケース層を記述するが，特にextensible effectsに固有の話というわけではない．tagless finalでも，`ExceptT`や単なる`Either`でも同じテクニックが使えるだろう．
 
-extensible effects のライブラリとして [`extensible-skeleton`](https://hackage.haskell.org/package/extensible-skeleton) を用いる．
+extensible effectsのライブラリとして[`extensible-skeleton`](https://hackage.haskell.org/package/extensible-skeleton)を用いる．
 
-## `Error` effect
+## `Error`effect
 
-ユースケース層はエラーを投げることができるものとする．下準備として，エラーを投げるための `Error` effect を定義しておく．
+ユースケース層はエラーを投げることができるものとする．下準備として，エラーを投げるための`Error` effectを定義しておく．
 
 ```haskell filename=src/Effects/Error.hs
 module Effects.Error
@@ -61,7 +61,7 @@ throw e = throwEff (Proxy @"Error") e
 
 ## ユースケース
 
-引数で受け取った ID に対応する `Talent` エンティティを返すユースケースである `findTalent` というユースケースがあるとしよう．ただし，対応する `Talent` が見付からなかった場合には `TalentNotFound` エラーを送出する．
+引数で受け取ったIDに対応する`Talent`エンティティを返すユースケースである`findTalent`というユースケースがあるとしよう．ただし，対応する`Talent`が見付からなかった場合には`TalentNotFound`エラーを送出する．
 
 ```haskell filename=src/UseCases/FindTalent.hs
 module UseCases.FindTalent where
@@ -72,8 +72,8 @@ import qualified Effects.Error as Error (HasEff, throw)
 import qualified Effects.TalentRepository as TalentRepository (find, HasEff)
 
 {-
-与えられた 'TalentID' に対応する 'Talent' を返す
-見付からない場合には 'TalentNotFound' を投げる
+与えられた'TalentID'に対応する'Talent'を返す
+見付からない場合には'TalentNotFound'を投げる
 -}
 findTalent
     :: forall effs
@@ -90,7 +90,7 @@ findTalent id = do
         Just talent -> pure talent
 ```
 
-`findTalent` とよく似た `findTag` ユースケースも準備しておく．
+`findTalent`とよく似た`findTag`ユースケースも準備しておく．
 
 ```haskell filename=src/UseCases/FindTag.hs
 module UseCases.FindTag where
@@ -101,8 +101,8 @@ import qualified Effects.Error as Error (HasEff, throw)
 import qualified Effects.TagRepository as TagRepository (find, HasEff)
 
 {-
-与えられた 'TagID' に対応する 'Tag' を返す
-見付からない場合には 'TagNotFound' を投げる
+与えられた'TagID'に対応する'Tag'を返す
+見付からない場合には'TagNotFound'を投げる
 -}
 findTag
     :: forall effs
@@ -117,7 +117,7 @@ findTag id = _ -- 実装は割愛
 
 これら2つのユースケースを合成し，サーヴァ層から呼び出す場面に焦点を当てる．
 
-ここで `Handler` は，API のリクエストハンドラを書くための言語であり，`runUseCase` は，ユースケース記述言語から `Handler` 言語への解釈を与える関数とする．ただし，`Error` effect は `Either` として解釈する．
+ここで`Handler`は，APIのリクエストハンドラを書くための言語であり，`runUseCase`は，ユースケース記述言語から`Handler`言語への解釈を与える関数とする．ただし，`Error` effectは`Either`として解釈する．
 
 ```haskell filename=src/Server/Handlers/API/Taggings/Create.hs
 module Server.Handlers.API.Taggings.Create where
@@ -129,7 +129,7 @@ data Response = Response { ok :: Bool }
 
 handler :: TalentID -> TagID -> Handler Response
 handler talentID tagID = do
-    result <- runUseCase $ do -- この do 以下で複数のユースケースを合成する
+    result <- runUseCase $ do -- このdo以下で複数のユースケースを合成する
         talent <- findTalent talentID
         tag    <- findTag tagID
         createTagging talent tag
@@ -145,11 +145,11 @@ handleErrors
 handleErrors = _
 ```
 
-しかし，これはうまくいかない．`findTalent` が投げうるエラーの型は `TalentNotFound` である一方，`findTag` が投げうるエラーの型は `TagNotFound` であり，これらが一致しないからだ．これは本質的には (`e` と `e'` が異なる型であるときに) `Either e` と `Either e'` が組み合わせられない問題と同質である．
+しかし，これはうまくいかない．`findTalent`が投げうるエラーの型は`TalentNotFound`である一方，`findTag`が投げうるエラーの型は`TagNotFound`であり，これらが一致しないからだ．これは本質的には（`e`と`e'`が異なる型であるときに）`Either e`と`Either e'`が組み合わせられない問題と同質である．
 
 ## open union
 
-そもそも一般に，あるユースケースが投げたいエラーが1種類で事足りるとは限らない．ユースケースによっては，あらかじめ宣言した複数の種類のエラーのうち，状況に応じてどれかひとつを投げたい，という場合もあるだろう．このような欲求を満たすため，まずは投げるエラーを open union に埋め込むことにしよう．今回は既に `extensible` package を使っているので，`extensible` が提供する extensible sum を使うことにする．
+そもそも一般に，あるユースケースが投げたいエラーが1種類で事足りるとは限らない．ユースケースによっては，あらかじめ宣言した複数の種類のエラーのうち，状況に応じてどれかひとつを投げたい，という場合もあるだろう．このような欲求を満たすため，まずは投げるエラーをopen unionに埋め込むことにしよう．今回は既に`extensible` packageを使っているので，`extensible`が提供するextensible sumを使うことにする．
 
 ```diff filename=src/UseCases/FindTalent.hs
 @@ -1,5 +1,6 @@
@@ -177,11 +177,11 @@ handleErrors = _
          Just talent -> pure talent
 ```
 
-また，`findTag` ユースケースにも同様の変更を加える．
+また，`findTag`ユースケースにも同様の変更を加える．
 
 ## 投げられうるエラーを量化する
 
-エラーを open union で扱うだけでは，エラーの型が一致しないという当初の問題が解消されるわけではない． `OneOf '[TalentNotFound]` と `OneOf '[TagNotFound]` は異なるので当然である．そこで，`OneOf` の引数を「少なくとも `TalentNotFound` を含む任意のリスト」という風に量化する．
+エラーをopen unionで扱うだけでは，エラーの型が一致しないという当初の問題が解消されるわけではない．`OneOf '[TalentNotFound]`と`OneOf '[TagNotFound]`は異なるので当然である．そこで，`OneOf`の引数を「少なくとも`TalentNotFound`を含む任意のリスト」という風に量化する．
 
 ```diff filename=src/UseCases/FindTalent.hs
 @@ -1,5 +1,6 @@
@@ -192,7 +192,7 @@ handleErrors = _
  import "extensible-skeleton" Data.Extensible.Effect (Eff)
 
 @@ -11,9 +12,10 @@ import qualified Effects.TalentRepository as TalentRepository (find, HasEff)
- 見付からない場合には 'TalentNotFound' を投げる
+ 見付からない場合には'TalentNotFound'を投げる
  -}
  findTalent
 -    :: forall effs
@@ -206,11 +206,11 @@ handleErrors = _
  findTalent id = do
 ```
 
-新たな型変数 `errors` を導入し，エラーの型として `OneOf errors` を用いるように変更を加えた．
+新たな型変数`errors`を導入し，エラーの型として`OneOf errors`を用いるように変更を加えた．
 
-`findTag` が投げうるエラーについても同様に，**少なくとも `TagNotFound` を含む任意のリスト**という風に量化してやる．
+`findTag`が投げうるエラーについても同様に，**少なくとも`TagNotFound`を含む任意のリスト**という風に量化してやる．
 
-こうすれば，`handleErrors` 関数は以下のように実装できる．ここにおいて，`findTalent` および `findTag` のシグネチャ中の型変数 `errors` はいずれも `'[TagNotFound, TalentNotFound]` に解決される．
+こうすれば，`handleErrors`関数は以下のように実装できる．ここにおいて，`findTalent`および`findTag`のシグネチャ中の型変数`errors`はいずれも`'[TagNotFound, TalentNotFound]`に解決される．
 
 ```haskell
 handleErrors
@@ -222,7 +222,7 @@ handleErrors = match
     <: nil
 ```
 
-要件が変更され，合成されたユースケースの最後で呼び出されていた `createTagging` が `TagAlreadyAttachedToTalent` エラーや `TooManyTagsAttachedToTalent` エラーを投げるようになったとしよう．その場合でも，パターンマッチを増やすだけで対応できるため，拡張性にも富んでいる．
+要件が変更され，合成されたユースケースの最後で呼び出されていた`createTagging`が`TagAlreadyAttachedToTalent`エラーや`TooManyTagsAttachedToTalent`エラーを投げるようになったとしよう．その場合でも，パターンマッチを増やすだけで対応できるため，拡張性にも富んでいる．
 
 ```haskell
 handleErrors
@@ -238,17 +238,17 @@ handleErrors = match
 
 ## 広告
 
-HERP 広告
+HERP広告
 
-この記事は HERP 勤務中に書かれた。
+この記事はHERP勤務中に書かれた。
 
-HERP は本物の Haskell プログラマーを募集しています。
+HERPは本物のHaskellプログラマーを募集しています。
 
 https://github.com/herp-inc/engineering-careers
 
 ## コード
 
-主要な部分のみを抜粋した不完全なコードである．GHC 言語拡張や，細かい関数・データ型の定義などは適宜補ってほしい．また，本文中で最初に定義した `Error` effect は，量化された open union をエラーとして投げることを前提した `UseCaseError` effect で置き換えている．
+主要な部分のみを抜粋した不完全なコードである．GHC言語拡張や，細かい関数・データ型の定義などは適宜補ってほしい．また，本文中で最初に定義した`Error` effectは，量化されたopen unionをエラーとして投げることを前提した`UseCaseError` effectで置き換えている．
 
 ```haskell filename=src/Effects/UseCaseError.hs
 module Effects.UseCaseError
@@ -279,8 +279,8 @@ import "extensible" Data.Extensible (Include)
 import "extensible-skeleton" Data.Extensible.Effect (Eff)
 
 {-
-与えられた 'TalentID' に対応する 'Talent' を返す
-見付からない場合には 'TalentNotFound' を投げる
+与えられた'TalentID'に対応する'Talent'を返す
+見付からない場合には'TalentNotFound'を投げる
 -}
 findTalent
     :: forall errors effs
@@ -305,8 +305,8 @@ import "extensible" Data.Extensible (Include)
 import "extensible-skeleton" Data.Extensible.Effect (Eff)
 
 {-
-与えられた 'TagID' に対応する 'Tag' を返す
-見付からない場合には 'TagNotFound' を投げる
+与えられた'TagID'に対応する'Tag'を返す
+見付からない場合には'TagNotFound'を投げる
 -}
 findTag
     :: forall errors effs

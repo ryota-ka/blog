@@ -5,3 +5,8 @@
 @import 'katex/dist/katex.css';
 
 @import './hljs.scss';
+
+body {
+  text-autospace: normal;
+  text-spacing-trim: trim-start;
+}

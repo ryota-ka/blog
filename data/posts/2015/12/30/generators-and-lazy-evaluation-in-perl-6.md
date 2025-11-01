@@ -4,31 +4,31 @@ keywords:
   - Perl 6
 ---
 
-# Perl 6 でジェネレータを作ったり、遅延評価してみる
+# Perl 6でジェネレータを作ったり、遅延評価してみる
 
-この記事は [CAMPHOR- Advent Calendar 2015](http://advent.camph.net/) 30日目の記事です．
+この記事は[CAMPHOR- Advent Calendar 2015](http://advent.camph.net/) 30日目の記事です．
 
 ## はじめに
 
-今月2015年12月は，[12月3日の PHP 7 のリリース](http://php.net/archive/2015.php#id2015-12-03-1)に始まり，クリスマスには [Ruby 2.3](https://www.ruby-lang.org/en/news/2015/12/25/ruby-2-3-0-released/) 並びに [Perl 6](https://perl6advent.wordpress.com/2015/12/24/an-unexpectedly-long-expected-party/) のリリースが相次いだため，往年のスクリプト言語たちにとっては華々しいひと月となった．調べてみたところ，PHP 5.0.0 のリリースは2004年1月，Perl 5.000 のリリースは1994年10月だったそうなので，やはり大型のリリースが相次いだのだなという気分になる．
+今月2015年12月は，[12月3日のPHP 7のリリース](http://php.net/archive/2015.php#id2015-12-03-1)に始まり，クリスマスには[Ruby 2.3](https://www.ruby-lang.org/en/news/2015/12/25/ruby-2-3-0-released/)並びに[Perl 6](https://perl6advent.wordpress.com/2015/12/24/an-unexpectedly-long-expected-party/)のリリースが相次いだため，往年のスクリプト言語たちにとっては華々しいひと月となった．調べてみたところ，PHP 5.0.0のリリースは2004年1月，Perl 5.000のリリースは1994年10月だったそうなので，やはり大型のリリースが相次いだのだなという気分になる．
 
-というわけでこの際なので，最近ではもはや CAMPHOR- の伝統芸能となりつつある，「ジェネレーターを作ったり、遅延評価してみる」シリーズを Perl 6 で書いてみることにした．ちなみに筆者の Perl 歴は1日である．
+というわけでこの際なので，最近ではもはやCAMPHOR-の伝統芸能となりつつある，「ジェネレーターを作ったり、遅延評価してみる」シリーズをPerl 6で書いてみることにした．ちなみに筆者のPerl歴は1日である．
 
 ---
 
 ## これまでの流れ
 
-- [Ruby の Enumerator でジェネレータを作ったり、遅延評価してみる - blog.ryota-ka.me](https://blog.ryota-ka.me/posts/2015/04/23/generators-and-lazy-evaluation-in-ruby)
+- [RubyのEnumeratorでジェネレータを作ったり、遅延評価してみる - blog.ryota-ka.me](https://blog.ryota-ka.me/posts/2015/04/23/generators-and-lazy-evaluation-in-ruby)
 - [Python でジェネレータを作ったり、遅延評価してみる – ymyzk’s blog](https://blog.ymyzk.com/2015/04/python-generator-lazy/)
 - [ECMAScript 6 でジェネレータを作ったり、遅延評価してみる – ymyzk’s blog](https://blog.ymyzk.com/2015/04/ecmascript-6-generator-lazy/)
-- [Rust でジェネレータを作ったり、遅延評価してみる - blog.ryota-ka.me](https://blog.ryota-ka.me/posts/2015/05/18/generators-and-lazy-evaluation-in-rust)
+- [Rustでジェネレータを作ったり、遅延評価してみる - blog.ryota-ka.me](https://blog.ryota-ka.me/posts/2015/05/18/generators-and-lazy-evaluation-in-rust)
 - [Swift でジェネレータを作ったり、遅延評価してみる – ymyzk’s blog](https://blog.ymyzk.com/2015/05/swift-generator-lazy/)
-- [PHP でジェネレータを作ったり遅延評価してみる - たにしきんぐダム](http://tanishiking24.hatenablog.com/entry/2015/07/30/164111)
+- [PHPでジェネレータを作ったり遅延評価してみる - たにしきんぐダム](http://tanishiking24.hatenablog.com/entry/2015/07/30/164111)
 - [Scala でジェネレータを作ったり、遅延評価してみる - たにしきんぐダム](http://tanishiking24.hatenablog.com/entry/scala-generator)
 
 ## 実行環境について
 
-OS X をお使いの場合，Homebrew から Rakudo Star がインストールできる．
+OS Xをお使いの場合，HomebrewからRakudo Starがインストールできる．
 
 ```sh
 $ brew install rakudo-star
@@ -36,11 +36,11 @@ $ brew install rakudo-star
 
 それ以外の環境の方は自分でなんとかしてほしい．
 
-シェルに `perl6` と打ち込めば REPL が起動する．以下に示す Perl 6 のコードの大半は，この REPL 上での入出力を貼り付けたものである．ただし，可読性の観点から，適宜改行などを補っている場合がある．複数行のコードを記述する際などはこの限りではないが，その場合はコードの先頭に shebang を書いてある．
+シェルに`perl6`と打ち込めばREPLが起動する．以下に示すPerl 6のコードの大半は，このREPL上での入出力を貼り付けたものである．ただし，可読性の観点から，適宜改行などを補っている場合がある．複数行のコードを記述する際などはこの限りではないが，その場合はコードの先頭にshebangを書いてある．
 
 ## 匿名関数
 
-Perl といえばやはり (？) サブルーチンだが，Perl 6 からは匿名関数が書けるようになった．
+Perlといえばやはり（？）サブルーチンだが，Perl 6からは匿名関数が書けるようになった．
 
 ### $f(x) = 2x$
 
@@ -59,7 +59,7 @@ print $double->(10); # 20
 20
 ```
 
-これは `$_` (topic variable) を用いて次のように書くこともできる．
+これは`$_`（topic variable）を用いて次のように書くこともできる．
 
 ```perl6
 > my $dbl = { $_ * 2 }
@@ -99,7 +99,7 @@ WhateverCode.new
 30
 ```
 
-## ジェネレータ (`Range` / `Seq`)
+## ジェネレータ（`Range` / `Seq`）
 
 ### 自然数
 
@@ -128,9 +128,9 @@ WhateverCode.new
 [...]
 ```
 
-[postcircumfix `[ ]`](http://doc.perl6.org/language/operators#postcircumfix_%5B_%5D) (array indexing operator) を用いることで，特定の要素を取り出したり，部分列を得たりすることができる．列が具体的にどのような値を持っているのかを確かめるのに便利である．
+[postcircumfix `[ ]`](http://doc.perl6.org/language/operators#postcircumfix_%5B_%5D) (array indexing operator)を用いることで，特定の要素を取り出したり，部分列を得たりすることができる．列が具体的にどのような値を持っているのかを確かめるのに便利である．
 
-また，[prefix `^` ](http://doc.perl6.org/language/operators#prefix_%5E) (_upto_ operator) を用いて `^10` と書けば，`0..^10` という `Range` を得ることができる．これは終端である `10` を含まない，`0` から `9` までの整数の列である．
+また，[prefix `^`](http://doc.perl6.org/language/operators#prefix_%5E) (_upto_ operator)を用いて`^10`と書けば，`0..^10`という`Range`を得ることができる．これは終端である`10`を含まない，`0`から`9`までの整数の列である．
 
 これらを用いて，先程の数列たちのそれぞれ最初の10項を表示してみよう．
 
@@ -147,7 +147,7 @@ WhateverCode.new
 
 ## `map` / `grep`
 
-`map` や `grep` を用いて，既存の列から新たな列を生成することもできる．
+`map`や`grep`を用いて，既存の列から新たな列を生成することもできる．
 
 ```perl6
 > my @squares = map { $_ ** 2 }, (0..Inf)
@@ -175,11 +175,11 @@ cf.
 - [infix `%%`](http://doc.perl6.org/language/operators#infix_%25%25) (divisibility operator)
 - [infix `~~`](http://doc.perl6.org/language/operators#infix_~~) (smartmatch operator)
 
-Perl のお家芸である pattern matching が `=~` じゃなくなってしまったのは少しさみしい気もする．
+Perlのお家芸であるpattern matchingが`=~`じゃなくなってしまったのは少しさみしい気もする．
 
 ## 列の終了条件
 
-`...` の後ろに関数を書くことで，列の終了条件を与えることができる．
+`...`の後ろに関数を書くことで，列の終了条件を与えることができる．
 
 ```perl6
 > 1, 2, 4 ... { $_ > 200 }
@@ -189,7 +189,7 @@ Perl のお家芸である pattern matching が `=~` じゃなくなってしま
 (1 2 4 8 16 32 64 128 256)
 ```
 
-`...^` の場合には，最後の項は含まない．
+`...^`の場合には，最後の項は含まない．
 
 ```perl6
 > 1, 2, 4 ...^ * > 200
@@ -210,7 +210,7 @@ a_{n+1} =
 \end{cases}
 $$
 
-が定める列を考える．ただし $a_k = 1$ となる $k$ が存在する場合，$a_k$ をもって打ち止めとする．
+が定める列を考える．ただし$a_k = 1$となる$k$が存在する場合，$a_k$をもって打ち止めとする．
 
 ```perl6
 > my $collatz = { $_, { $_ % 2  ??  $_ * 3 + 1  !!  $_ / 2 } ... * == 1 }
@@ -223,16 +223,16 @@ $$
 (27 82 41 124 62 31 94 47 142 71 214 107 322 161 484 242 121 364 182 91 274 137 412 206 103 310 155 466 233 700 350 175 526 263 790 395 1186 593 1780 890 445 1336 668 334 167 502 251 754 377 1132 566 283 850 425 1276 638 319 958 479 1438 719 2158 1079 3238 1619 4858 2429 7288 3644 1822 911 2734 1367 4102 2051 6154 3077 9232 4616 2308 1154 577 1732 866 433 1300 650 325 976 488 244 122 61 184 92 46 23 70 35 106 ...)
 ```
 
-`{ $_ %% 2 ?? $_ / 2 !! $_ * 3 + 1 }` (ただし [infix `?? !!`](http://doc.perl6.org/language/operators#infix_%3F%3F_%21%21) は三項演算子) の部分が漸化式である．
+`{ $_ %% 2 ?? $_ / 2 !! $_ * 3 + 1 }`（ただし[infix `?? !!`](http://doc.perl6.org/language/operators#infix_%3F%3F_%21%21)は三項演算子）の部分が漸化式である．
 
-与えられた関数の arity が n のとき，列の先行する n 項が引数として渡される．以下に arity が2の場合 (隣接3項間漸化式) の例を示す．
+与えられた関数のarityがnのとき，列の先行するn項が引数として渡される．以下にarityが2の場合（隣接3項間漸化式）の例を示す．
 
 ```perl6
 > (0, 1, -> $a, $b { $a + $b } ... *)[^10]
 (0 1 1 2 3 5 8 13 21 34)
 ```
 
-前述したように `* + *` という形を使えば，次のように書くこともできる．
+前述したように`* + *`という形を使えば，次のように書くこともできる．
 
 ```perl6
 > (0, 1, * + * ... *)[^10]
@@ -254,7 +254,7 @@ $$
 
 ## `gather` / `take`
 
-以上に示した方法は，種々の列を得るためにはかなり強力なものであり，多くのケースでは事足りると思うのだが，それでも物足りない場合には，もちろん手続き的にジェネレータを書くこともできる．次に示すのは，[`gather/take`](http://doc.perl6.org/language/control#gather%2Ftake) を使って実装した，フィボナッチ数列のジェネレータの例である．
+以上に示した方法は，種々の列を得るためにはかなり強力なものであり，多くのケースでは事足りると思うのだが，それでも物足りない場合には，もちろん手続き的にジェネレータを書くこともできる．次に示すのは，[`gather/take`](http://doc.perl6.org/language/control#gather%2Ftake)を使って実装した，フィボナッチ数列のジェネレータの例である．
 
 ```perl6
 #!/usr/bin/env perl6
@@ -278,13 +278,13 @@ say fibonacci().map({ $_ ** 2 }).grep({ $_ % 2 })[^10];
 # (1 1 9 25 169 441 3025 7921 54289 142129)
 ```
 
-`gather` でコルーチンを生成し，`take` で値を yield することができる．
+`gather`でコルーチンを生成し，`take`で値をyieldすることができる．
 
 ## まとめ
 
-今回の記事のために初めて Perl を書いたのだが，やはり "P" から始まる言語はだいたい難しい．
+今回の記事のために初めてPerlを書いたのだが，やはり"P"から始まる言語はだいたい難しい．
 
-26日以降も延長戦を続けてきた CAMPHOR- Advent Calendar 2015 も明日でついにおしまい．最後の記事は，CAMPHOR- 5期代表である @yaitaimo が今年の総括を書いてくださるそうだ．明日もお楽しみに！
+26日以降も延長戦を続けてきたCAMPHOR- Advent Calendar 2015も明日でついにおしまい．最後の記事は，CAMPHOR- 5期代表である@yaitaimoが今年の総括を書いてくださるそうだ．明日もお楽しみに！
 
 ## 参考リンク
 
