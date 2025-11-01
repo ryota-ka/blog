@@ -4,15 +4,15 @@ keywords:
   - Template Haskell
 ---
 
-# Template Haskell でコンパイル時 FizzBuzz
+# Template Haskellでコンパイル時FizzBuzz
 
-数ヶ月前に Twitter で，コンパイル時に FizzBuzz を計算して，実行時には計算された文字列を出力をするだけ，というコンパイル時 FizzBuzz を何かの言語でやっているのを見かけた．元ネタは江添さんがC++で書いたものらしい．インスピレーションを受けて，Haskell で書いてはみたが，簡単すぎて全然おもしろくなくなってしまった．
+数ヶ月前にTwitterで，コンパイル時にFizzBuzzを計算して，実行時には計算された文字列を出力をするだけ，というコンパイル時FizzBuzzを何かの言語でやっているのを見かけた．元ネタは江添さんがC++で書いたものらしい．インスピレーションを受けて，Haskellで書いてはみたが，簡単すぎて全然おもしろくなくなってしまった．
 
 ---
 
 ## コード
 
-GHC の制約[^1]により，モジュールを分割している．
+GHCの制約[^1]により，モジュールを分割している．
 
 ```haskell filename=FizzBuzz.hs
 {-# LANGUAGE TemplateHaskell #-}
@@ -55,7 +55,7 @@ main :: IO ()
 main = putStrLn "1\n2\nFizz\n4\nBuzz\nFizz\n..." -- 以下略
 ```
 
-なので，`"1\n2\nFizz\n4\nBuzz\nFizz\n..."` という値のリテラルを表す構文木をコンパイル時に計算しておいて，接合してやればよさそうだ．[GHC の User's Guide によると](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/glasgow_exts.html#th-syntax)
+なので，`"1\n2\nFizz\n4\nBuzz\nFizz\n..."`という値のリテラルを表す構文木をコンパイル時に計算しておいて，接合してやればよさそうだ．[GHCのUser's Guideによると](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/glasgow_exts.html#th-syntax)
 
 > A splice can occur in place of
 >
@@ -64,7 +64,7 @@ main = putStrLn "1\n2\nFizz\n4\nBuzz\nFizz\n..." -- 以下略
 > - a type; the spliced expression must have type `Q Type`
 > - a list of declarations at top level; the spliced expression must have type `Q [Dec]`
 
-今回欲しいのは expression なので，`Q Exp` 型の値を作ることを目的とする．
+今回欲しいのはexpressionなので，`Q Exp`型の値を作ることを目的とする．
 
 また，
 
@@ -75,9 +75,9 @@ main = putStrLn "1\n2\nFizz\n4\nBuzz\nFizz\n..." -- 以下略
 > - `[t| ... |]`, where the ”...” is a type; the quotation has type `Q Type`.
 > - `[p| ... |]`, where the ”...” is a pattern; the quotation has type `Q Pat`.
 
-とのことなので，`[e| ... |]` (ないし `e` を省略して単に `[| ... |]`) というクォートが参考になりそうだ．
+とのことなので，`[e| ... |]`（ないし `e` を省略して単に `[| ... |]`）というクォートが参考になりそうだ．
 
-文字列リテラル `"foo"` はどのような構文木で表されるかを確認するために，`[|e| "foo" ]` で生成される構文木を見てみよう．クォートで生成された構文木を出力するには，`runQ :: Language.Haskell.TH.Syntax.Quasi m => Q a -> m a` を使う．`IO` が `Quasi` のインスタンスになっているので，画面上に出力することができる．
+文字列リテラル`"foo"`はどのような構文木で表されるかを確認するために，`[|e| "foo" ]`で生成される構文木を見てみよう．クォートで生成された構文木を出力するには，`runQ :: Language.Haskell.TH.Syntax.Quasi m => Q a -> m a`を使う．`IO`が`Quasi`のインスタンスになっているので，画面上に出力することができる．
 
 ```haskell
 > :set -XTemplateHaskell
@@ -93,9 +93,9 @@ LitE (StringL "foo")
 - `StringL :: String -> Lit`
 - `LitE :: Lit -> Exp`
 
-である．つまり，あらかじめ計算しておいた `String` 型の値に `LitE . StringL` を適用すれば，所望の `Exp` が手に入ってしまうのである．思っていたよりも簡単そうだ[^2]．
+である．つまり，あらかじめ計算しておいた`String`型の値に`LitE . StringL`を適用すれば，所望の`Exp`が手に入ってしまうのである．思っていたよりも簡単そうだ[^2]．
 
-構文木がどのようなプログラムになるのかは，`ppr` 関数を使えばわかる．
+構文木がどのようなプログラムになるのかは，`ppr`関数を使えばわかる．
 
 ```haskell
 > :l FizzBuzz.hs
@@ -205,13 +205,13 @@ Ok, one module loaded.
 \Buzz"
 ```
 
-ここまでできたら，`putStrLn` の引数の部分に式 (`answerExpr :: Q Exp`) を接合すればおしまい．
+ここまでできたら，`putStrLn`の引数の部分に式（`answerExpr :: Q Exp`）を接合すればおしまい．
 
 ## 感想
 
-コンパイル時計算の仕組みとして Template Haskell がよくできすぎており，あまりに簡単に実現できてしまったので拍子抜けした．構文**木**とはいえど分岐すらしていない．次回はもう少し骨のあるトピックを用意したい．
+コンパイル時計算の仕組みとしてTemplate Haskellがよくできすぎており，あまりに簡単に実現できてしまったので拍子抜けした．構文**木**とはいえど分岐すらしていない．次回はもう少し骨のあるトピックを用意したい．
 
 ## 脚注
 
 [^1]: GHC stage restriction: ‘answerExpr’ is used in a top-level splice, quasi-quote, or annotation, and must be imported, not defined locally
-[^2]: 欲しかったのは `Exp` ではなく `Q Exp` だが，`Q` は `Applicative` のインスタンスなので `pure` すればよい．
+[^2]: 欲しかったのは`Exp`ではなく`Q Exp`だが，`Q`は`Applicative`のインスタンスなので`pure`すればよい．

@@ -42,7 +42,8 @@
     }
 
     &:not(.hljs) {
-      @apply text-sm md:text-lg bg-zinc-100 dark:bg-slate-800 border border-zinc-300 dark:border-zinc-700 rounded px-1 md:px-2 break-all;
+      @apply text-sm md:text-lg bg-zinc-100 dark:bg-slate-800 border border-zinc-300 dark:border-zinc-700 rounded px-1
+      mx-1 break-all;
     }
   }
 
@@ -107,5 +108,15 @@
 
   :global(.math-display) {
     overflow-x: scroll;
+  }
+
+  :global(.math.math-inline) {
+    &:not(:first-child) {
+      @apply ml-1;
+    }
+
+    &:not(:last-child) {
+      @apply mr-1;
+    }
   }
 }

@@ -97,6 +97,7 @@ const transformer = unified()
                     ),
                 ]);
             },
+            text: (h: H, node: mdast.Text) => h(node, 'span', [u('text', node.value)]),
             thematicBreak: (h: H, node: MdastNode) => h(node, 'span', { id: 'more' }, []),
         },
     })
