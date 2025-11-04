@@ -89,4 +89,4 @@ index 1183e68..5c3ec0f 100644
 
 他にも，`∧`演算子を使ってレコードを結合した際に，レコードのキーの順序が並び替えられることを保証するためのβ簡約規則が導入されたり，`Prelude`に`Integer/toDouble`と`Natural/toDouble`が追加されたりしている．詳細なchangelogはGitHub上で確認できる．
 
-[](https://github.com/dhall-lang/dhall-lang/releases/tag/v3.0.0)
+https://github.com/dhall-lang/dhall-lang/releases/tag/v3.0.0

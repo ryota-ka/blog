@@ -10,7 +10,7 @@ Template Haskellを使って，時間の長さをいい感じに（人間が読�
 
 https://hackage.haskell.org/package/duration
 
-[](https://github.com/ryota-ka/duration)
+https://github.com/ryota-ka/duration
 
 ---
 
@@ -105,4 +105,4 @@ handleRequest = do
 
 （2018/06/30追記）公開された
 
-[](https://qiita.com/hiroqn@github/items/a676040612534fa1b0e6)
+https://qiita.com/hiroqn@github/items/a676040612534fa1b0e6

@@ -67,7 +67,7 @@ compositionについてのドキュメントとしては，以下の2ページ�
 
 https://storybook.js.org/docs/html/workflows/storybook-composition
 
-[](https://storybook.js.org/docs/html/workflows/package-composition)
+https://storybook.js.org/docs/html/workflows/package-composition
 
 前者は参照元の`.storybook/main.js`に設定を書く手法であり，後者は参照先のパケッジの`package.json`に設定を書いておくことで，参照元のStorybookに自動的に読み込ませる手法である．個別のプロジェクトでの設定の手間を省くことができるため，今回は"package composition"と呼ばれている後者の手法を採用する．
 
@@ -164,7 +164,7 @@ $ npx sb extract ./dist
 
 ## CORSに関する設定を行う
 
-Storybook compositionでは，参照元のStorybookを開いているブラウザから[Cross-Origin Resource Sharing](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) (CORS)を用いて外部のリソースを読み込むため，参照先のStorybookをホストしているサーヴァ側で，CORSを許可するよう設定を行っておく必要がある．
+Storybook compositionでは，参照元のStorybookを開いているブラウザから[オリジン間リソース共有](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)（CORS; Cross Origin Resource Sharing）を用いて外部のリソースを読み込むため，参照先のStorybookをホストしているサーヴァ側で，CORSを許可するよう設定を行っておく必要がある．
 
 HERPではStorybookを配信するDocker imageを，[Istio](https://istio.io/)が入ったKubernetesクラスタにデプロイしているため，[`VirtualService`](https://istio.io/latest/docs/reference/config/networking/virtual-service/)に以下のような[`CorsPolicy`](https://istio.io/latest/docs/reference/config/networking/virtual-service/#CorsPolicy)を追加することで対応した．また，[`oauth2-proxy`](https://oauth2-proxy.github.io/oauth2-proxy/)を用いたアクセス制限を施しているため，`allowCredentials: true`を指定している．
 
