@@ -32,7 +32,7 @@
     "@tailwindcss/line-clamp": "0.4.4",
     "feed": "4.2.2",
     "github-slugger": "2.0.0",
-    "hast-util-heading-rank": "2.1.1",
+    "hast-util-heading-rank": "3.0.0",
     "hast-util-to-string": "2.0.0",
     "highlight.js": "11.8.0",
     "jsdom": "22.1.0",
