@@ -57,7 +57,7 @@ let d: BoolEq<True, False>;
 // let d: "f"
 ```
 
-また，異なるdesign choiceとして，以下のように部分型関係を用いて事前条件を記述すれば，条件にそぐわない型がそもそも存在し得ないようにすることも可能だろう．
+また，異なるデザイン・チョイスとして，以下のように部分型関係を用いて事前条件を記述すれば，条件にそぐわない型がそもそも存在し得ないようにすることも可能だろう．
 
 ```typescript
 type AssertBoolEq<Cond1 extends Bool, Cond2 extends Cond1> = Cond1;

@@ -10,7 +10,7 @@ keywords:
 
 https://www.npmjs.com/package/cycle-ink-driver
 
-[](https://github.com/ryota-ka/cycle-ink-driver)
+https://github.com/ryota-ka/cycle-ink-driver
 
 ---
 

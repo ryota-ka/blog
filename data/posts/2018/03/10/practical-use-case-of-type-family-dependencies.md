@@ -234,9 +234,9 @@ class HasKey a => HasCodableKey a where
    |                    ^^^^^^^
 ```
 
-よくよく読んでみると，「型レヴェル関数である`Key`とか`EncodedKey`がinjectiveではないぞ」と言われている．
+よくよく読んでみると，「型レヴェル関数である`Key`とか`EncodedKey`が単射（injective）ではないぞ」と言われている．
 
-関数$f: A \to B$がinjective（単射）であるとは，$\forall x, y \in A$について$x \neq y \Rightarrow f(x) \neq f(y)$ということであるが，直感的には$f$で写した先の集合$B$で要素が互いに**ぶつからない**とイメージすることができる．今回の場合`EncodedKey`は，
+関数$f: A \to B$が単射であるとは，$\forall x, y \in A$について$x \neq y \Rightarrow f(x) \neq f(y)$ということであるが，直感的には$f$で写した先の集合$B$で要素が互いに**ぶつからない**とイメージすることができる．今回の場合`EncodedKey`は，
 
 - `User`$\mapsto$`EncodedUserKey`
 - `Company`$\mapsto$`EncodedCompanyKey`

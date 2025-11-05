@@ -3,7 +3,7 @@ keywords:
   - Nix
 ---
 
-# Nix でのビルド時に private なリソースにアクセスする
+# Nixでのビルド時にprivateなリソースにアクセスする
 
 [HERP](https://herp.co.jp/)では多くの成果物が[Nix](https://nixos.org/)を用いてビルドされている．例として，アプリケーションのDocker image，npmライブラリのtarball，Helm chartを元にしたKubernetesのmanifestファイルなどが挙げられる．
 

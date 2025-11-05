@@ -264,9 +264,9 @@ nix-repl> let
 
 ## 過去のもの
 
-https://ryota-ka.hatenablog.com/entry/2015/12/30/000000
+https://blog.ryota-ka.me/posts/2015/12/30/generators-and-lazy-evaluation-in-perl-6
 
-[](https://ryota-ka.hatenablog.com/entry/2016/12/08/000000)
+https://blog.ryota-ka.me/posts/2016/12/08/generators-and-lazy-evaluation-in-vim-script
 
 ## おわりに
 

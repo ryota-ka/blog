@@ -27,7 +27,7 @@ keywords:
 
 合成意味論の祖であるGottlob Frege[^3]によれば，文の意味（de: Bedeutung, en: reference）は真理値（de: Wahrheitswerth, en: truth value）である[^4]．形式意味論の分野では真理値は$0, 1$で表されることが多いようだが，後編で導入する指標（index）との混乱を避けるため，本記事ではそれぞれ$\text{False}, \text{True}$と表記する．
 
-形式意味論の研究は Richard Montagueをもって嚆矢とするが，彼の思想はDonald Davidson[^5]が提唱した真理条件的意味論——すなわち，ある文の意味とは，その言語表現が真となるような状況であるとする——の流れを汲んでおり，これは現在でも形式意味論の標準的な立場となっている[^6]．しかし，計算機を用いてそのような条件を得ることは難しいため，本記事ではFregeに倣い，文の意味は真理値であるという立場を取ることにする．
+形式意味論の研究は Richard Montagueをもって嚆矢とするが，彼の思想はDonald Davidson[^5]が提唱した真理条件的意味論—すなわち，ある文の意味とは，その言語表現が真となるような状況であるとする—の流れを汲んでおり，これは現在でも形式意味論の標準的な立場となっている[^6]．しかし，計算機を用いてそのような条件を得ることは難しいため，本記事ではFregeに倣い，文の意味は真理値であるという立場を取ることにする．
 
 例として，
 
@@ -362,7 +362,7 @@ boy = Function \case
 <img alt="&quot;Linus is a boy.&quot;の統語構造" src="https://gyazo.com/aa019eeeea7f269d64e044b57185a220.png" />
 </div>
 
-ここで$\textit{is}$と$\textit{a}$は「語彙的に空虚」であると考える[^21]．すると，合成性原理に従えば，この文の意味$\llbracket \textit{Linus is a boy.} \rrbracket$——これは前述の通り真理値になる——は$\llbracket \textit{Linus} \rrbracket$及び$\llbracket \textit{boy} \rrbracket$と**その合成の仕方によって，またそれらによってのみ**計算されるはずである．
+ここで$\textit{is}$と$\textit{a}$は「語彙的に空虚」であると考える[^21]．すると，合成性原理に従えば，この文の意味$\llbracket \textit{Linus is a boy.} \rrbracket$—これは前述の通り真理値になる—は$\llbracket \textit{Linus} \rrbracket$及び$\llbracket \textit{boy} \rrbracket$と**その合成の仕方によって，またそれらによってのみ**計算されるはずである．
 
 実際のところ，どのような合成を行えばよいのだろうか．ここで第一の意味計算規則である**Functional Application** (FA)が導入される．$\textit{Linus} : e$であり，かつ$\textit{boy} : e \to t$であるから，文の意味が真理値であったことを思い出すと，直観に従って，関数適用を施した$\llbracket \textit{boy} \rrbracket(\llbracket \textit{Linus} \rrbracket) \in D_t$を意味としたいと思うのが人間の性であろう．
 
@@ -626,7 +626,7 @@ main = hspec do
 [^4]: ちなみに，文の意義（de: Sinn, en: sense）は，その文が真ないし偽と規定される仕方である．
 [^5]: アメリカ合衆国の哲学者．彼の思想は哲学の多くの分野，とりわけ行為論・心の哲学・言語哲学に大きな影響を与えた．
 [^6]: http://www.is.ocha.ac.jp/~bekki/project.html
-[^7]: ソクラテスは人間であり，任意の人間は死ぬので．全称肯定判断（A）として知られている．
+[^7]: ソクラテスは人間であり，任意の人間は死ぬため．これは全称肯定判断（A）として知られている．
 [^8]: 『形式意味論入門』 p.3
 [^9]: 『形式意味論入門』 p.11
 [^10]: Heim and Kratzer §2.3

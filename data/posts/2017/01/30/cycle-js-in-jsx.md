@@ -9,7 +9,7 @@ Cycle.jsとDOM DriverでWebアプリケーションを書く際に，sinkに流�
 
 以下では，Cycle.js (w/ xstream)でウェブアプリケーションを構築する．また，アセットのバンドルにはWebpackを用い，`babel-loader`を通じてES2015+およびJSXのトランスパイルを行うこととする．
 
-なお，今回のプロジェクトはGItHub上で公開しているので参考にされたい．
+なお，今回のプロジェクトはGitHub上で公開しているので参考にされたい．
 
 https://github.com/ryota-ka/cycle-jsx-example
 
