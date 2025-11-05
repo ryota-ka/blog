@@ -2905,17 +2905,16 @@ mdast-util-phrasing@^3.0.0:
     "@types/mdast" "^3.0.0"
     unist-util-is "^5.0.0"
 
-mdast-util-to-hast@12.2.4, mdast-util-to-hast@^12.1.0:
-  version "12.2.4"
-  resolved "https://registry.yarnpkg.com/mdast-util-to-hast/-/mdast-util-to-hast-12.2.4.tgz#34c1ef2b6cf01c27b3e3504e2c977c76f722e7e1"
-  integrity sha512-a21xoxSef1l8VhHxS1Dnyioz6grrJkoaCUgGzMD/7dWHvboYX3VW53esRUfB5tgTyz4Yos1n25SPcj35dJqmAg==
+mdast-util-to-hast@12.3.0, mdast-util-to-hast@^12.1.0:
+  version "12.3.0"
+  resolved "https://registry.yarnpkg.com/mdast-util-to-hast/-/mdast-util-to-hast-12.3.0.tgz#045d2825fb04374e59970f5b3f279b5700f6fb49"
+  integrity sha512-pits93r8PhnIoU4Vy9bjW39M2jJ6/tdHyja9rrot9uujkN7UTU9SDnE6WNJz/IGyQk3XHX6yNNtrBH6cQzm8Hw==
   dependencies:
     "@types/hast" "^2.0.0"
     "@types/mdast" "^3.0.0"
     mdast-util-definitions "^5.0.0"
     micromark-util-sanitize-uri "^1.1.0"
     trim-lines "^3.0.0"
-    unist-builder "^3.0.0"
     unist-util-generated "^2.0.0"
     unist-util-position "^4.0.0"
     unist-util-visit "^4.0.0"
@@ -4466,13 +4465,6 @@ unist-builder@4.0.0:
   integrity sha512-wmRFnH+BLpZnTKpc5L7O67Kac89s9HMrtELpnNaE6TAobq5DTZZs5YaTQfAZBA9bFPECx2uVAPO31c+GVug8mg==
   dependencies:
     "@types/unist" "^3.0.0"
-
-unist-builder@^3.0.0:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/unist-builder/-/unist-builder-3.0.1.tgz#258b89dcadd3c973656b2327b347863556907f58"
-  integrity sha512-gnpOw7DIpCA0vpr6NqdPvTWnlPTApCTRzr+38E6hCWx3rz/cjo83SsKIlS1Z+L5ttScQ2AwutNnb8+tAvpb6qQ==
-  dependencies:
-    "@types/unist" "^2.0.0"
 
 unist-util-find-after@^4.0.0:
   version "4.0.1"
