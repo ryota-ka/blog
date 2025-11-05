@@ -20,7 +20,7 @@ declare namespace PostCollection {
 
 const PostCollection: React.FC<PostCollection.Props> = ({ accessory, posts }) => {
     return (
-        <section className="space-y-12 md:space-y-24">
+        <section className="space-y-24 md:space-y-24">
             {posts.map(({ date: [year, month, day], keywords, slug, preface, path, title }) => (
                 <article key={slug}>
                     <header className="w-full mb-4 md:mb-6 lg:mb-8">
@@ -54,7 +54,7 @@ const PostCollection: React.FC<PostCollection.Props> = ({ accessory, posts }) =>
                         <Article html={preface} />
                         <Link
                             href={path + '#more'}
-                            className="block w-48 mt-6 mx-auto border border-zinc-500 dark:border-zinc-600 px-4 py-2 text-center dark:text-white"
+                            className="block w-48 mt-8 mx-auto border border-zinc-500 dark:border-zinc-600 px-4 py-2 text-center dark:text-white"
                         >
                             続きを読む
                         </Link>
