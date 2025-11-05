@@ -2,15 +2,17 @@
   @apply sm:text-lg md:text-xl leading-7 sm:leading-8 md:leading-9 lg:leading-10 tracking-wider;
   line-break: strict;
 
-  & > section > section {
-    @apply space-y-4 lg:space-y-6;
-
-    &:last-child {
-      @apply pb-16 lg:pb-20;
+  & > section {
+    &:not(:first-child) {
+      @apply mt-12 lg:mt-16;
     }
 
-    &:not(:last-child) {
-      @apply pb-10 lg:pb-12;
+    & > section {
+      @apply space-y-4 lg:space-y-6;
+
+      &:not(:first-child) {
+        @apply mt-10 lg:mt-12;
+      }
     }
   }
 
